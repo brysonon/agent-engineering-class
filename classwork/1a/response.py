@@ -7,6 +7,8 @@ from openai import OpenAI
 
 from usage import print_usage
 
+from dotenv import load_dotenv
+load_dotenv()
 
 def main(model: str, prompt: str):
     client = OpenAI()
