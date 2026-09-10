@@ -1,21 +1,21 @@
 from time import time
-from dotenv import load_dotenv
-load_dotenv()
+
 from openai import Client
+
 from usage import print_usage
 
 
 def main():
     client = Client()
     start = time()
-    model = "gpt-5-nano"
+    model = "gpt-5.6-luna"
     response = client.responses.create(
         model=model,
-        input="Write me a poem about butterflies.",
-        reasoning={'effort': 'low'}
+        input="Hi.",
+        reasoning={'effort': 'high'}
     )
     print(f'Took {round(time() - start, 2)} seconds')
-    print_usage(model, response.usage)
+    print_usage([(model, response.usage)])
     print(response.output_text)
 
 

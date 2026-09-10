@@ -27,7 +27,7 @@ def main(model: str, prompt: str, sports_texts: dict):
         usages.append(response.usage)
 
     print(f'\n\n{round(time()-start, 2)} seconds elapsed', file=sys.stdout)
-    print_usage(model, usages, file=sys.stdout)
+    print_usage([(model, usage) for usage in usages], file=sys.stdout)
 
 
 # Launch app
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser('AI Response')
     parser.add_argument('prompt_file', type=Path)
     parser.add_argument('--sports_file', type=Path, default='sports-articles.yaml')
-    parser.add_argument('--model', default='gpt-5-nano')
+    parser.add_argument('--model', default='gpt-5.6-luna')
     args = parser.parse_args()
     with open(args.sports_file, "r") as f:
         sports_data = yaml.safe_load(f)
