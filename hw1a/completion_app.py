@@ -24,7 +24,7 @@ def main(model: str, prompt: str, input_text: str | None = None):
     print(response.output_text)
 
     print(f'{round(time() - start, 2)} seconds elapsed', file=sys.stderr)
-    print_usage(model, response.usage)
+    print_usage([(model, response.usage)])
 
 
 if __name__ == '__main__':

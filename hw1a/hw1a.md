@@ -5,14 +5,18 @@
 - Added a `.env` file, which had to be listed in `.gitignore`.
 - Reviewed the code we went over in class.
 - Fiddled around with `basic_response.py` and `response.py` to make sure everything worked with my environment.
+- For the classifier, I wrote a prompt telling the agent that it lived in the world of Avatar: The Last Airbender and had to classify benders based on personality traits shown in their text.
+- For the code generator, I had the model put in comments before main blocks of code explaining the following lines as if I were five years old. I then had it generate code to output the first 100 digits of pi. 
 
 ## Additional exploration
-
+- I explored the middle-ground between rules in my classifier. For example, I classified users into different types of benders based on their personality traits. I then added another rule that stated that if the user demonstrated more than one type of personality trait, the model should output "Avatar." The model did surprisingly well at this.
+- I used different models for the code generating prompt. Interestingly, the newer models seemed to do this task faster, and the code they produced was more efficient. A tradeoff is that the newer models were much pricier. For example, 5.6-sol was roughly 10x more expensive than 5-nano.
 
 ## Obstacles I encountered
 - **Hallucination with older models:** When using older models like `gpt-5-nano`, the model frequently hallucinated — for example, it output a classification even on a run with no input text. This showed me that older models are more likely to give confident-sounding answers with no substance behind them.
 - **API key not working:** Even after creating the `.env` file, I couldn't get my API key to work. This was because I hadn't installed `python-dotenv`.
 - **Reasoning effort hardcoded:** I had initially hardcoded reasoning effort to "low." I later dropped this so the program wouldn't fail when using older models, like `gpt-4.1`, that don't support that parameter.
+- **Model output too much extra information:** In my classifier, I only wanted the model to output what type of element bender the user was. Instead, it gave me a whole bunch of other jargon. To fix this, I said, give me a one-word answer of either type of bender. 
 
 ## What I learned
 - I learned what each of the import lines actually does. For example, `from time import time` pulls in the `time` function that measures how long the API call takes.
