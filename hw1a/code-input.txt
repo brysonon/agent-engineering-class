@@ -1,1 +1,1 @@
-Give me code that will generate the first 100 digits of pi.
+Give me code that will generate the first 100 digits of pi. Use numpy matrices.
