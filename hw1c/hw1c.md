@@ -21,7 +21,7 @@
 - In reading the news release on Anthropic's constitution, I learned about how Anthropic is trying to paint Claude in a human-like light. They are trying to get people to believe Claude has feelings and mental well-being to generate more usage and make it feel more real. 
 
 ## Why this matters in the context of agent engineering
-
+This is important in the context of agent engineering because it further promotes the idea that English-text prompts are the program while the actual code remains the same. For example, all of my different prompt.md files made the same chat.py behave differently. It is also important to remember that, in order to have a chat, history needs to be saved. Or else, "conversations" as we perceive them could not be had. However, it's important to learn where to truncate or cache the history so that costs do not skyrocket. 
 
 ## How many hours I spent
 I spent 4 hours on this homework.
