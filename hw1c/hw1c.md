@@ -3,11 +3,15 @@
 ## How I completed the required tasks
 - I made a game similar to cat-dog-bird called believe_game. This game required the agent to, on a hidden agenda, get the user to say the two words "I believe," in that order. 
     * I modified the prompt because, at first, the agent was looking for just those two words and nothing after, but I wanted it to look for anything that started with those two words.
+
+![Believe game conversation](believe-game-convo.png)
 - I also read the news release. 
 
 ## Additional exploration
 - I played around with the emoji prompt, which tells the model to respond in only emojis. Interestingly, 5.6-sol was the only model that had thought-out, easy-to-follow questions. For example, it said 🤔👉❤️🍕🍔🍣❓ to ask me what food I like or 🌍✈️👉💭📍❓ to ask which places I'm thinking of travelling to. The cheaper models, like 4.1 or 4.1-nano, only asked two or three word questions like ❓🤔 5.6-sol can handle a lot more complexity and translation requirements. 
 - I made a disciple_prompt that responds and acts like an LDS church leader, using scriptures and quotations. It was too strong at first, so I made a disciple_prompt_subtle that was more subtle when responding in the chat. It would only include a quote or text here and there. 
+
+![Disciple prompt conversation](disciple_prompt_convo.png)
 
 ## Obstacles I encountered
 - A minor obstacle I encountered was that I couldn't get my API key to work. I realized I had forgotten to do include the load_dotenv() line. 
