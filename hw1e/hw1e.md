@@ -7,7 +7,9 @@
     * Higher reasoning isn't useful for problems that don't need to be broken down or that are simpler. It wastes time because of the latency and also costs more. I also found that higher reasoning doesn't seem to help with problems that involve a lot of counting or large quantities of text because the model gets too confused. 
     * For the critical reasoning questions from the GMAT, higher reasoning performed significantly better. Low reasoning got one out of two questions wrong, while higher reasoning got both questions right. Higher reasoning was more expensive, but not by a marginal amount. 
 - Overall, I developed a much better intuition for how long it would take and how much it would cost to up the reasoning for certain tasks. 
-- I 
+- I had an agent write me both an order-results and timing-results json file to explore the relationship between different reasoning efforts and the quality of the output/timing of the output. 
+    * For timing and cost, I used trivial facts, GMAT problems, and fermi problems. Higher reasoning really only made a difference for the fermi problems, where there is a lot of thinking to uncover. For the other problems, there was not any noticeable pattern of difference between reasoning effort levels. For the fermi problems, max reasoning took 12x longer and was over 23x the cost than no reasoning.
+    * For order results, I didn't find significant difference in structuring the output. My hunch is because I used relatively simple problems that did not require much reasoning in the first place (or could be done with no reasoning). Based on my intuition and little experience, I would say that structuring output would have a significant impact in problems that are much more accurately answered with higher reasoning. For example, counting phrases. This way, the model will output based on its reasoning and not the other way around.
 
 ## Additional exploration
 - I watched 3 YouTube videos to deepen my understanding of reasoning, how it works in models, and what thought chains are (more of what I learned is in the "What I Learned" section):
@@ -21,6 +23,8 @@
 - Max reasoning seemed to think way too much, and the output accuracy/quality was not worth the extra cost. For example, on a simple Fermi problem, it output a worse answer (in my opinion) than the model with high reasoning and cost 50x more. I can't see cases in which max reasoning would be valuable. 
 - At first, I was giving the agent easy problems. The model would produce the same answer with or without reasoning. The only thing that would change would be the time and cost. Thus, I needed to find harder problems for it to solve. 
 - I tried giving the agent the "hardest riddle" I could find on the internet, but it answers it easily even with low reasoning. I think this is because it is so popular that it the answer is already embedded in its training data. 
+- It was hard to find questions or problems hard enough to accurately test model reasoning. 
+
 
 ## What I learned
 - In most cases I tested, max effort seemed to be overkill. It seemed to be too much thinking. For example, for the Fermi problem of how many drinks are spilled annually on BYU campus, the model produced (in my opinion) way too much reasoning and was incredibly expensive, yet the estimate was a lot lower than other reasoning efforts. 
@@ -33,4 +37,4 @@ This is very important for agent engineering because reasoning effort can be det
 The most important thing I learned is that more thinking is not necessarily better. I used to always put ChatGPT on high reasoning, but I am learning that that is not always more accurate. Reasoning effort is not just a dial to raise whenever you want more quality. There is a fine line where you can spend just enough to get the best answer. 
 
 ## How many hours I spent
-I spent 3 hours on this homework.
+I spent 4 hours on this homework.

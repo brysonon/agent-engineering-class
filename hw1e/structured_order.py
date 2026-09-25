@@ -9,6 +9,11 @@
 #   none  - the JSON field is the ONLY place the model can reason
 #   high  - the model already reasoned internally before emitting any JSON
 #
+# Problems are GMAT Critical Reasoning questions (A-E multiple choice) from
+# mba.com's official sample set. These are used instead of quant problems
+# because quant saturated at ~97% accuracy, leaving no headroom to detect
+# any effect of field order.
+#
 #   python structured_order.py
 #   python structured_order.py --trials 5
 
@@ -26,44 +31,35 @@ from usage import PRICING
 load_dotenv(Path(__file__).resolve().parent.parent / '.env')
 
 INSTRUCTIONS = (
-    'Solve the problem. Respond only with the JSON object described by the schema. '
-    'Give `answer` as a single number with no units, commas, or symbols.'
+    'Answer the multiple-choice question. Respond only with the JSON object described '
+    'by the schema. Give `answer` as a single letter: one of A, B, C, D, or E.'
 )
 
-# (id, question, expected answer, tolerance)
+CHOICE_LETTERS = ['A', 'B', 'C', 'D', 'E']
+
+# (id, question stem, {letter: choice text}, expected letter)
+#
+# PASTE THE GMAT CRITICAL REASONING QUESTIONS HERE.
+# Left empty deliberately: the questions come from mba.com's official sample
+# set, which is bot-protected and could not be fetched, and inventing
+# substitutes would misrepresent the source cited in the write-up.
 PROBLEMS = [
-    ('yolanda-bob',
-     'One hour after Yolanda started walking from X to Y, a distance of 45 miles, Bob '
-     'started walking along the same road from Y to X. If Yolanda’s walking rate was '
-     '3 miles per hour and Bob’s was 4 miles per hour, how many miles had Bob walked '
-     'when they met?', 24, 0.01),
-    ('avg-speed',
-     'A train travels at 60 mph for 2.5 hours, then at 40 mph for 1.5 hours. What was its '
-     'average speed in mph for the entire trip?', 52.5, 0.01),
-    ('markup-discount',
-     'A shirt is marked up 40%, then the marked-up price is discounted 25%. What is the net '
-     'percent change from the original price? Give a positive number for an increase.', 5, 0.01),
-    ('machines',
-     'If 3 machines make 3 widgets in 3 minutes, how many minutes do 100 machines need to '
-     'make 100 widgets?', 3, 0.01),
-    ('bat-ball',
-     'A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How many '
-     'dollars does the ball cost?', 0.05, 0.001),
-    ('div-3-or-5',
-     'What is the sum of all integers from 1 to 100 inclusive that are divisible by 3 or by 5?',
-     2418, 0.01),
-    ('pipes',
-     'A tank is filled by pipe A in 6 hours and by pipe B in 9 hours. A drain empties it in 12 '
-     'hours. With all three open, how many hours does it take to fill the tank?', 36 / 7, 0.01),
-    ('average-removed',
-     'The average of 5 numbers is 20. After one number is removed, the average of the '
-     'remaining 4 is 22. What was the number that was removed?', 12, 0.01),
-    ('compound-interest',
-     'You invest $1000 at 10% annual interest compounded annually. How many dollars do you '
-     'have after 3 years?', 1331, 0.01),
-    ('distinct-digits',
-     'How many 3-digit positive integers have three distinct digits?', 648, 0.01),
+    # ('cr-1',
+    #  'Stimulus paragraph goes here. Which of the following, if true, most '
+    #  'seriously weakens the argument above?',
+    #  {'A': 'first choice',
+    #   'B': 'second choice',
+    #   'C': 'third choice',
+    #   'D': 'fourth choice',
+    #   'E': 'fifth choice'},
+    #  'C'),
 ]
+
+
+def format_question(question, choices):
+    lines = [question, '']
+    lines += [f'{letter}. {choices[letter]}' for letter in CHOICE_LETTERS if letter in choices]
+    return '\n'.join(lines)
 
 
 def build_schema(reasoning_first: bool) -> dict:
@@ -72,8 +68,9 @@ def build_schema(reasoning_first: bool) -> dict:
         'description': 'Step-by-step working that leads to the answer.',
     })
     answer = ('answer', {
-        'type': 'number',
-        'description': 'The final numeric answer, with no units or symbols.',
+        'type': 'string',
+        'enum': CHOICE_LETTERS,
+        'description': 'The letter of the correct answer choice.',
     })
     fields = [reasoning, answer] if reasoning_first else [answer, reasoning]
     return {
@@ -129,18 +126,24 @@ def run_once(client, model, question, schema, order_name, effort):
 
 
 def main(model, trials, efforts, out_path):
+    if not PROBLEMS:
+        raise SystemExit(
+            'PROBLEMS is empty - paste the GMAT Critical Reasoning questions into '
+            'structured_order.py before running.'
+        )
     client = OpenAI()
     rows = []
 
     for effort in efforts:
         for order_name, schema in ORDERINGS.items():
             results = []
-            for pid, question, expected, tol in PROBLEMS:
+            for pid, question, choices, expected in PROBLEMS:
+                prompt = format_question(question, choices)
                 for trial in range(trials):
-                    run = run_once(client, model, question, schema, order_name, effort)
+                    run = run_once(client, model, prompt, schema, order_name, effort)
                     run['problem'] = pid
                     run['expected'] = expected
-                    run['correct'] = abs(run['answer'] - expected) <= tol
+                    run['correct'] = run['answer'] == expected
                     results.append(run)
 
             correct = sum(r['correct'] for r in results)
@@ -204,7 +207,7 @@ def write_markdown(model, trials, rows, md_path):
             '| Problem | Expected | reasoning-first | answer-first |',
             '|---------|----------|-----------------|--------------|',
         ]
-        for pid, _, expected, _tol in PROBLEMS:
+        for pid, _, _choices, expected in PROBLEMS:
             cells = []
             for order_name in ORDERINGS:
                 row = next(
@@ -212,7 +215,7 @@ def write_markdown(model, trials, rows, md_path):
                 )
                 hits = [x for x in row['results'] if x['problem'] == pid]
                 cells.append(f"{sum(x['correct'] for x in hits)}/{len(hits)}")
-            lines.append(f'| {pid} | {expected:g} | {cells[0]} | {cells[1]} |')
+            lines.append(f'| {pid} | {expected} | {cells[0]} | {cells[1]} |')
         lines.append('')
 
     md_path.write_text('\n'.join(lines), encoding='utf-8')
