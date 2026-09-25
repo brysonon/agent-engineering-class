@@ -9,6 +9,8 @@ import gradio as gr
 from openai import AsyncOpenAI
 
 from usage import print_usage, format_usage_markdown
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class ChatAgent:

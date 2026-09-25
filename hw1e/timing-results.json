@@ -1,0 +1,531 @@
+{
+  "model": "gpt-5.6-luna",
+  "trials": 3,
+  "rows": [
+    {
+      "problem": "trivial-fact",
+      "effort": "none",
+      "trials": 3,
+      "median_seconds": 1.74,
+      "median_reasoning_tokens": 0,
+      "median_output_tokens": 25,
+      "mean_cost_usd": 3.32e-05,
+      "runs": [
+        {
+          "seconds": 1.81,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 1.43,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 1.74,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        }
+      ]
+    },
+    {
+      "problem": "trivial-fact",
+      "effort": "low",
+      "trials": 3,
+      "median_seconds": 1.58,
+      "median_reasoning_tokens": 0,
+      "median_output_tokens": 25,
+      "mean_cost_usd": 3.32e-05,
+      "runs": [
+        {
+          "seconds": 1.58,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 1.18,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 18.4,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        }
+      ]
+    },
+    {
+      "problem": "trivial-fact",
+      "effort": "medium",
+      "trials": 3,
+      "median_seconds": 1.18,
+      "median_reasoning_tokens": 0,
+      "median_output_tokens": 25,
+      "mean_cost_usd": 3.32e-05,
+      "runs": [
+        {
+          "seconds": 1.19,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 1.18,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 1.14,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        }
+      ]
+    },
+    {
+      "problem": "trivial-fact",
+      "effort": "high",
+      "trials": 3,
+      "median_seconds": 1.14,
+      "median_reasoning_tokens": 0,
+      "median_output_tokens": 25,
+      "mean_cost_usd": 3.32e-05,
+      "runs": [
+        {
+          "seconds": 1.2,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 1.14,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 1.0,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        }
+      ]
+    },
+    {
+      "problem": "trivial-fact",
+      "effort": "max",
+      "trials": 3,
+      "median_seconds": 0.96,
+      "median_reasoning_tokens": 0,
+      "median_output_tokens": 25,
+      "mean_cost_usd": 3.32e-05,
+      "runs": [
+        {
+          "seconds": 0.81,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 0.99,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        },
+        {
+          "seconds": 0.96,
+          "input_tokens": 16,
+          "output_tokens": 25,
+          "reasoning_tokens": 0,
+          "cost_usd": 3.32e-05,
+          "answer": "George Washington was the first president of the United States, serving from 1789 to 1797."
+        }
+      ]
+    },
+    {
+      "problem": "gmat-quant",
+      "effort": "none",
+      "trials": 3,
+      "median_seconds": 1.71,
+      "median_reasoning_tokens": 0,
+      "median_output_tokens": 91,
+      "mean_cost_usd": 0.0001274,
+      "runs": [
+        {
+          "seconds": 1.71,
+          "input_tokens": 69,
+          "output_tokens": 91,
+          "reasoning_tokens": 0,
+          "cost_usd": 0.000123,
+          "answer": "Let \\(t\\) be the number of hours Bob walked before they met.\n\nYolanda walked for \\(t+1\\) hours, so:\n\n\\[\n3(t+1)+4t=45\n\\]\n\n\\[\n7t+3=45 \\quad\\Rightarrow\\quad t=6\n\\]\n\nBob walked:\n\n\\[\n4 \\times 6=\\boxed{24\\text{ miles}}\n\\]"
+        },
+        {
+          "seconds": 1.49,
+          "input_tokens": 69,
+          "output_tokens": 102,
+          "reasoning_tokens": 0,
+          "cost_usd": 0.00013619999999999998,
+          "answer": "Let \\(t\\) be the number of hours Bob walked before they met.\n\nYolanda walked for \\(t+1\\) hours, so:\n\n\\[\n3(t+1)+4t=45\n\\]\n\n\\[\n7t+3=45 \\quad\\Rightarrow\\quad 7t=42 \\quad\\Rightarrow\\quad t=6\n\\]\n\nBob walked:\n\n\\[\n4(6)=\\boxed{24\\text{ miles}}\n\\]"
+        },
+        {
+          "seconds": 2.66,
+          "input_tokens": 69,
+          "output_tokens": 91,
+          "reasoning_tokens": 0,
+          "cost_usd": 0.000123,
+          "answer": "Let \\(t\\) be the number of hours Bob walked before meeting Yolanda.\n\nYolanda walked for \\(t+1\\) hours, so:\n\n\\[\n3(t+1)+4t=45\n\\]\n\n\\[\n7t+3=45 \\quad\\Rightarrow\\quad t=6\n\\]\n\nBob walked:\n\n\\[\n4(6)=\\boxed{24\\text{ miles}}\n\\]"
+        }
+      ]
+    },
+    {
+      "problem": "gmat-quant",
+      "effort": "low",
+      "trials": 3,
+      "median_seconds": 2.59,
+      "median_reasoning_tokens": 46,
+      "median_output_tokens": 171,
+      "mean_cost_usd": 0.00020820000000000002,
+      "runs": [
+        {
+          "seconds": 2.4,
+          "input_tokens": 69,
+          "output_tokens": 143,
+          "reasoning_tokens": 50,
+          "cost_usd": 0.0001854,
+          "answer": "Let \\(t\\) be the number of hours Bob walked before meeting Yolanda.\n\nYolanda walked for \\(t+1\\) hours, so:\n\n\\[\n4t+3(t+1)=45\n\\]\n\n\\[\n7t+3=45 \\quad\\Rightarrow\\quad t=6\n\\]\n\nBob walked:\n\n\\[\n4(6)=\\boxed{24\\text{ miles}}\n\\]"
+        },
+        {
+          "seconds": 2.59,
+          "input_tokens": 69,
+          "output_tokens": 171,
+          "reasoning_tokens": 43,
+          "cost_usd": 0.000219,
+          "answer": "Yolanda had a 1-hour head start, so she walked:\n\n\\[\n3 \\times 1 = 3 \\text{ miles}\n\\]\n\nThe remaining distance between them was:\n\n\\[\n45 - 3 = 42 \\text{ miles}\n\\]\n\nThey approached each other at a combined rate of:\n\n\\[\n3+4=7 \\text{ mph}\n\\]\n\nThus, they met after:\n\n\\[\n42 \\div 7=6 \\text{ hours}\n\\]\n\nBob walked:\n\n\\[\n4 \\times 6=\\boxed{24\\text{ miles}}\n\\]"
+        },
+        {
+          "seconds": 2.64,
+          "input_tokens": 69,
+          "output_tokens": 172,
+          "reasoning_tokens": 46,
+          "cost_usd": 0.0002202,
+          "answer": "Yolanda had a 1-hour head start, so she walked:\n\n\\[\n3 \\times 1 = 3\\text{ miles}\n\\]\n\nThe remaining distance between them was:\n\n\\[\n45-3=42\\text{ miles}\n\\]\n\nThey approach each other at a combined rate of:\n\n\\[\n3+4=7\\text{ mph}\n\\]\n\nThus, they met after:\n\n\\[\n42\\div 7=6\\text{ hours}\n\\]\n\nBob walked:\n\n\\[\n4\\times 6=\\boxed{24\\text{ miles}}\n\\]"
+        }
+      ]
+    },
+    {
+      "problem": "gmat-quant",
+      "effort": "medium",
+      "trials": 3,
+      "median_seconds": 3.9,
+      "median_reasoning_tokens": 48,
+      "median_output_tokens": 146,
+      "mean_cost_usd": 0.0002082,
+      "runs": [
+        {
+          "seconds": 2.65,
+          "input_tokens": 69,
+          "output_tokens": 146,
+          "reasoning_tokens": 48,
+          "cost_usd": 0.000189,
+          "answer": "Let \\(t\\) be the number of hours Bob walked before meeting Yolanda.\n\nYolanda walked for \\(t+1\\) hours, so:\n\n\\[\n4t + 3(t+1)=45\n\\]\n\n\\[\n7t+3=45 \\implies 7t=42 \\implies t=6\n\\]\n\nBob walked:\n\n\\[\n4(6)=\\boxed{24\\text{ miles}}\n\\]"
+        },
+        {
+          "seconds": 3.9,
+          "input_tokens": 69,
+          "output_tokens": 140,
+          "reasoning_tokens": 47,
+          "cost_usd": 0.0001818,
+          "answer": "Let \\(t\\) be the number of hours Bob walked before meeting Yolanda.\n\nYolanda walked for \\(t+1\\) hours, so:\n\n\\[\n4t+3(t+1)=45\n\\]\n\n\\[\n7t+3=45 \\quad\\Rightarrow\\quad t=6\n\\]\n\nBob walked:\n\n\\[\n4(6)=\\boxed{24\\text{ miles}}\n\\]"
+        },
+        {
+          "seconds": 4.35,
+          "input_tokens": 69,
+          "output_tokens": 200,
+          "reasoning_tokens": 71,
+          "cost_usd": 0.0002538,
+          "answer": "Yolanda walked for 1 hour before Bob started, covering:\n\n\\[\n3 \\times 1 = 3 \\text{ miles}\n\\]\n\nSo the remaining distance between them was:\n\n\\[\n45 - 3 = 42 \\text{ miles}\n\\]\n\nTheir combined walking speed toward each other was:\n\n\\[\n3 + 4 = 7 \\text{ mph}\n\\]\n\nThey met after:\n\n\\[\n42 \\div 7 = 6 \\text{ hours}\n\\]\n\nBob walked:\n\n\\[\n4 \\times 6 = \\boxed{24\\text{ miles}}\n\\]"
+        }
+      ]
+    },
+    {
+      "problem": "gmat-quant",
+      "effort": "high",
+      "trials": 3,
+      "median_seconds": 2.71,
+      "median_reasoning_tokens": 81,
+      "median_output_tokens": 203,
+      "mean_cost_usd": 0.0002482,
+      "runs": [
+        {
+          "seconds": 2.71,
+          "input_tokens": 69,
+          "output_tokens": 203,
+          "reasoning_tokens": 81,
+          "cost_usd": 0.00025739999999999997,
+          "answer": "Yolanda had a 3-mile head start after one hour:\n\n\\[\n3 \\times 1 = 3\\text{ miles}\n\\]\n\nSo the distance between them when Bob started was:\n\n\\[\n45-3=42\\text{ miles}\n\\]\n\nTheir combined walking rate was:\n\n\\[\n3+4=7\\text{ mph}\n\\]\n\nThey met after:\n\n\\[\n42 \\div 7=6\\text{ hours}\n\\]\n\nBob walked:\n\n\\[\n4 \\times 6=\\boxed{24\\text{ miles}}\n\\]"
+        },
+        {
+          "seconds": 2.29,
+          "input_tokens": 69,
+          "output_tokens": 169,
+          "reasoning_tokens": 54,
+          "cost_usd": 0.0002166,
+          "answer": "Yolanda had a 1-hour head start, so she walked \\(3\\) miles before Bob started.\n\nThe remaining distance was:\n\n\\[\n45-3=42\\text{ miles}\n\\]\n\nThey approached each other at a combined rate of:\n\n\\[\n3+4=7\\text{ mph}\n\\]\n\nThus, they met after:\n\n\\[\n42\\div 7=6\\text{ hours}\n\\]\n\nBob walked:\n\n\\[\n4\\times 6=\\boxed{24\\text{ miles}}\n\\]"
+        },
+        {
+          "seconds": 3.24,
+          "input_tokens": 69,
+          "output_tokens": 214,
+          "reasoning_tokens": 89,
+          "cost_usd": 0.0002706,
+          "answer": "Yolanda had a 3-mile head start after one hour:\n\n\\[\n3 \\text{ mph}\\times 1\\text{ hr}=3\\text{ miles}\n\\]\n\nThe remaining distance between them was:\n\n\\[\n45-3=42\\text{ miles}\n\\]\n\nTheir combined rate was:\n\n\\[\n3+4=7\\text{ mph}\n\\]\n\nThey met after:\n\n\\[\n42\\div 7=6\\text{ hours}\n\\]\n\nBob walked:\n\n\\[\n4\\times 6=\\boxed{24\\text{ miles}}\n\\]"
+        }
+      ]
+    },
+    {
+      "problem": "gmat-quant",
+      "effort": "max",
+      "trials": 3,
+      "median_seconds": 2.61,
+      "median_reasoning_tokens": 107,
+      "median_output_tokens": 201,
+      "mean_cost_usd": 0.0002562,
+      "runs": [
+        {
+          "seconds": 2.95,
+          "input_tokens": 69,
+          "output_tokens": 200,
+          "reasoning_tokens": 113,
+          "cost_usd": 0.0002538,
+          "answer": "Let \\(t\\) be the number of hours Bob walked before they met. Yolanda walked for \\(t+1\\) hours.\n\n\\[\n3(t+1)+4t=45\n\\]\n\n\\[\n7t+3=45 \\implies t=6\n\\]\n\nBob walked:\n\n\\[\n4\\cdot 6=\\boxed{24\\text{ miles}}\n\\]"
+        },
+        {
+          "seconds": 2.61,
+          "input_tokens": 69,
+          "output_tokens": 205,
+          "reasoning_tokens": 107,
+          "cost_usd": 0.0002598,
+          "answer": "Yolanda\u2019s one-hour head start covered \\(3\\) miles, leaving \\(45-3=42\\) miles between them.\n\nTheir combined walking speed is \\(3+4=7\\) mph, so they meet after\n\n\\[\n\\frac{42}{7}=6\\text{ hours}\n\\]\n\nafter Bob starts. Bob walks\n\n\\[\n4\\cdot 6=\\boxed{24\\text{ miles}}.\n\\]"
+        },
+        {
+          "seconds": 2.5,
+          "input_tokens": 69,
+          "output_tokens": 201,
+          "reasoning_tokens": 106,
+          "cost_usd": 0.000255,
+          "answer": "In the first hour, Yolanda walked \\(3\\) miles, leaving \\(45-3=42\\) miles between them.\n\nTheir combined rate is \\(3+4=7\\) mph, so they meet after\n\n\\[\n\\frac{42}{7}=6\\text{ hours}\n\\]\n\nof Bob walking. Bob walked\n\n\\[\n4 \\times 6=\\boxed{24\\text{ miles}}.\n\\]"
+        }
+      ]
+    },
+    {
+      "problem": "fermi",
+      "effort": "none",
+      "trials": 3,
+      "median_seconds": 4.59,
+      "median_reasoning_tokens": 0,
+      "median_output_tokens": 321,
+      "mean_cost_usd": 0.0004184,
+      "runs": [
+        {
+          "seconds": 4.59,
+          "input_tokens": 30,
+          "output_tokens": 399,
+          "reasoning_tokens": 0,
+          "cost_usd": 0.00048479999999999997,
+          "answer": "### Estimate: **\u224825,000 spilled cups or cans per year**  \n**Plausible tight range: 15,000\u201340,000 annually**\n\n#### Basis\n\nAssume BYU\u2019s Provo campus has roughly **35,000 students, faculty, and staff** present regularly, with about **220 active days per year**.\n\n1. **Drinks carried or purchased on campus**  \n   Estimate **0.35\u20130.50 drinks per person per day**:  \n   \\[\n   35{,}000 \\times 220 \\times 0.35\\text{\u2013}0.50\n   \\approx 2.7\\text{\u2013}3.9\\text{ million drinks/year}\n   \\]\n\n2. **Fraction spilled**  \n   Most spills are partial or minor. A reasonable campus rate is approximately **0.5%\u20131.0% of drink containers experiencing a meaningful spill**\u2014from knocking over a cup, dropping a can, or sloshing enough liquid out to require cleanup.\n\n   \\[\n   2.7\\text{\u2013}3.9\\text{ million} \\times 0.5\\%\\text{\u2013}1.0\\%\n   \\approx 14{,}000\\text{\u2013}39{,}000\n   \\]\n\n3. **Point estimate**  \n   Using midrange assumptions:\n   \\[\n   35{,}000 \\times 220 \\times 0.42 \\times 0.75\\%\n   \\approx 24{,}000\n   \\]\n\n### Final estimate\n\n**About 25,000 drink cups or cans are spilled annually on BYU\u2019s campus**, or roughly:\n\n- **115 per active day**\n- **1 spill every 4\u20135 minutes during operating hours**\n\nThis counts incidents involving a cup or can, including partial spills\u2014not just containers emptied completely."
+        },
+        {
+          "seconds": 4.81,
+          "input_tokens": 30,
+          "output_tokens": 321,
+          "reasoning_tokens": 0,
+          "cost_usd": 0.00039119999999999997,
+          "answer": "### Estimate: **about 25,000\u201345,000 cups or cans spilled per year** at BYU  \n**Best estimate: ~35,000 annually** \u2014 roughly **100 per day** across campus.\n\n#### Basis\n\nA reasonable bottom-up estimate:\n\n| Assumption | Estimate |\n|---|---:|\n| BYU daily population present (students, faculty, staff, visitors) | 35,000\u201345,000 |\n| People carrying a purchased or filled drink each day | 15\u201325% |\n| Drink containers in circulation daily | 5,000\u201311,000 |\n| Fraction spilled or knocked over | 0.5\u20131.0% |\n| Spill events per day | 25\u2013110 |\n| Academic days plus summer/events activity | ~320 days/year |\n\nThis gives a broad mathematical range of approximately **8,000\u201335,000** spills during ordinary campus activity. Adding athletic events, conferences, dining operations, and weekend activity raises the likely total.\n\n### Tightly bounded estimate\n\n- **Low case:** ~20,000 per year  \n- **Central estimate:** ~35,000 per year  \n- **High case:** ~55,000 per year  \n\nSo a defensible tightly bounded answer is:\n\n> **Approximately 35,000 drink cups or cans are spilled annually on BYU\u2019s campus, likely within a range of 20,000\u201355,000.**\n\nThis counts discrete cups or cans involved in a spill, not the volume spilled; a single incident involving several containers would count several times."
+        },
+        {
+          "seconds": 4.08,
+          "input_tokens": 30,
+          "output_tokens": 311,
+          "reasoning_tokens": 0,
+          "cost_usd": 0.0003792,
+          "answer": "### Estimate: **~20,000 drink cups or cans spilled per year** at BYU\n\nA reasonable tightly bounded range is **10,000\u201335,000 annually**, counting drinks accidentally knocked over, dropped, or otherwise spilled on campus\u2014not drinks intentionally discarded while still containing liquid.\n\n#### Back-of-the-envelope basis\n\n- **BYU campus population present on a typical weekday:** roughly 35,000\u201345,000 students, faculty, and staff  \n- **Academic-year active weekdays:** about 180  \n- **Campus person-visits per year:** approximately 6.5\u20138 million  \n- **People carrying a disposable cup or can on campus:** roughly 10\u201315% of visits  \n  - about **700,000\u20131.1 million drink containers carried annually**\n- **Spill rate per carried drink:** approximately **1.5\u20133%**\n  - lower for cans and lidded cups; higher for open or poorly sealed cups\n\nThis yields:\n\n\\[\n700{,}000\\text{\u2013}1.1\\text{ million} \\times 1.5\\%\\text{\u2013}3\\%\n\\approx 10{,}000\\text{\u2013}33{,}000\n\\]\n\nRounded estimate: **about 20,000 spills per year**, or roughly **100 per active weekday**.\n\nThis should be interpreted as an order-of-magnitude estimate; the largest uncertainty is the fraction of campus visitors carrying drinks and the actual spill rate."
+        }
+      ]
+    },
+    {
+      "problem": "fermi",
+      "effort": "low",
+      "trials": 3,
+      "median_seconds": 13.31,
+      "median_reasoning_tokens": 411,
+      "median_output_tokens": 680,
+      "mean_cost_usd": 0.0009332,
+      "runs": [
+        {
+          "seconds": 19.25,
+          "input_tokens": 30,
+          "output_tokens": 1111,
+          "reasoning_tokens": 794,
+          "cost_usd": 0.0013392,
+          "answer": "## Estimate: **about 45,000 spilled drink cups or cans per year**\n\nA reasonable tightly bounded range is **20,000\u201380,000 containers annually** on BYU\u2019s Provo campus.\n\n### Fermi calculation\n\n| Quantity | Low | High |\n|---|---:|---:|\n| People present on an average operating day | 20,000 | 28,000 |\n| Days with substantial campus activity per year | 190 | 210 |\n| Drink cups/cans consumed per person per day | 0.4 | 0.6 |\n| Total drink containers | 1.5 million | 3.5 million |\n| Fraction spilled or knocked over | 1.3% | 2.3% |\n| **Annual spills** | **~20,000** | **~80,000** |\n\nThe midpoint calculation is approximately:\n\n\\[\n24{,}000 \\text{ people/day} \\times 200 \\text{ days} \\times 0.5 \\text{ drinks/person/day} \\times 1.9\\%\n\\approx 46{,}000\n\\]\n\n### Bottom line\n\n**Best estimate: roughly 45,000 spilled cups or cans per year, or about 225 per active campus day.**\n\nThis counts a container being tipped over, dropped, or spilled enough to require cleanup\u2014not minor splashes or a drink merely leaking from a lid. If every partially spilled drink were counted, the number could plausibly be several times higher."
+        },
+        {
+          "seconds": 11.09,
+          "input_tokens": 30,
+          "output_tokens": 527,
+          "reasoning_tokens": 270,
+          "cost_usd": 0.0006384,
+          "answer": "### Estimate: **about 12,000 spilled drink cups or cans per year**\n\nA reasonable tightly bounded range is **8,000\u201320,000 containers annually** on BYU\u2019s Provo campus.\n\n#### Back-of-the-envelope calculation\n\n| Factor | Estimate |\n|---|---:|\n| People regularly present on a typical day | 25,000\u201335,000 |\n| School/event days with substantial activity | ~220 |\n| Purchased or carried drinks per person per day | 0.25\u20130.40 |\n| Annual cups/cans handled | 1.4\u20133.1 million |\n| Fraction resulting in a meaningful spill | 0.3%\u20130.6% |\n| Estimated spills | **4,000\u201319,000** |\n\nAdjusting upward for football games, concerts, residence halls, outdoor events, and summer activity gives a practical range of:\n\n> **8,000\u201320,000 spills per year**, with a midpoint of approximately **12,000**.\n\nThat corresponds to roughly **30\u201350 spilled cups or cans per weekday**, plus periodic event-related spikes. This counts a cup or can being knocked over or substantially spilled, not minor drips or a few drops while walking."
+        },
+        {
+          "seconds": 13.31,
+          "input_tokens": 30,
+          "output_tokens": 680,
+          "reasoning_tokens": 411,
+          "cost_usd": 0.000822,
+          "answer": "## Estimate: **about 5,000 drink cups or cans spilled per year**\n\nA reasonable tightly bounded estimate for BYU\u2019s Provo campus is:\n\n> **3,500\u20137,000 spilled cups or cans annually**  \n> **Best estimate: approximately 5,000**\n\n### Back-of-the-envelope calculation\n\n| Quantity | Estimate |\n|---|---:|\n| Students and employees regularly on campus | ~35,000 |\n| Average active campus days per person annually | ~170 |\n| Person-days on campus | ~6 million |\n| Purchased or carried drinks per person-day | ~0.25 |\n| Total portable drinks present annually | ~1.5 million |\n| Add visitors, events, and dining traffic | ~1.8 million |\n| Fraction resulting in a meaningful spill | ~0.2\u20130.4% |\n| Implied spills | **3,600\u20137,200** |\n\nThus, rounding to a practical range, **roughly 3,500\u20137,000 cups or cans are spilled on campus each year**, with **about 5,000** as the most defensible point estimate.\n\nThis counts a cup or can that is knocked over, dropped, or leaks enough to require cleanup\u2014not minor drips or drinks intentionally emptied into a drain."
+        }
+      ]
+    },
+    {
+      "problem": "fermi",
+      "effort": "medium",
+      "trials": 3,
+      "median_seconds": 14.57,
+      "median_reasoning_tokens": 516,
+      "median_output_tokens": 983,
+      "mean_cost_usd": 0.0013216,
+      "runs": [
+        {
+          "seconds": 19.95,
+          "input_tokens": 30,
+          "output_tokens": 1445,
+          "reasoning_tokens": 1034,
+          "cost_usd": 0.00174,
+          "answer": "## Estimate: **about 20,000 spilled drink cups or cans per year**\n\nI\u2019ll define a \u201cspill\u201d as a cup or can losing enough liquid to be noticeable or require cleanup\u2014not merely a few drops sloshing out.\n\n### 1. Campus person-days\n\nApproximate annual activity:\n\n- Students: roughly 35,000 \u00d7 160 high-attendance days \u00d7 60\u201370% present  \n  \u2248 **3.5 million person-days**\n- Faculty and staff: roughly 8,000 \u00d7 240 workdays  \n  \u2248 **1.9 million person-days**\n- Visitors, events, summer programs, and others:  \n  \u2248 **0.5 million person-days**\n\nTotal: approximately **6 million campus person-days per year**.\n\n### 2. Beverage containers\n\nAssume people consume or carry an on-campus cup/can about once every 3\u20134 person-days on average:\n\n\\[\n6\\text{ million} \\times 0.25\\text{\u2013}0.35\n\\approx 1.5\\text{\u2013}2.1\\text{ million cups/cans}\n\\]\n\n### 3. Spill rate\n\nA reasonable campus spill rate is about **0.7\u20131.5%** of beverage containers, including drinks knocked over in classrooms, offices, cafeterias, walkways, and at events:\n\n\\[\n1.5\\text{\u2013}2.1\\text{ million} \\times 0.7\\%\\text{\u2013}1.5\\%\n\\approx 10,000\\text{\u2013}30,000\n\\]\n\n## Final estimate\n\n\\[\n\\boxed{\\text{Approximately }20,000\\text{ spilled cups or cans annually}}\n\\]\n\nA reasonably tight plausible range is **10,000\u201330,000 per year**, equivalent to roughly **40\u2013120 spills on a typical active campus day**, with a central estimate near **80 per day**."
+        },
+        {
+          "seconds": 14.57,
+          "input_tokens": 30,
+          "output_tokens": 983,
+          "reasoning_tokens": 516,
+          "cost_usd": 0.0011856,
+          "answer": "## Fermi estimate for BYU\u2013Provo\n\nI\u2019ll count a \u201cspilled cup or can\u201d as a beverage container whose contents are accidentally spilled on campus\u2014not merely a cup discarded with liquid remaining.\n\n### 1. Beverage containers used on campus\n\nAssume:\n\n- **People present on a typical active day:** 25,000\u201335,000  \n  (students, faculty, staff, visitors)\n- **Active campus days per year:** 230\u2013260\n- **Cup/can drinks consumed per person per day:** 0.25\u20130.45\n\nEstimated annual cup/can use:\n\n\\[\n(25{,}000\\text{\u2013}35{,}000)(230\\text{\u2013}260)(0.25\\text{\u2013}0.45)\n\\]\n\n\\[\n\\approx 1.4\\text{\u2013}4.1\\text{ million containers/year}\n\\]\n\nA reasonable midpoint is about **2.5 million cups or cans per year**.\n\n### 2. Spill rate\n\nFor a portable drink carried across a busy campus, assume that **0.08%\u20130.15%** result in a noticeable spill:\n\n- roughly **1 spill per 1,250 containers** at the low end;\n- roughly **1 spill per 670 containers** at the high end.\n\nThus:\n\n\\[\n(1.4\\text{\u2013}4.1\\text{ million})(0.08\\%\\text{\u2013}0.15\\%)\n\\]\n\ngives a broad range of about **1,100\u20136,200 spills per year**.\n\nRestricting the inputs to mutually consistent middle cases gives:\n\n\\[\n\\boxed{\\text{Approximately }2{,}000\\text{\u2013}4{,}000\\text{ spilled cups or cans per year}}\n\\]\n\n### Best single estimate\n\n\\[\n\\boxed{\\textbf{about 3,000 spilled cups or cans annually}}\n\\]\n\nThat corresponds to approximately **12\u201315 spills on a typical active campus day**, or about **one spill every 45\u201360 minutes during the daytime**. If \u201cspilled\u201d includes tiny drips or partially discarded drinks, the figure could be several times higher."
+        },
+        {
+          "seconds": 11.46,
+          "input_tokens": 30,
+          "output_tokens": 861,
+          "reasoning_tokens": 516,
+          "cost_usd": 0.0010392,
+          "answer": "### Estimate: **about 10,000 spilled drink cups or cans per year**\n\nA reasonable tightly bounded range is **6,000\u201316,000 annually**, with a midpoint of roughly **10,000\u201312,000**.\n\n#### Fermi estimate\n\n| Quantity | Assumption |\n|---|---:|\n| People on campus on a typical active day | 25,000\u201335,000 |\n| Active campus days per year | 180\u2013210 |\n| Person-days | 4.5\u20137.4 million |\n| Disposable drink cups/cans per person-day | 0.30\u20130.45 |\n| Total cups/cans handled | 1.4\u20133.3 million |\n| Fraction involved in a spill | 0.4%\u20130.5% |\n\nThis gives:\n\n\\[\n(1.4\\text{\u2013}3.3\\text{ million}) \\times (0.4\\%\\text{\u2013}0.5\\%)\n\\approx 6{,}000\\text{\u2013}16{,}000\n\\]\n\n### Best single estimate\n\nUsing approximately **2.3 million cups/cans handled annually** and a spill rate of **0.5%**:\n\n\\[\n2.3\\text{ million} \\times 0.005 \\approx \\boxed{11{,}500}\n\\]\n\nSo, **BYU likely experiences roughly 10,000\u201312,000 spilled cups or cans per year**, or about **50\u201360 per active campus day**. This counts cups or cans involved in a spill, including partially spilled drinks, rather than only complete losses."
+        }
+      ]
+    },
+    {
+      "problem": "fermi",
+      "effort": "high",
+      "trials": 3,
+      "median_seconds": 37.84,
+      "median_reasoning_tokens": 2070,
+      "median_output_tokens": 2336,
+      "mean_cost_usd": 0.0026744,
+      "runs": [
+        {
+          "seconds": 42.29,
+          "input_tokens": 30,
+          "output_tokens": 2336,
+          "reasoning_tokens": 2070,
+          "cost_usd": 0.0028092,
+          "answer": "### Estimate: **about 15,000 spilled cups or cans per year**\n\nA reasonable tight range is **10,000\u201325,000 annually**.\n\n#### Fermi calculation\n\n| Quantity | Estimate |\n|---|---:|\n| Student, employee, and visitor campus-days per year | ~6 million |\n| Disposable drink cups/cans used per campus-day | ~0.25 |\n| Cups/cans handled annually | ~1.5 million |\n| Fraction spilled or knocked over | ~1% |\n| **Estimated annual spills** | **~15,000** |\n\nThe range comes from varying those assumptions:\n\n\\[\n(5\\text{\u2013}7\\text{ million person-days})\n\\times(0.20\\text{\u2013}0.30\\text{ drinks/person-day})\n\\times(0.7\\%\\text{\u2013}1.3\\%\\text{ spill rate})\n\\]\n\nThis gives approximately **10,000\u201325,000 spilled containers per year**, or roughly **50\u2013130 spills per active campus day**.\n\nThis counts a cup or can that is knocked over, dropped, or otherwise spills enough liquid to count as a spill\u2014not minor splashing while drinking. If every small splash were included, the number would be higher."
+        },
+        {
+          "seconds": 34.57,
+          "input_tokens": 30,
+          "output_tokens": 1981,
+          "reasoning_tokens": 1552,
+          "cost_usd": 0.0023832,
+          "answer": "## Estimate: **about 12,000 drink cups or cans per year**\n\nI\u2019ll define a spill as a cup or can losing enough liquid to require wiping or cleanup\u2014not merely a few drops or a discarded unopened container.\n\n### 1. Number of disposable drinks on campus\n\nEstimate annual campus person-days:\n\n- Regular academic year: about 28,000 people present \u00d7 170 days  \n  = **4.8 million person-days**\n- Spring/summer, weekends, and events: approximately **1.0 million additional person-days**\n\nTotal: **5.5\u20136.5 million campus person-days annually**\n\nAssume **0.45\u20130.65 disposable cups or cans per person-day**. This includes drinks purchased on campus, brought from elsewhere, and event/concession beverages, while excluding most reusable water bottles.\n\nEstimated cups/cans handled:\n\n\\[\n5.5\\text{\u2013}6.5\\text{ million} \\times 0.45\\text{\u2013}0.65\n\\approx 2.5\\text{\u2013}4.2\\text{ million cups/cans}\n\\]\n\n### 2. Spill rate\n\nFor a campus beverage container\u2014many with lids, but some open cups\u2014assume **0.25\u20130.45%** result in a meaningful spill:\n\n\\[\n2.5\\text{\u2013}4.2\\text{ million} \\times 0.25\\%\\text{\u2013}0.45\\%\n\\approx 6,000\\text{\u2013}19,000\n\\]\n\nA central estimate is:\n\n\\[\n3.3\\text{ million containers} \\times 0.35\\%\n\\approx \\boxed{12,000}\n\\]\n\n## Final estimate\n\n**Approximately 12,000 cups or cans are spilled annually on BYU\u2019s campus**, with a reasonably tight range of **7,000\u201319,000**.\n\nThat corresponds to roughly **35\u201390 spilled containers per day when averaged across the full year**, including weekends and low-activity periods."
+        },
+        {
+          "seconds": 37.84,
+          "input_tokens": 30,
+          "output_tokens": 2354,
+          "reasoning_tokens": 2070,
+          "cost_usd": 0.0028307999999999996,
+          "answer": "## Estimate: **about 5,000 cups or cans per year**\n\nA reasonable tightly bounded estimate is **3,000\u20138,000 drink containers spilled annually** on BYU\u2019s campus, with a midpoint of approximately **5,000**.\n\n### Fermi calculation\n\n| Quantity | Estimate |\n|---|---:|\n| Campus person-visits per year | 4.8\u20135.8 million |\n| Disposable cups/cans per person-visit | 0.35\u20130.50 |\n| Cups/cans handled annually | 1.7\u20132.9 million |\n| Fraction that experience a noticeable spill | 0.15\u20130.25% |\n| **Annual spills** | **3,000\u20137,000** |\n\nUsing midpoint assumptions:\n\n\\[\n5.3\\text{ million visits}\\times 0.45\\text{ drinks/visit}\\times 0.20\\%\n\\approx 4,800\n\\]\n\nSo the best single estimate is:\n\n\\[\n\\boxed{\\text{approximately 5,000 spilled cups or cans per year}}\n\\]\n\nThat corresponds to roughly **20 spills per regular campus day**. This counts cups or cans with any noticeable loss of contents; restricting the estimate to spills requiring custodial cleanup would likely reduce it to roughly **2,000\u20134,000 per year**."
+        }
+      ]
+    },
+    {
+      "problem": "fermi",
+      "effort": "max",
+      "trials": 3,
+      "median_seconds": 56.15,
+      "median_reasoning_tokens": 6732,
+      "median_output_tokens": 6960,
+      "mean_cost_usd": 0.0090504,
+      "runs": [
+        {
+          "seconds": 55.95,
+          "input_tokens": 30,
+          "output_tokens": 6960,
+          "reasoning_tokens": 6732,
+          "cost_usd": 0.008358,
+          "answer": "Assuming **BYU\u2013Provo**, and counting a cup or can once when enough liquid escapes to constitute a noticeable spill:\n\n| Quantity | Estimate |\n|---|---:|\n| Annual campus person-days | ~5.3 million |\n| Disposable drink cups/cans per person-day | 0.30\u20130.40 |\n| Annual cups/cans used | ~1.6\u20132.1 million |\n| Fraction spilled | 0.25\u20130.45% |\n\n\\[\n1.6\\text{\u2013}2.1\\text{ million}\\times0.25\\text{\u2013}0.45\\%\n\\approx 4{,}000\\text{\u2013}10{,}000\n\\]\n\n**Best estimate: approximately 6,500 spilled cups or cans per year**, with a reasonably tight range of **4,000\u201310,000 annually**\u2014roughly **30\u201355 spills per typical academic weekday**.\n\nThis excludes reusable water bottles and spills occurring off campus; counting tiny drips or every reusable container would raise the estimate."
+        },
+        {
+          "seconds": 76.53,
+          "input_tokens": 30,
+          "output_tokens": 9084,
+          "reasoning_tokens": 8804,
+          "cost_usd": 0.0109068,
+          "answer": "### Estimate: **about 30,000 spilled cups or cans per year**\n\nAssume BYU\u2019s Provo campus and count a container if any noticeable amount of its contents escapes while on campus. Count each cup or can once.\n\n| Input | Estimate |\n|---|---:|\n| Annual campus person-days \u2014 students, employees, visitors | 7\u20138 million |\n| Disposable drink cups/cans per person-day | 0.40\u20130.45 |\n| Annual cups/cans present | **2.8\u20133.5 million** |\n| Fraction experiencing a spill | **0.7%\u20131.1%** |\n\nThus:\n\n\\[\n2.8\\text{\u2013}3.5\\text{ million} \\times 0.7\\%\\text{\u2013}1.1\\%\n\\approx 20,000\\text{\u2013}40,000\n\\]\n\n### Tightly bound estimate\n\n**20,000\u201340,000 cups or cans annually**, with a best estimate of approximately **30,000**.\n\nThat is roughly **80 per calendar day**, or **about 130\u2013160 on a typical busy class day**. This includes minor spills; restricting the count to spills large enough to require custodial cleanup would likely reduce the estimate to roughly **10,000\u201320,000**."
+        },
+        {
+          "seconds": 56.15,
+          "input_tokens": 30,
+          "output_tokens": 6567,
+          "reasoning_tokens": 6214,
+          "cost_usd": 0.0078864,
+          "answer": "**Estimate: about 5,000 spilled drink cups or cans per year on BYU\u2019s Provo campus**, with a defensible range of roughly **3,000\u20138,000**.\n\n### Fermi calculation\n\n| Quantity | Estimate |\n|---|---:|\n| Student campus person-days/year | \\(35{,}000 \\times 0.65 \\times 180 \\approx 4.1\\) million |\n| Faculty/staff person-days/year | \\(5{,}500 \\times 0.85 \\times 240 \\approx 1.1\\) million |\n| Visitors, events, and other users | \\(\\approx 0.2\\) million |\n| **Total campus person-days** | **\\(\\approx 5.4\\) million** |\n| Cups/cans used per person-day | \\(\\approx 0.7\\) |\n| **Cups/cans present annually** | **\\(\\approx 3.8\\) million** |\n| Fraction spilled substantially enough to require cleanup | \\(\\approx 0.12\\%\\), or 1 in 830 |\n\n\\[\n5.4\\text{ million}\\times0.7\\times0.0012\n\\approx \\boxed{4{,}500}\n\\]\n\nAllowing for uncertainty in drink use and spill frequency gives approximately:\n\n\\[\n\\boxed{3{,}000\\text{\u2013}8{,}000\\text{ spills per year}}\n\\]\n\nThat corresponds to roughly **15\u201335 substantial drink spills per active campus day**. This counts a cup or can being tipped, dropped, or knocked over\u2014not minor splashes or lid leakage."
+        }
+      ]
+    }
+  ]
+}
