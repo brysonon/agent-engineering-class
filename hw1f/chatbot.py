@@ -11,6 +11,7 @@ from openai import AsyncOpenAI
 
 from usage import print_usage, format_usage_markdown
 from stats_tools import toolbox
+import web_tools  # registers fetch_url and get_conference_index on the same toolbox
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -88,7 +89,8 @@ class ChatAgent:
                 except Exception as error:
                     # Hand the error to the model so it can retry or explain, instead of crashing the chat
                     result = f'Error: {type(error).__name__}: {error}'
-                yield 'reasoning', f'\n\n**TOOL** `{output.name}({args})` -> `{result}`\n\n'
+                preview = str(result) if len(str(result)) <= 200 else str(result)[:200] + '...'
+                yield 'reasoning', f'\n\n**TOOL** `{output.name}({args})` -> `{preview}`\n\n'
                 self._history.append({
                     'type': 'function_call_output',
                     'call_id': output.call_id,
