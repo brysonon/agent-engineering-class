@@ -1,6 +1,6 @@
 import random
 import statistics
-from math import comb
+from math import exp, lgamma, log
 
 from tools import ToolBox
 
@@ -16,7 +16,11 @@ def random_integer(low: int, high: int, count: int) -> str:
 @toolbox.tool
 def binomial_probability(n: int, k: int, p: float) -> float:
     """Exact probability of exactly k successes in n independent trials with success probability p."""
-    return comb(n, k) * p ** k * (1 - p) ** (n - k)
+    if p in (0, 1):
+        return float(k == n * p)
+    # Work in log space so huge n (e.g. 10,000 flips) doesn't overflow a float
+    log_comb = lgamma(n + 1) - lgamma(k + 1) - lgamma(n - k + 1)
+    return exp(log_comb + k * log(p) + (n - k) * log(1 - p))
 
 
 @toolbox.tool

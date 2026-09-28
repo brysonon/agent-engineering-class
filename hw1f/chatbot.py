@@ -71,8 +71,10 @@ class ChatAgent:
                         final_summary or '*No reasoning summary was returned by the model.*',
                     )
 
+                # The stream helper adds a client-only `parsed_arguments` field that the API rejects as input
                 self._history.extend(
-                    response.output
+                    item.model_dump(exclude={'parsed_arguments'}, exclude_none=True)
+                    for item in response.output
                 )
 
             function_calls = [output for output in response.output if output.type == 'function_call']
@@ -81,7 +83,11 @@ class ChatAgent:
 
             for output in function_calls:
                 args = json.loads(output.arguments)
-                result = toolbox.get_tool_function(output.name)(**args)
+                try:
+                    result = toolbox.get_tool_function(output.name)(**args)
+                except Exception as error:
+                    # Hand the error to the model so it can retry or explain, instead of crashing the chat
+                    result = f'Error: {type(error).__name__}: {error}'
                 yield 'reasoning', f'\n\n**TOOL** `{output.name}({args})` -> `{result}`\n\n'
                 self._history.append({
                     'type': 'function_call_output',
