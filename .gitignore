@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 .env
 .DS_Store
+# Downloaded speech sources - re-downloadable from the URLs in the PDF
+hw1g/speeches/*.html

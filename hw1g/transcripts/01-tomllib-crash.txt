@@ -1,0 +1,17 @@
+USER: 18.24 seconds elapsed
+TOOL write: demo/read_config.py
+TOOL write: demo/sample.toml
+TOOL shell: python demo/read_config.py demo/sample.toml
+AGENT: Traceback (most recent call last):
+  File "C:\Users\onbry\Documents\CS 301R\hw1g\chat_tools.py", line 81, in <module>
+    main(args.model, args.reasoning, prompt)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\onbry\Documents\CS 301R\hw1g\chat_tools.py", line 67, in main
+    print('AGENT:', output_text)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\ue200' in position 219: character maps to <undefined>
+
+[exited with code 1]
