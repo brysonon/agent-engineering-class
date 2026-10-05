@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 from time import time
 
+from dotenv import load_dotenv
 from openai import OpenAI
 
 from tools import ToolBox
@@ -12,6 +13,8 @@ from usage import print_usage
 # toolbox = ToolBox()
 
 from agent_toolbox import toolbox
+
+load_dotenv(Path(__file__).resolve().parent.parent / '.env')
 
 
 def _run_agent_turn(client, model: str, reasoning: str, history: list):
@@ -23,7 +26,7 @@ def _run_agent_turn(client, model: str, reasoning: str, history: list):
             model=model,
             input=history + turn_history,
             reasoning={'effort': reasoning},
-            tools=toolbox.tools
+            tools=toolbox.tools + [{'type': 'web_search'}]
         )
         turn_history += response.output
         turn_usage.append((response.model, response.usage))
