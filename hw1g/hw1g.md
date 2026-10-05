@@ -13,6 +13,7 @@
     * The part I liked is that it wrote a script to do the filtering instead of reading all five transcripts into its own context. That was about 15,000 words it never had to pay for twice.
 - Quotes found: Wilcox 4, Holland 7, Oaks 1, Kearon 2, Jenkins 0.
 - **The zero is the interesting part.** I went and checked, and the Dallas Jenkins page says "The text for this speech is unavailable" — BYU only published the video. So the 0 was technically correct, but the agent reported it as a bare number and never asked why one of its five inputs came back empty. I ended up with a PDF page that has a heading and nothing under it. A person would have flagged that in a second.
+- I watched a video about how Claude Code edits your repository using the tools we talked about (https://www.youtube.com/watch?v=QN-553RagJw&t=80s&pp=ygUtYW4gYWdlbnQncyA0IG1haW4gdG9vbHM6IHJlYWQgd3JpdGUgZWRpdCBiYXNo).
 
 ## Obstacles I encountered
 - **My first run crashed because of the tool I had just added.** The agent finished all its work and then died on `UnicodeEncodeError: 'charmap' codec can't encode character ''`. That character is a private-use citation marker that `web_search` embeds in its response text, and my Windows console uses cp1252 and can't encode it. `PYTHONIOENCODING=utf-8` fixed it. This cost me real time because the traceback points at `print`, so it looks like a printing bug instead of something the search tool introduced.
