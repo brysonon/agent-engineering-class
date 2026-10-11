@@ -1,0 +1,1 @@
+Reading is reversible, so the agent does it without asking.

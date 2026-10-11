@@ -1,0 +1,60 @@
+compiles ok
+################ RUN D (retry) - DECLINE at the gate
+Decision policy for this agent:
+  auto      list_files
+  auto      read_file
+  confirm   write_file
+  confirm   delete_path
+  reserved  submit_assignment
+  reserved  send_message
+
+Press Enter on an empty line to quit.
+
+USER: 
+  [confirm] the agent proposes: delete_path
+            path: sandbox/scratch.txt
+            approve? [y/N] 4.09 seconds elapsed
+AGENT: The deletion was not approved, so `sandbox/scratch.txt` was not deleted. 
+
+USER: ----------- Usage ------------
+~~~~~~~~~gpt-5.6-luna~~~~~~~~~
+Input (tokens): 912
+Output (tokens): 80
+gpt-5.6-luna cost (USD): $0.000278
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Total cost (USD): $0.000278
+
+=== after decline ===
+notes.txt
+scratch.txt
+
+################ RUN E (retry) - APPROVE at the gate
+Decision policy for this agent:
+  auto      list_files
+  auto      read_file
+  confirm   write_file
+  confirm   delete_path
+  reserved  submit_assignment
+  reserved  send_message
+
+Press Enter on an empty line to quit.
+
+USER: 
+  [confirm] the agent proposes: delete_path
+            path: sandbox/scratch.txt
+            approve? [y/N]   [confirm] delete_path
+3.37 seconds elapsed
+AGENT: Deleted `sandbox/scratch.txt`. 
+
+USER: ----------- Usage ------------
+~~~~~~~~~gpt-5.6-luna~~~~~~~~~
+Input (tokens): 883
+Output (tokens): 56
+gpt-5.6-luna cost (USD): $0.000244
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Total cost (USD): $0.000244
+
+=== after approve ===
+notes.txt
+
+[exited with code 0]
