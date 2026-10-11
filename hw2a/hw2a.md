@@ -57,3 +57,4 @@ This matters in the context of agent engineering because agents are very good at
 Building skills matters a lot in the context of agent engineering because they simplify workflows. Well-developed skills can save time and money and make it easier for the user to repeat consistent output. It's important for the user to know when to make a skill versus when to not. 
 
 ## How many hours I spent
+I spent 3 hours on this assignment.
