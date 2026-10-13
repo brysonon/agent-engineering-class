@@ -1,0 +1,47 @@
+{
+  "name": "conference-compass-harness",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "import": "tsx app/importer/index.ts",
+    "dev": "concurrently --kill-others-on-fail \"vite --config vite.config.ts\" \"tsx watch app/server/index.ts\"",
+    "build": "tsc -p tsconfig.client.json --noEmit && tsc -p tsconfig.server.json --noEmit && vite build --config vite.config.ts && tsc -p tsconfig.server.json",
+    "typecheck": "tsc -p tsconfig.client.json --noEmit && tsc -p tsconfig.server.json --noEmit",
+    "start": "cross-env NODE_ENV=production node dist/server/server/index.js",
+    "test": "vitest run",
+    "test:integration": "tsx app/server/integration.ts"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "cheerio": "latest",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "express-rate-limit": "latest",
+    "openai": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "@types/cors": "latest",
+    "@types/express": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "concurrently": "latest",
+    "cross-env": "latest",
+    "jsdom": "latest",
+    "supertest": "latest",
+    "@types/supertest": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vitest": "latest"
+  }
+}
