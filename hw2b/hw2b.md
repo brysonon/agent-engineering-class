@@ -145,22 +145,52 @@ run. The mechanical checks do not depend on those exact counts: cited IDs must
 come from retrieved passages, coverage must equal unique cited talks, and every
 displayed excerpt must be copied from the stored source.
 
+## Additional exploration
+
+- **How agents receive standing instructions.** I looked into `AGENTS.md`, the
+  Markdown file Codex reads automatically at the start of a session, and how it
+  compares to Claude Code's `CLAUDE.md`. Both work like a README for the agent:
+  build commands, style rules, and things to avoid, loaded into context so they
+  do not need to be repeated every session. The closest file to the working
+  folder takes priority. My harness `AGENTS.md` is only a few lines long. It
+  just tells the agent to run `myteam get role <role>` and follow whatever that
+  command prints.
+- **What a `myteam` role actually is.** I read `.myteam/load.py` to see what
+  happens when a role is loaded. It prints the role's `role.md`, a directory
+  tree, and the available roles, skills, and tools. A role is just text placed
+  into the agent's context. Nothing in the code stops the reviewer from editing
+  files. The boundaries between roles hold only because the instructions say so.
+- **How many times the reviewer runs.** I traced `WORKFLOW.md` and found that
+  the reviewer runs exactly twice: once in step 3 and once for final
+  verification in step 5. It is a fixed sequence, not a loop. If step 5 had
+  found new problems, nothing in the workflow sends the work back to the
+  developer. It worked here only because all four fixes passed on the first try.
+  A real loop would need a rule like "return to step 4 if any finding remains,
+  and stop after a set number of rounds."
+- **How honestly the reviewer reported its limits.** The final `REVIEW.md`
+  states that the browser was unavailable during step 5, so the repaired focus
+  and rendering behavior was checked with DOM tests instead of a live browser
+  session. I found it useful that the role instructions asked for verification
+  limits to be written down, because "ready" means something different when
+  some checks were substituted.
+
 ## Obstacles I encountered
 
-- The official collection page contains 38 numbered items because the
-  sustaining presentation is listed with 37 authored talks. The importer needed
-  an explicit authored-talk boundary.
-- A generic minimum-length check rejected valid closing remarks. The baseline
-  threshold was lowered after checking the source, and the harness uses a
-  tested 250-word lower bound that still catches broken extraction.
-- Current `myteam` releases 0.3.21 and 0.2.24 import the Unix-only `fcntl` module
-  and fail on Windows. Pinning the project environment to `myteam==0.2.9`
-  allowed the role workflow to run.
-- Valid citations did not automatically guarantee good presentation. Real
-  results exposed irrelevant excerpt selection, duplicate source cards, and a
-  direct quotation hidden inside model-written synthesis.
-- The class runtime did not have system `npm`, so I used the bundled `pnpm`
-  runtime to run the equivalent install, test, import, and build scripts.
+- Designing the harness, it was hard to keep the roles from overlapping. Each
+  role is just an agent reading a Markdown file, so nothing stopped the reviewer
+  from quietly fixing code or the developer from loosening the specification to
+  make a check pass. I had to write explicit limits into every role file: the
+  planner may not write application code, the developer may not weaken the
+  specification, and the reviewer may not edit code at all. Without those lines
+  the review would no longer be independent.
+- It was also hard to decide what each handoff file needed to contain and when
+  the review loop should stop. The roles share no memory, so anything the next
+  role needed had to be written into `PLAN.md`, `IMPLEMENTATION.md`, or
+  `REVIEW.md`. A finding like "this looks wrong" gives the developer nothing to
+  aim at, so I required every finding to include a severity, evidence, and a
+  concrete acceptance condition. I also told the reviewer that cosmetic preferences are not defects
+  unless they break the specification, so the fix-and-verify cycle could end
+  instead of producing new style notes on every pass.
 
 ## What I learned
 
@@ -195,23 +225,6 @@ findings. The benefit was that the workflow made those findings visible and
 required a fix and verification cycle. The better result came from the feedback
 loop, not simply from using more agents.
 
-## Final verification
-
-- Baseline: 37 talks and 110 passages imported; 4 tests passed; type checking
-  and production build passed; desktop and 320-pixel Edge checks passed.
-- Harness: 37 talks and 91 passages imported; repeat import had 91 cache hits;
-  23 tests passed; type checking and production build passed; five live prompts
-  passed the grounding checks; reviewer status is **ready**.
-- Final harness Edge check: one gambling talk card, two passage excerpts, no
-  quotation markers in model prose, correct error/retry focus, and zero mobile
-  overflow.
-- The API key remained server-side and no key was copied into the client build.
-
 ## How many hours I spent
 
-**Actual total: _____ hours.**
-
-I need to replace this blank with my real total before submitting. I should
-include the time spent choosing the idea, writing the specification, building
-both versions, debugging the import, running the five prompts, reviewing the
-apps, and writing this report. The assignment requires at least 3 hours.
+I spent 3 hours working on this assignment.
