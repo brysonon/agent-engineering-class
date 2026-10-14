@@ -82,7 +82,7 @@ sourced conference summaries, build successfully, and fit both desktop and
 talk that directly discusses gambling. Both also avoided claiming that every
 speaker discussed the user's topic.
 
-The harness app is the better final product. It handled the unrelated college
+The harness app is the better final product. I liked it better. It handled the unrelated college
 major question more cautiously: the observed harness run returned no evidence,
 no themes, and no sources, while the baseline returned a limited answer from six
 talks. A limited answer is allowed by the specification, but the harness result
@@ -130,21 +130,6 @@ model-owned prose field and makes one controlled retry. A regression test proves
 that the first invalid response is rejected and the second paraphrased response
 is accepted.
 
-## Shared evaluation results
-
-| Question | One-prompt baseline | Harness build |
-| --- | --- | --- |
-| Faith during trials | Sufficient; 4 themes; 11 talks | Sufficient; 5 themes; 10 talks |
-| Becoming more Christlike | Sufficient; 3 themes; 11 talks | Sufficient; 5 themes; 9 talks |
-| Covenants | Sufficient; 4 themes; 9 talks | Sufficient; 5 themes; 6 talks |
-| Gambling | Sufficient; 1 talk | Sufficient; 1 talk |
-| Choosing a college major | Limited; 4 themes; 6 talks | None; 0 themes; 0 talks |
-
-These are observed model runs, so theme and citation counts can vary on a later
-run. The mechanical checks do not depend on those exact counts: cited IDs must
-come from retrieved passages, coverage must equal unique cited talks, and every
-displayed excerpt must be copied from the stored source.
-
 ## Additional exploration
 
 - **How agents receive standing instructions.** I looked into `AGENTS.md`, the
@@ -173,6 +158,8 @@ displayed excerpt must be copied from the stored source.
   session. I found it useful that the role instructions asked for verification
   limits to be written down, because "ready" means something different when
   some checks were substituted.
+- I also looked into what an OpenAI SDK key is so that I could use it in development.
+- In this homework, I explored more possibilites for my final project, maintaining it as an app that can help me in my personal studies. The apps I built focused on using BYU speeches. I want to incorporate many other resources and capabilities in my final project. 
 
 ## Obstacles I encountered
 
