@@ -6,3 +6,10 @@ __pycache__/
 .DS_Store
 # Downloaded speech sources - re-downloadable from the URLs in the PDF
 hw1g/speeches/*.html
+
+# Generated embedding caches - rebuildable by running embed_corpus.py (~3 cents)
+hw2d/cache-*.npy
+hw2d/cache-*.json
+
+# Duplicate of classwork/2d/scriptures, which is already tracked
+hw2d/scriptures/
