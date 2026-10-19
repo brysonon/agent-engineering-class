@@ -48,7 +48,9 @@
     * But chapter level was sometimes more right. For "God knew me before I came to earth" it returned Abraham 3 first, which is the actual foreordination chapter. Verse level returned four verses that sounded similar and only one that was on topic.
     * It also failed harder when it failed. For "chosen beforehand for a purpose" it gave me D&C 55 and D&C 78, which are chapters about calling missionaries. Verse level found Alma 13:3.
     * So neither one is better. Verses are precise but match on phrasing, and chapters are vaguer but sometimes catch the topic. If I built this for real I would search verses and show the surrounding chapter for context.
-- In doing some more exploration in the scriptures, I found that the most average verse (the verse closest to the centroid) in the Book of Mormon was Alma 17:11 — "And the Lord said unto them also: Go forth among the Lamanites, thy brethren, and establish my word..." The least average verses were the verses about the Nephite currency system and Isaiah's list of jewelry. 
+- In doing some more exploration in the scriptures, I found that the most average verse (the verse closest to the centroid) in the Book of Mormon was Alma 17:11 — "And the Lord said unto them also: Go forth among the Lamanites, thy brethren, and establish my word..." The least average verses were the verses about the Nephite currency system and Isaiah's list of jewelry. (Code for this and the typo test is in `explore.py`.)
+- **Typos.** Misspelling a query hurt less than I expected for famous phrases but a lot for specific ones. "the mourning stars sang togather" still put Job 38:7 first, but "chosen befourhand for a purpos" dropped Alma 13:3 from 3rd to 74th.
+    * Misspelled names hurt the most. "Nefi bilt a shipp" scored only 0.575 against the correct spelling and dropped 1 Nephi 17:8 from 8th to 81st.
 
 ## Obstacles I encountered
 - **Hit the token limit:** Batching 500 chapters in one request asked for 597,139 tokens against a 300,000 cap. Verses are short so a fixed batch size worked fine, but chapters are 750 words each. I had to change the batching to count tokens instead of items.
