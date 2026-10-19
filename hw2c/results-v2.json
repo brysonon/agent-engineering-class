@@ -1,0 +1,512 @@
+{
+  "version": "v2",
+  "rows": [
+    {
+      "question": "agent-skill",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "A skill is a packaged set of instructions (and optionally files) for a specific kind of task",
+          "covered": true,
+          "evidence": "\"A skill is a packaged set of instructions and files that teaches an agent how to do a specific kind of task.\""
+        },
+        {
+          "point": "It is defined in a folder containing a SKILL.md file with a name and description",
+          "covered": true,
+          "evidence": "\"It is defined usually in a folder with a SKILL.md file. Each skill has a name and a description\""
+        },
+        {
+          "point": "Only the metadata (name/description) sits in context; the body loads when the task matches",
+          "covered": true,
+          "evidence": "\"The agent is given every skill in its context, but it only sees each skill\u2019s metadata. When a task matches one, it loads the instructions only when needed\""
+        }
+      ],
+      "false_claims": [
+        "The answer says a skill includes \"instructions and files\" without explicitly noting that files are optional; however, this is a minor imprecision rather than a substantive error.",
+        "It says the skill is defined \"usually\" in a folder, whereas the required definition treats the folder containing SKILL.md as the defining structure."
+      ],
+      "score": 4,
+      "justification": "The answer covers all three required points: packaging for a specific task, the folder/SKILL.md/name/description structure, and metadata-first loading of the body when a task matches. The minor wording differences do not undermine the core answer, though \"usually\" and the failure to say files are optional reduce precision slightly.",
+      "seconds": 4.45,
+      "cost_usd": 0.0004967999999999999,
+      "output_tokens": 322
+    },
+    {
+      "question": "agent-skill",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "A skill is a packaged set of instructions (and optionally files) for a specific kind of task",
+          "covered": true,
+          "evidence": "\u201cA skill is a set of instructions you give an agent so it knows how to do something.\u201d"
+        },
+        {
+          "point": "It is defined in a folder containing a SKILL.md file with a name and description",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Only the metadata (name/description) sits in context; the body loads when the task matches",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [],
+      "score": 2,
+      "justification": "The answer correctly identifies a skill as instructions for helping an agent perform a task and says it is read when needed, but it omits the required folder/SKILL.md structure, name and description metadata, and the distinction between metadata remaining in context and the body loading only when relevant. The claim that it is written in \u201ca markdown file\u201d is incomplete but not directly false.",
+      "seconds": 2.45,
+      "cost_usd": 0.000356,
+      "output_tokens": 212
+    },
+    {
+      "question": "agent-skill",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "A skill is a packaged set of instructions (and optionally files) for a specific kind of task",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "It is defined in a folder containing a SKILL.md file with a name and description",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Only the metadata (name/description) sits in context; the body loads when the task matches",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "The answer incorrectly claims that a skill is a permanently trained-in ability: \"gets trained into the model so it permanently knows how to do a task.\" Skills are instruction packages, not model retraining.",
+        "It incorrectly claims that skills are enabled in settings and that \"the model is retrained with them.\" Skills are generally made available through their skill folders and loaded as needed; they do not retrain the model.",
+        "It incorrectly claims that skills make the model \"smarter over time\" through retraining."
+      ],
+      "score": 1,
+      "justification": "None of the three required points is covered. The answer fundamentally misdefines skills as permanent model training rather than packaged, on-demand instructions, and it provides no information about SKILL.md, metadata, or context loading.",
+      "seconds": 3.27,
+      "cost_usd": 0.0004136,
+      "output_tokens": 260
+    },
+    {
+      "question": "harness-engineering",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "It is the design of everything surrounding the model: tools, context, memory, instructions",
+          "covered": true,
+          "evidence": "\"Harness engineering is designing everything around the model. It includes its tools, context, memory, and instructions.\""
+        },
+        {
+          "point": "The environment is built for a specific purpose rather than being general",
+          "covered": true,
+          "evidence": "\"It is what you build around the agent, usually gearing it towards a specific purpose.\""
+        },
+        {
+          "point": "The goal is reliable agent work with less human supervision; humans set direction",
+          "covered": true,
+          "evidence": "\"The goal is to make agents reliable enough to do lots of work with less human supervision. Humans set the direction\""
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer clearly covers all three required points and makes no incorrect claims.",
+      "seconds": 2.37,
+      "cost_usd": 0.00031939999999999996,
+      "output_tokens": 180
+    },
+    {
+      "question": "harness-engineering",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "It is the design of everything surrounding the model: tools, context, memory, instructions",
+          "covered": true,
+          "evidence": "\"building things around the model\" and \"set up the tools and the prompts\""
+        },
+        {
+          "point": "The environment is built for a specific purpose rather than being general",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "The goal is reliable agent work with less human supervision; humans set direction",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [],
+      "score": 2,
+      "justification": "The answer captures the basic idea of building tools and prompts around the model, but it does not state that the environment is purpose-specific. It also gives only a general goal of better results and omits reliable work, reduced human supervision, and humans setting direction.",
+      "seconds": 2.53,
+      "cost_usd": 0.0003066,
+      "output_tokens": 173
+    },
+    {
+      "question": "harness-engineering",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "It is the design of everything surrounding the model: tools, context, memory, instructions",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "The environment is built for a specific purpose rather than being general",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "The goal is reliable agent work with less human supervision; humans set direction",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "The answer incorrectly defines harness engineering as fine-tuning a model on proprietary data.",
+        "It incorrectly claims that the harness is the training pipeline producing improved model weights."
+      ],
+      "score": 1,
+      "justification": "The response confuses harness engineering with model fine-tuning and does not cover any of the required points about designing the agent's surrounding environment or enabling reliable, lower-supervision work.",
+      "seconds": 2.3,
+      "cost_usd": 0.000305,
+      "output_tokens": 172
+    },
+    {
+      "question": "progressive-disclosure",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "Information is given to the agent in layers, only as needed",
+          "covered": true,
+          "evidence": "\"giving the agent information in layers only as it needs it\""
+        },
+        {
+          "point": "Example: skill metadata is always present, full instructions load on demand",
+          "covered": true,
+          "evidence": "\"it sees short summaries of a skill\u2019s name and description and only loads the full instructions when they are needed\""
+        },
+        {
+          "point": "It matters because the context window is limited and loading everything wastes tokens and distracts the agent",
+          "covered": true,
+          "evidence": "\"the context window is limited and loading everything up front wastes tokens and can over-burden the agent\"; \"It keeps the agent more focused\""
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer clearly covers all required points, including the layered/on-demand concept, the skill metadata example, and the importance of conserving limited context and avoiding distraction. No incorrect claims are made.",
+      "seconds": 2.74,
+      "cost_usd": 0.0003544,
+      "output_tokens": 206
+    },
+    {
+      "question": "progressive-disclosure",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "Information is given to the agent in layers, only as needed",
+          "covered": true,
+          "evidence": "\"You give it information a bit at a time.\""
+        },
+        {
+          "point": "Example: skill metadata is always present, full instructions load on demand",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "It matters because the context window is limited and loading everything wastes tokens and distracts the agent",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [],
+      "score": 2,
+      "justification": "The answer correctly describes providing information incrementally and gives a general reason that too much information can confuse the agent. However, it does not provide the required metadata/full-instructions example, nor does it mention the limited context window or wasted tokens. The general confusion claim is related but does not fully cover the specified importance.",
+      "seconds": 3.19,
+      "cost_usd": 0.00031039999999999996,
+      "output_tokens": 178
+    },
+    {
+      "question": "progressive-disclosure",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "Information is given to the agent in layers, only as needed",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Example: skill metadata is always present, full instructions load on demand",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "It matters because the context window is limited and loading everything wastes tokens and distracts the agent",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "The answer incorrectly describes progressive disclosure for agents as showing the user a simple answer first and detailed reasoning only after clicking; in this context, it concerns incrementally providing information to the agent, not hiding response reasoning from the user."
+      ],
+      "score": 1,
+      "justification": "The response gives a general UI definition but does not address the required agent-specific meaning, the metadata/instructions example, or the context-window and token-efficiency rationale.",
+      "seconds": 2.44,
+      "cost_usd": 0.0003176,
+      "output_tokens": 183
+    },
+    {
+      "question": "agent-legibility",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "Making the codebase and environment easy for an agent to read and verify",
+          "covered": true,
+          "evidence": "\"making the codebase and environment easy for an agent to read and check\""
+        },
+        {
+          "point": "Concrete means: AGENTS.md, consistent conventions, readable logs and errors",
+          "covered": true,
+          "evidence": "\"giving an agent a good AGENTS.md file, using consistent conventions, and making logs easy for the agent to read\""
+        },
+        {
+          "point": "It lets the agent verify its own work and act autonomously without a human explaining the system",
+          "covered": true,
+          "evidence": "\"verify its own work without a human having to explain things to it\"; the answer also states that legibility \"lets the agent understand the entire system\""
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer covers all required points accurately. It defines legibility as making the codebase and environment readable and checkable, gives the requested concrete examples, and explains that this enables the agent to verify its work without relying on a human explanation.",
+      "seconds": 3.09,
+      "cost_usd": 0.000382,
+      "output_tokens": 226
+    },
+    {
+      "question": "agent-legibility",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "Making the codebase and environment easy for an agent to read and verify",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Concrete means: AGENTS.md, consistent conventions, readable logs and errors",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "It lets the agent verify its own work and act autonomously without a human explaining the system",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [],
+      "score": 1,
+      "justification": "The answer only gestures at readable, organized code and says confusing code causes confusing results. It does not address the environment, verification, AGENTS.md, conventions, logs/errors, or autonomous operation without human explanation.",
+      "seconds": 3.38,
+      "cost_usd": 0.000279,
+      "output_tokens": 150
+    },
+    {
+      "question": "agent-legibility",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "Making the codebase and environment easy for an agent to read and verify",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Concrete means: AGENTS.md, consistent conventions, readable logs and errors",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "It lets the agent verify its own work and act autonomously without a human explaining the system",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "The answer defines agent legibility as exposing the agent\u2019s internal reasoning or chain of thought. In this context, agent legibility concerns making the codebase and environment understandable and verifiable to the agent, not revealing private chain-of-thought.",
+        "It incorrectly states that the aim is for the model to explain why it made a decision in plain language; the relevant aim is enabling the agent to verify its work and act autonomously."
+      ],
+      "score": 1,
+      "justification": "The response addresses a different concept\u2014user-facing explanation and chain-of-thought visibility\u2014and covers none of the required points. Its central definition is incorrect for the question.",
+      "seconds": 3.35,
+      "cost_usd": 0.00037119999999999997,
+      "output_tokens": 226
+    },
+    {
+      "question": "trust-folder",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "Codex reads the folder\u2019s contents automatically",
+          "covered": true,
+          "evidence": "\"it reads the folder\u2019s contents\" and \"agents automatically read and load files\""
+        },
+        {
+          "point": "It may follow instructions found in those files (prompt injection), not merely execute code",
+          "covered": true,
+          "evidence": "\"may follow instructions it finds in those files\" and \"instructions aimed at the agent rather than at a human reader\""
+        },
+        {
+          "point": "Consequences include running malicious code or exposing sensitive information",
+          "covered": true,
+          "evidence": "\"could get malicious code executed on my machine or expose sensitive information\""
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer clearly covers all three required points, including automatic reading, following agent-targeted instructions (prompt injection), and the consequences of code execution or sensitive-information exposure.",
+      "seconds": 3.27,
+      "cost_usd": 0.0003208,
+      "output_tokens": 181
+    },
+    {
+      "question": "trust-folder",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "Codex reads the folder\u2019s contents automatically",
+          "covered": true,
+          "evidence": "\"agents read and load files automatically\""
+        },
+        {
+          "point": "It may follow instructions found in those files (prompt injection), not merely execute code",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Consequences include running malicious code or exposing sensitive information",
+          "covered": true,
+          "evidence": "\"let bad code run on your machine and steal your information\""
+        }
+      ],
+      "false_claims": [],
+      "score": 3,
+      "justification": "The answer correctly states that files are automatically read/loaded and identifies the consequences of malicious code execution and information theft. However, it does not mention that Codex may follow instructions embedded in files, i.e. prompt injection, as distinct from merely executing code.",
+      "seconds": 2.26,
+      "cost_usd": 0.00029560000000000003,
+      "output_tokens": 167
+    },
+    {
+      "question": "trust-folder",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "Codex reads the folder\u2019s contents automatically",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "It may follow instructions found in those files (prompt injection), not merely execute code",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Consequences include running malicious code or exposing sensitive information",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "The answer falsely claims that the trust decision is primarily about indexing files for search and faster lookups.",
+        "It falsely claims that the choice is mostly a performance and privacy preference rather than a security boundary; the trust decision addresses risks from reading files, following prompt-injection instructions, running malicious code, and exposing sensitive information."
+      ],
+      "score": 1,
+      "justification": "The response does not cover any required point and mischaracterizes the purpose of folder trust as indexing and performance rather than a security boundary.",
+      "seconds": 2.86,
+      "cost_usd": 0.00031939999999999996,
+      "output_tokens": 186
+    },
+    {
+      "question": "agents-md",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "A Markdown file of explicit instructions for coding agents, like a README but for the agent",
+          "covered": true,
+          "evidence": "\"a markdown file given to the agent to provide explicit instructions to AI coding agents, like a README file for users\""
+        },
+        {
+          "point": "Lives in the repository (root, or nearest file to the working directory)",
+          "covered": true,
+          "evidence": "\"It lies in the root of the repository.\""
+        },
+        {
+          "point": "Conveys project conventions and guides behavior, improving consistency",
+          "covered": true,
+          "evidence": "\"It tells the agent what conventions are used in that specific project and guides its behavior. It also helps improve consistency\""
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer covers all three required points accurately. It identifies AGENTS.md as Markdown instructions for coding agents, places it in the repository root, and explains that it communicates conventions, guides behavior, and improves consistency.",
+      "seconds": 2.96,
+      "cost_usd": 0.000345,
+      "output_tokens": 201
+    },
+    {
+      "question": "agents-md",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "A Markdown file of explicit instructions for coding agents, like a README but for the agent",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Lives in the repository (root, or nearest file to the working directory)",
+          "covered": true,
+          "evidence": "\"You put it in your repo\""
+        },
+        {
+          "point": "Conveys project conventions and guides behavior, improving consistency",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [],
+      "score": 2,
+      "justification": "The answer correctly states that AGENTS.md is placed in the repository and generally says it informs the agent about the project and the user's expectations. However, it does not explicitly identify it as a Markdown file containing agent instructions, compare it to a README, or mention project conventions, behavioral guidance, or consistency. Partial understanding is present, but only one required point is directly covered.",
+      "seconds": 2.46,
+      "cost_usd": 0.0003198,
+      "output_tokens": 186
+    },
+    {
+      "question": "agents-md",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "A Markdown file of explicit instructions for coding agents, like a README but for the agent",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Lives in the repository (root, or nearest file to the working directory)",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Conveys project conventions and guides behavior, improving consistency",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "The answer incorrectly claims AGENTS.md is a configuration file for declaring which agents may run and what permissions they have.",
+        "The answer incorrectly claims the coding agent parses AGENTS.md to determine authorization to edit files."
+      ],
+      "score": 1,
+      "justification": "The response does not identify AGENTS.md as a Markdown instruction file, its repository location, or its role in communicating project conventions and guiding agent behavior. Instead, it gives an incorrect description centered on authorization and permissions.",
+      "seconds": 2.54,
+      "cost_usd": 0.00032439999999999997,
+      "output_tokens": 188
+    }
+  ]
+}

@@ -1,0 +1,530 @@
+{
+  "version": "v1",
+  "rows": [
+    {
+      "question": "agent-skill",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "Define what an agent skill is",
+          "covered": true,
+          "evidence": "\u201cA skill is a packaged set of instructions and files that teaches an agent how to do a specific kind of task.\u201d"
+        },
+        {
+          "point": "Explain how a skill is defined/structured",
+          "covered": true,
+          "evidence": "\u201cIt is defined usually in a folder with a SKILL.md file. Each skill has a name and a description, and the body holds the detailed instructions.\u201d"
+        },
+        {
+          "point": "Explain how a skill is used",
+          "covered": true,
+          "evidence": "\u201cThe agent is given every skill in its context, but it only sees each skill\u2019s metadata. When a task matches one, it loads the instructions only when needed and follows them in full context.\u201d"
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer accurately covers all three requested aspects: the purpose of a skill, its typical SKILL.md-based structure and metadata, and the metadata-first, on-demand loading process. It is concise and directly answers the question.",
+      "seconds": 9.65,
+      "cost_usd": 0.0003208,
+      "output_tokens": 219
+    },
+    {
+      "question": "agent-skill",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "Explain what an agent skill is",
+          "covered": true,
+          "evidence": "\u201cA skill is a set of instructions you give an agent so it knows how to do something.\u201d"
+        },
+        {
+          "point": "Explain how an agent skill is defined",
+          "covered": true,
+          "evidence": "\u201cYou write it in a markdown file\u201d"
+        },
+        {
+          "point": "Explain how an agent skill is used",
+          "covered": true,
+          "evidence": "\u201cthe agent reads it when it needs to\u201d and \u201cIt helps the agent do tasks the right way instead of guessing.\u201d"
+        }
+      ],
+      "false_claims": [],
+      "score": 4,
+      "justification": "The answer correctly identifies a skill as reusable instructions, describes its definition as a Markdown file, and explains that the agent reads it when relevant to guide task execution. It is concise and accurate, though it could be more precise by mentioning any required structure or metadata and clarifying how the skill is selected or invoked.",
+      "seconds": 2.86,
+      "cost_usd": 0.0002832,
+      "output_tokens": 195
+    },
+    {
+      "question": "agent-skill",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "Defines an agent skill as a reusable capability or procedure that enables an agent to perform a task.",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Explains how a skill is defined, such as through a structured specification containing instructions, inputs, outputs, and/or tools.",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Explains how a skill is used or invoked by an agent at runtime to carry out the relevant task.",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "An agent skill is not generally a capability permanently trained into the model; it is typically an external, reusable procedure or tool specification.",
+        "Skills are not normally enabled through settings followed by model retraining.",
+        "Using skills does not inherently make the underlying model permanently smarter over time."
+      ],
+      "score": 1,
+      "justification": "The answer misunderstands the concept by describing skills as permanent model training and retraining. It does not define the structure of a skill or explain runtime invocation and use, so it misses all of the key requirements.",
+      "seconds": 3.25,
+      "cost_usd": 0.000312,
+      "output_tokens": 219
+    },
+    {
+      "question": "harness-engineering",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "Define harness engineering as designing the surrounding system/environment around a model or agent.",
+          "covered": true,
+          "evidence": "\"designing everything around the model\" and \"what you build around the agent\""
+        },
+        {
+          "point": "Identify relevant components such as tools, context, memory, and instructions.",
+          "covered": true,
+          "evidence": "\"It includes its tools, context, memory, and instructions.\""
+        },
+        {
+          "point": "Explain that it is generally oriented toward a specific purpose or task.",
+          "covered": true,
+          "evidence": "\"usually gearing it towards a specific purpose\""
+        },
+        {
+          "point": "State the goal of achieving reliable agent performance with reduced human supervision.",
+          "covered": true,
+          "evidence": "\"make agents reliable enough to do lots of work with less human supervision\""
+        },
+        {
+          "point": "Capture the division of labor in which humans provide direction and construct the environment while agents perform the work.",
+          "covered": true,
+          "evidence": "\"Humans set the direction and build the environment while agents do the work.\""
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer accurately defines harness engineering as constructing the tools and surrounding environment for an agent, gives representative components, and clearly states its goal: enabling reliable, substantial autonomous work with reduced human supervision. The final sentence also captures the intended human-agent division of labor. Minor nuance could be added about iterative evaluation and optimization, but the response fully answers the question.",
+      "seconds": 3.73,
+      "cost_usd": 0.00040260000000000003,
+      "output_tokens": 291
+    },
+    {
+      "question": "harness-engineering",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "Defines harness engineering as building surrounding systems/components around the model",
+          "covered": true,
+          "evidence": "\u201cbuilding things around the model so it works better\u201d"
+        },
+        {
+          "point": "Mentions configuring tools and prompts as part of the harness",
+          "covered": true,
+          "evidence": "\u201cYou set up the tools and the prompts so the agent can do its job.\u201d"
+        },
+        {
+          "point": "States the goal of improving agent performance beyond prompting alone",
+          "covered": true,
+          "evidence": "\u201cget better results out of the agent than you would with just a prompt.\u201d"
+        }
+      ],
+      "false_claims": [],
+      "score": 4,
+      "justification": "The answer correctly identifies harness engineering as constructing tools, prompts, and other supporting components around a model or agent, with the goal of improving results beyond what a prompt alone can achieve. It is concise and accurate, though somewhat general and does not mention broader elements such as workflows, evaluation, monitoring, or reliability.",
+      "seconds": 3.16,
+      "cost_usd": 0.0002854,
+      "output_tokens": 197
+    },
+    {
+      "question": "harness-engineering",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "Describe what harness engineering is",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "State the goal harness engineering seeks to achieve",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "The answer incorrectly equates harness engineering with fine-tuning a model on proprietary data and producing improved weights. Harness engineering generally concerns designing the surrounding system\u2014prompts, tools, scaffolding, workflows, evaluation, and feedback loops\u2014to make an existing model reliably effective on a task, rather than primarily changing its weights.",
+        "The claim that the harness is the training pipeline is incorrect. A harness is the engineered environment or framework that directs and supports the model's behavior."
+      ],
+      "score": 1,
+      "justification": "The response describes fine-tuning rather than harness engineering. It therefore fails to identify the core concept or its goal: building the surrounding scaffolding and processes that enable a model to perform reliably, consistently, and effectively on a target task.",
+      "seconds": 3.28,
+      "cost_usd": 0.000291,
+      "output_tokens": 202
+    },
+    {
+      "question": "progressive-disclosure",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "Define progressive disclosure as providing information incrementally, when needed",
+          "covered": true,
+          "evidence": "\u201cgiving the agent information in layers only as it needs it\u201d"
+        },
+        {
+          "point": "Explain the mechanism/example of showing summaries and loading full instructions only when needed",
+          "covered": true,
+          "evidence": "\u201cit sees short summaries of a skill\u2019s name and description and only loads the full instructions when they are needed\u201d"
+        },
+        {
+          "point": "Explain that it avoids unnecessary context and preserves limited context-window/token capacity",
+          "covered": true,
+          "evidence": "\u201cthe context window is limited and loading everything up front wastes tokens\u201d"
+        },
+        {
+          "point": "Explain that it improves agent focus and keeps behavior within the intended scope",
+          "covered": true,
+          "evidence": "\u201cIt keeps the agent more focused and within the realm it is meant to operate in\u201d"
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer accurately defines progressive disclosure, gives a relevant skills/instructions example, and clearly explains its importance for conserving context-window capacity, reducing unnecessary information, and maintaining agent focus and scope.",
+      "seconds": 2.97,
+      "cost_usd": 0.00032839999999999996,
+      "output_tokens": 226
+    },
+    {
+      "question": "progressive-disclosure",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "Defines progressive disclosure as providing information incrementally rather than all at once",
+          "covered": true,
+          "evidence": "\"You give it information a bit at a time.\""
+        },
+        {
+          "point": "Explains that it is important because excessive information can confuse or overwhelm the agent",
+          "covered": true,
+          "evidence": "\"too much information is not good for the agent and it might get confused.\""
+        }
+      ],
+      "false_claims": [],
+      "score": 4,
+      "justification": "The answer correctly defines progressive disclosure and gives its central benefit: reducing information overload and confusion for the agent. It is concise and accurate, though it could be stronger by explaining that information is revealed based on the agent\u2019s needs or task stage, rather than merely given in arbitrary increments.",
+      "seconds": 2.25,
+      "cost_usd": 0.0002376,
+      "output_tokens": 159
+    },
+    {
+      "question": "progressive-disclosure",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "Define progressive disclosure as revealing information or functionality incrementally rather than presenting everything at once.",
+          "covered": true,
+          "evidence": "\"hide advanced options behind an 'advanced settings' menu\" and \"showing the user a simple answer first and the detailed reasoning only if they click to expand it\""
+        },
+        {
+          "point": "Explain why it is important, such as reducing cognitive load, avoiding overwhelming users, and supporting both novice and advanced users.",
+          "covered": true,
+          "evidence": "\"so beginners are not overwhelmed\""
+        },
+        {
+          "point": "Relate the principle appropriately to agent interfaces.",
+          "covered": true,
+          "evidence": "\"In agents it means showing the user a simple answer first and the detailed reasoning only if they click to expand it.\""
+        }
+      ],
+      "false_claims": [],
+      "score": 4,
+      "justification": "The answer correctly defines progressive disclosure and gives a relevant agent-interface example. It also identifies the key benefit of preventing beginners from being overwhelmed. It could be stronger by explaining broader benefits, such as reducing cognitive load, preserving a simple primary interaction, and allowing advanced users to access controls or detail when needed. The reference to showing detailed reasoning is a plausible example, though progressive disclosure in agents can also apply to tool controls, settings, and explanations\u2014not just reasoning.",
+      "seconds": 3.63,
+      "cost_usd": 0.00036239999999999997,
+      "output_tokens": 262
+    },
+    {
+      "question": "agent-legibility",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "Defines agent legibility as making the system/codebase and environment understandable to an agent",
+          "covered": true,
+          "evidence": "\"making the codebase and environment easy for an agent to read and check\""
+        },
+        {
+          "point": "Explains why legibility is important",
+          "covered": true,
+          "evidence": "\"the agent cannot use information that is not in its context\" and \"keeps the agent from getting confused or missing relevant information\""
+        },
+        {
+          "point": "Identifies what it aims to accomplish",
+          "covered": true,
+          "evidence": "\"lets the agent understand the entire system and verify its own work without a human having to explain things to it\""
+        },
+        {
+          "point": "Provides relevant examples or mechanisms",
+          "covered": true,
+          "evidence": "\"a good AGENTS.md file, using consistent conventions, and making logs easy for the agent to read\""
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer accurately defines agent legibility, gives concrete examples, explains its importance in terms of providing usable context and reducing confusion, and states its goal of enabling the agent to understand the system and validate its work with less human explanation. The wording could mention making behavior and intent observable/predictable more explicitly, but the essential principles are all present.",
+      "seconds": 3.33,
+      "cost_usd": 0.00037459999999999994,
+      "output_tokens": 262
+    },
+    {
+      "question": "agent-legibility",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "Defines agent legibility as making an agent\u2019s behavior, intentions, or state understandable to humans and/or other agents",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Explains why it is important, such as enabling monitoring, debugging, trust, predictability, or effective collaboration",
+          "covered": true,
+          "evidence": "\"It is important because confusing code leads to confusing results.\""
+        },
+        {
+          "point": "States what it aims to accomplish: making agent actions and reasoning interpretable, predictable, and easier to oversee or coordinate",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "The answer incorrectly frames agent legibility primarily as making code readable for the agent. Agent legibility generally concerns making an agent\u2019s behavior, intentions, and state understandable to humans or other agents, not merely code organization."
+      ],
+      "score": 2,
+      "justification": "The response recognizes a general connection between clarity and better outcomes, and it gives a partially relevant reason for importance. However, it substantially misdefines agent legibility as code readability and does not explain its broader purpose of making an agent\u2019s behavior understandable, predictable, monitorable, and easier to coordinate or oversee.",
+      "seconds": 3.48,
+      "cost_usd": 0.00034120000000000005,
+      "output_tokens": 244
+    },
+    {
+      "question": "agent-legibility",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "Describe the principle of agent legibility",
+          "covered": true,
+          "evidence": "\u201cmaking the agent\u2019s own reasoning visible to the user\u201d and \u201csee why it made a decision\u201d"
+        },
+        {
+          "point": "Explain why agent legibility is important",
+          "covered": true,
+          "evidence": "\u201cIt aims to build trust\u201d"
+        },
+        {
+          "point": "Explain what agent legibility aims to accomplish",
+          "covered": true,
+          "evidence": "\u201cmaking the model explain itself in plain language\u201d"
+        }
+      ],
+      "false_claims": [
+        "The answer equates legibility with exposing the agent\u2019s chain of thought. Agent legibility generally concerns making an agent\u2019s behavior, goals, plans, actions, and rationale understandable or interpretable\u2014not necessarily revealing private chain-of-thought reasoning verbatim."
+      ],
+      "score": 4,
+      "justification": "The response captures the central idea that legibility makes an agent\u2019s behavior and decisions understandable to users, and correctly identifies trust as an important motivation. However, it overstates the requirement by framing legibility as exposing the model\u2019s chain of thought; effective legibility can be achieved through concise explanations, plans, action summaries, and observable behavior without revealing hidden reasoning. A more complete answer would also mention supporting user understanding, oversight, predictability, and the ability to detect or correct errors.",
+      "seconds": 3.41,
+      "cost_usd": 0.0003686,
+      "output_tokens": 266
+    },
+    {
+      "question": "trust-folder",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "Explain that Codex reads folder contents and may follow instructions found there",
+          "covered": true,
+          "evidence": "\u201cit reads the folder\u2019s contents and may follow instructions it finds in those files\u201d"
+        },
+        {
+          "point": "Explain the security risk from untrusted repository instructions, including code execution or sensitive-data exposure",
+          "covered": true,
+          "evidence": "\u201ccould get malicious code executed on my machine or expose sensitive information\u201d"
+        },
+        {
+          "point": "Explain why the trust prompt is needed before opening/processing the folder",
+          "covered": true,
+          "evidence": "\u201copening an untrusted repository hands that content to the agent before I have reviewed it\u201d"
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer accurately explains that Codex may ingest and follow instructions in repository files, including malicious prompt-injection content, and clearly connects this to risks such as code execution and data exposure. It also explains why the trust decision is requested before the folder is processed.",
+      "seconds": 2.73,
+      "cost_usd": 0.000299,
+      "output_tokens": 203
+    },
+    {
+      "question": "trust-folder",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "Explain that folder trust is a security safeguard against malicious code or content in the repository",
+          "covered": true,
+          "evidence": "\"to prevent malicious code from being executed\""
+        },
+        {
+          "point": "Explain that opening an untrusted repository could allow harmful code to run and compromise the user's machine or information",
+          "covered": true,
+          "evidence": "\"could let bad code run on your machine and steal your information\""
+        },
+        {
+          "point": "Connect the risk to agent behavior such as automatically reading or loading files",
+          "covered": true,
+          "evidence": "\"agents read and load files automatically\""
+        }
+      ],
+      "false_claims": [],
+      "score": 5,
+      "justification": "The answer correctly identifies folder trust as a security precaution. It explains both the risk of malicious code in an untrusted repository and the potential impact on the user's machine and information, while appropriately connecting the risk to agent access to repository files.",
+      "seconds": 2.52,
+      "cost_usd": 0.0002702,
+      "output_tokens": 186
+    },
+    {
+      "question": "trust-folder",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "Explain why Codex asks whether you trust a folder",
+          "covered": true,
+          "evidence": "\"so it knows whether to index the files for search\""
+        },
+        {
+          "point": "Accurately describe the effect of trusting a folder",
+          "covered": true,
+          "evidence": "\"Trusted folders get indexed for faster lookups and untrusted ones are skipped\""
+        },
+        {
+          "point": "Address the security/privacy implications of the trust decision",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "The answer incorrectly says the trust decision is \"mostly a performance and privacy preference rather than a security boundary.\" Folder trust is a security boundary: trusted workspace contents may be accessed or used by Codex, while untrusted folders are restricted to protect against malicious project instructions or files."
+      ],
+      "score": 2,
+      "justification": "The answer identifies indexing/search as one relevant purpose, but it substantially mischaracterizes folder trust as merely an indexing and performance choice. The key reason is security: Codex uses the trust decision to determine whether it may safely operate on the folder, since project files can contain untrusted instructions or other potentially harmful content. This security misconception is significant, so the answer earns partial credit only.",
+      "seconds": 3.62,
+      "cost_usd": 0.000348,
+      "output_tokens": 250
+    },
+    {
+      "question": "agents-md",
+      "tier": "strong",
+      "point_checks": [
+        {
+          "point": "Defines AGENTS.md as a Markdown file containing instructions for coding agents",
+          "covered": true,
+          "evidence": "\"a markdown file given to the agent to provide explicit instructions to AI coding agents\""
+        },
+        {
+          "point": "Explains its purpose as guiding the agent's behavior and work in the repository",
+          "covered": true,
+          "evidence": "\"guides its behavior\""
+        },
+        {
+          "point": "Mentions project-specific conventions or rules",
+          "covered": true,
+          "evidence": "\"what conventions are used in that specific project\""
+        },
+        {
+          "point": "Explains that it improves consistency or grounds the agent in project rules",
+          "covered": true,
+          "evidence": "\"helps improve consistency by grounding the agent in the project\u2019s specific rules\""
+        },
+        {
+          "point": "Accurately describes its location or scope",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "It lies in the root of the repository. AGENTS.md may be placed at the repository root, but it can also exist in subdirectories and apply according to the relevant directory scope."
+      ],
+      "score": 4,
+      "justification": "The answer correctly identifies AGENTS.md as a Markdown instruction file for AI coding agents and clearly explains that it communicates project-specific conventions and rules to guide behavior and improve consistency. The only issue is the overly restrictive claim that it lies in the repository root; such files may also appear in nested directories with narrower scope.",
+      "seconds": 3.4,
+      "cost_usd": 0.0003962,
+      "output_tokens": 285
+    },
+    {
+      "question": "agents-md",
+      "tier": "middling",
+      "point_checks": [
+        {
+          "point": "Defines AGENTS.md as a project/repository instruction file for a coding agent",
+          "covered": true,
+          "evidence": "\"a file that tells the agent about your project\" and \"You put it in your repo\""
+        },
+        {
+          "point": "Explains that it provides guidance or instructions to the agent about how to work in the project",
+          "covered": true,
+          "evidence": "\"It helps the agent understand what you want.\""
+        },
+        {
+          "point": "Clearly describes its practical purpose, such as communicating project conventions, commands, structure, or constraints to guide the agent's coding tasks",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [],
+      "score": 4,
+      "justification": "The answer correctly identifies AGENTS.md as a repository file that communicates project-specific information and expectations to a coding agent. It is concise and accurate, but somewhat vague: it does not give concrete examples of the instructions or conventions the file may contain, nor explain how those instructions guide the agent's implementation and verification work.",
+      "seconds": 2.95,
+      "cost_usd": 0.0003002,
+      "output_tokens": 211
+    },
+    {
+      "question": "agents-md",
+      "tier": "weak",
+      "point_checks": [
+        {
+          "point": "Define AGENTS.md as a file containing instructions or guidance for a coding agent working in a repository",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Explain that it communicates repository-specific conventions, constraints, or workflows to the agent",
+          "covered": false,
+          "evidence": ""
+        },
+        {
+          "point": "Explain its purpose as helping the agent make appropriate changes and follow project rules",
+          "covered": false,
+          "evidence": ""
+        }
+      ],
+      "false_claims": [
+        "AGENTS.md is generally not an authorization or access-control configuration listing which agents may run.",
+        "It does not typically define each agent's permissions or determine whether an agent is authorized to edit files.",
+        "The coding agent does not generally parse it primarily as a startup authorization check."
+      ],
+      "score": 1,
+      "justification": "The answer fundamentally mischaracterizes AGENTS.md as an access-control and permissions file. In agent engineering contexts, AGENTS.md provides repository-specific instructions\u2014such as coding conventions, testing commands, directory guidance, and workflow constraints\u2014to help a coding agent operate correctly. Although it correctly identifies the file as repository-related configuration/instructions in a broad sense, its stated purpose and behavior are substantially incorrect.",
+      "seconds": 3.23,
+      "cost_usd": 0.0003384,
+      "output_tokens": 241
+    }
+  ]
+}

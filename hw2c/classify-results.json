@@ -1,0 +1,257 @@
+{
+  "model": "jev-latest",
+  "rows": [
+    {
+      "question": "agent-skill",
+      "tier": "strong",
+      "expected": "full_credit",
+      "predicted": "full_credit",
+      "correct": true,
+      "confidence": 0.83,
+      "probabilities": {
+        "full_credit": 0.83,
+        "partial_credit": 0.16,
+        "no_credit": 0.01
+      },
+      "seconds": 0.29
+    },
+    {
+      "question": "agent-skill",
+      "tier": "middling",
+      "expected": "partial_credit",
+      "predicted": "partial_credit",
+      "correct": true,
+      "confidence": 1.0,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 1.0,
+        "no_credit": 0.0
+      },
+      "seconds": 0.12
+    },
+    {
+      "question": "agent-skill",
+      "tier": "weak",
+      "expected": "no_credit",
+      "predicted": "no_credit",
+      "correct": true,
+      "confidence": 1.0,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 0.0,
+        "no_credit": 1.0
+      },
+      "seconds": 0.14
+    },
+    {
+      "question": "harness-engineering",
+      "tier": "strong",
+      "expected": "full_credit",
+      "predicted": "full_credit",
+      "correct": true,
+      "confidence": 1.0,
+      "probabilities": {
+        "full_credit": 1.0,
+        "partial_credit": 0.0,
+        "no_credit": 0.0
+      },
+      "seconds": 0.13
+    },
+    {
+      "question": "harness-engineering",
+      "tier": "middling",
+      "expected": "partial_credit",
+      "predicted": "partial_credit",
+      "correct": true,
+      "confidence": 1.0,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 1.0,
+        "no_credit": 0.0
+      },
+      "seconds": 0.09
+    },
+    {
+      "question": "harness-engineering",
+      "tier": "weak",
+      "expected": "no_credit",
+      "predicted": "no_credit",
+      "correct": true,
+      "confidence": 1.0,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 0.0,
+        "no_credit": 1.0
+      },
+      "seconds": 0.1
+    },
+    {
+      "question": "progressive-disclosure",
+      "tier": "strong",
+      "expected": "full_credit",
+      "predicted": "full_credit",
+      "correct": true,
+      "confidence": 0.97,
+      "probabilities": {
+        "full_credit": 0.97,
+        "partial_credit": 0.03,
+        "no_credit": 0.0
+      },
+      "seconds": 0.12
+    },
+    {
+      "question": "progressive-disclosure",
+      "tier": "middling",
+      "expected": "partial_credit",
+      "predicted": "partial_credit",
+      "correct": true,
+      "confidence": 1.0,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 1.0,
+        "no_credit": 0.0
+      },
+      "seconds": 0.11
+    },
+    {
+      "question": "progressive-disclosure",
+      "tier": "weak",
+      "expected": "no_credit",
+      "predicted": "no_credit",
+      "correct": true,
+      "confidence": 0.76,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 0.24,
+        "no_credit": 0.76
+      },
+      "seconds": 0.18
+    },
+    {
+      "question": "agent-legibility",
+      "tier": "strong",
+      "expected": "full_credit",
+      "predicted": "full_credit",
+      "correct": true,
+      "confidence": 0.98,
+      "probabilities": {
+        "full_credit": 0.98,
+        "partial_credit": 0.02,
+        "no_credit": 0.0
+      },
+      "seconds": 0.13
+    },
+    {
+      "question": "agent-legibility",
+      "tier": "middling",
+      "expected": "partial_credit",
+      "predicted": "partial_credit",
+      "correct": true,
+      "confidence": 0.99,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 0.99,
+        "no_credit": 0.01
+      },
+      "seconds": 0.11
+    },
+    {
+      "question": "agent-legibility",
+      "tier": "weak",
+      "expected": "no_credit",
+      "predicted": "no_credit",
+      "correct": true,
+      "confidence": 0.99,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 0.01,
+        "no_credit": 0.99
+      },
+      "seconds": 0.1
+    },
+    {
+      "question": "trust-folder",
+      "tier": "strong",
+      "expected": "full_credit",
+      "predicted": "full_credit",
+      "correct": true,
+      "confidence": 0.94,
+      "probabilities": {
+        "full_credit": 0.94,
+        "partial_credit": 0.06,
+        "no_credit": 0.0
+      },
+      "seconds": 0.11
+    },
+    {
+      "question": "trust-folder",
+      "tier": "middling",
+      "expected": "partial_credit",
+      "predicted": "partial_credit",
+      "correct": true,
+      "confidence": 0.96,
+      "probabilities": {
+        "full_credit": 0.04,
+        "partial_credit": 0.96,
+        "no_credit": 0.0
+      },
+      "seconds": 0.1
+    },
+    {
+      "question": "trust-folder",
+      "tier": "weak",
+      "expected": "no_credit",
+      "predicted": "no_credit",
+      "correct": true,
+      "confidence": 0.98,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 0.02,
+        "no_credit": 0.98
+      },
+      "seconds": 0.11
+    },
+    {
+      "question": "agents-md",
+      "tier": "strong",
+      "expected": "full_credit",
+      "predicted": "full_credit",
+      "correct": true,
+      "confidence": 0.65,
+      "probabilities": {
+        "full_credit": 0.65,
+        "partial_credit": 0.35,
+        "no_credit": 0.0
+      },
+      "seconds": 0.1
+    },
+    {
+      "question": "agents-md",
+      "tier": "middling",
+      "expected": "partial_credit",
+      "predicted": "partial_credit",
+      "correct": true,
+      "confidence": 0.99,
+      "probabilities": {
+        "full_credit": 0.01,
+        "partial_credit": 0.99,
+        "no_credit": 0.0
+      },
+      "seconds": 0.14
+    },
+    {
+      "question": "agents-md",
+      "tier": "weak",
+      "expected": "no_credit",
+      "predicted": "no_credit",
+      "correct": true,
+      "confidence": 1.0,
+      "probabilities": {
+        "full_credit": 0.0,
+        "partial_credit": 0.0,
+        "no_credit": 1.0
+      },
+      "seconds": 0.11
+    }
+  ]
+}
