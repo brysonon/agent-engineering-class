@@ -48,6 +48,7 @@
     * But chapter level was sometimes more right. For "God knew me before I came to earth" it returned Abraham 3 first, which is the actual foreordination chapter. Verse level returned four verses that sounded similar and only one that was on topic.
     * It also failed harder when it failed. For "chosen beforehand for a purpose" it gave me D&C 55 and D&C 78, which are chapters about calling missionaries. Verse level found Alma 13:3.
     * So neither one is better. Verses are precise but match on phrasing, and chapters are vaguer but sometimes catch the topic. If I built this for real I would search verses and show the surrounding chapter for context.
+- In doing some more exploration in the scriptures, I found that the most average verse (the verse closest to the centroid) in the Book of Mormon was Alma 17:11 — "And the Lord said unto them also: Go forth among the Lamanites, thy brethren, and establish my word..." The least average verses were the verses about the Nephite currency system and Isaiah's list of jewelry. 
 
 ## Obstacles I encountered
 - **Hit the token limit:** Batching 500 chapters in one request asked for 597,139 tokens against a 300,000 cap. Verses are short so a fixed batch size worked fine, but chapters are 750 words each. I had to change the batching to count tokens instead of items.
@@ -62,10 +63,9 @@
 - I learned that a verse that teaches a doctrine through a picture instead of a statement is close to invisible to search. Job 38:7 is one of the clearest premortal passages and I could not get it to show up at all.
 
 ## Why this matters in the context of agent engineering
-Any agent that answers questions from documents is doing what I just did, so the quality of its answers is capped by whether retrieval found the right material. My searches looked successful every time. I always got ten verses back with decent scores, and most of them were wrong. An agent would have written a confident answer on top of those.
+Embeddings are how an agent finds things when there is too much material to fit in its context. Any agent answering questions from documents has to search first, and whatever comes back is all it has to work with. That puts a ceiling on the whole system, because the model cannot reason about a verse it never received and has no way of knowing one was left out. Job 38:7 is my example. It is one of the clearest premortal passages and it never ranked above 5,250 out of 41,995, and nothing in the output told me it was missing. An agent would have written a confident answer without it.
 
-Chunk size is a design decision I would have treated as a setting before this. Verse level and chapter level gave genuinely different answers to the same question, and I could not pick a winner. That means the chunking choice is part of what the system believes, not just how fast it runs.
-
-The failure I care about most is Job 38:7, because nothing in the output told me it was missing. A missed document leaves no trace. I only knew to look for it because I already knew it should be there, and an agent searching a corpus it has never seen has no way to notice what it did not find.
+The other thing is that these choices are not just settings. Chunk size felt like a performance knob until verse level and chapter level gave me different answers to the same question with no clear winner. Wording matters the same way, since plain English beat the actual doctrinal term. And retrieval fails quietly in both directions, like the ten "foundation of the world" results that all had decent scores and were all about the creation instead. Looking successful while being wrong is why knowing how embeddings behave matters more than knowing how to call the API.
 
 ## How many hours I spent
+I spent 3 hours on this homework. 
