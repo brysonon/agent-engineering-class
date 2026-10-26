@@ -1,64 +1,48 @@
 # HW2e Write-up
 
-## What I did
-- **Downloaded the October 2026 General Conference** with `download_gc_talks.py`: 38 talks, about 43k words, one `.txt` per talk in `talks/`.
-- **Ingested it into a local ChromaDB** (`ingest.py`) using `ingest_folder` from `chroma_demo.py`: 257 chunks of ~1,200 characters with `text-embedding-3-small`. Cost was under a cent.
-- **Built a chatbot** (`chat.py`) that uses RAG as a tool instead of stuffing results into every prompt. The model gets three tools:
-    * `search_talks(query)`: semantic search that returns the top 3 *whole* talks.
-    * `list_talks()` and `read_talk(filename)`: for questions like "what did President Oaks say," since searching for a speaker's name doesn't work with embeddings.
-    * It works one question at a time (`python chat.py "question"`) or as an interactive chat that keeps history for follow-ups.
-- **Wrote a system prompt** (`system_prompt.md`) telling the model to always search first, search again with different wording if it misses, quote only exact words, cite speaker and talk, and say plainly when the conference didn't cover something.
-- **Built an eval** (`eval.py`) with 12 questions. Ten have a talk I expect it to find, and two (AI, foreordination) the conference never addresses directly. For each answer it checks:
-    * whether the agent found the expected talk
-    * whether every quoted phrase appears word for word in the talks
-    * whether that quote is credited to the right speaker
+## How I completed the required tasks
+- I downloaded the October 2026 General Conference with `download_gc_talks.py`. That gave me 38 talks, about 43k words.
+- I ingested them into a local ChromaDB (`ingest.py`) using `ingest_folder` from `chroma_demo.py`. That made 257 chunks with `text-embedding-3-small`, for less than a cent.
+- I built a chatbot (`chat.py`) that uses RAG as a tool instead of a fixed retrieve-then-answer step. The model gets three tools:
+    * `search_talks` returns the top 3 whole talks for a query.
+    * `list_talks` and `read_talk` let it open a talk by speaker, since searching for a name does not work with embeddings.
+- I wrote the system prompt (`system_prompt.md`) to tell the model how to use the extra content. It should always search first, try new wording if a search misses, only quote exact words, cite the speaker and talk, and say so when the conference did not cover something.
+- I changed `query_whole_documents` (in `gc_search.py`) because it returns one row per chunk, so the same talk came back several times. For "Why do we need prophets today?", 3 of the 5 results were the same talk. Mine keeps only the best chunk from each talk.
 
-## Changes to the demo code
-- `query_whole_documents` returns one row per *chunk*, so the same talk can come back several times. For "Why do we need prophets today?", 3 of the 5 results were the same Sikahema talk, which would send the whole talk to the model three times. `gc_search.py` pulls extra chunks and keeps only the best one from each talk.
+## Additional exploration
+- I built an eval (`eval.py`) with 12 questions. Ten have a talk I expected it to find, and two (AI and foreordination) the conference never directly addresses. For each answer it checks whether the right talk was found and whether every quote appears word for word in the talks and is credited to the right speaker.
+- I ran the same questions with no RAG, with my two prompt versions, and with OpenAI's web search instead of my database.
 
-## Results
+  | | Found expected talk | Real quotes | Cost (12 questions) |
+  | --- | --- | --- | --- |
+  | No RAG | - | 5/30 | $0.007 |
+  | RAG, prompt v1 | 10/10 | 58/60 | $0.025 |
+  | RAG, prompt v2 | 9/10 | 51/51 | $0.027 |
+  | Web search | 10/12 cited the real talk page | 31/35 | $0.047 + search fees |
 
-| | Found expected talk | Quotes verbatim in the talks | Cost (12 questions) |
-| --- | --- | --- | --- |
-| No RAG (same model, no tools) | - | 5/30 | $0.007 |
-| RAG, prompt v1 | 10/10 | 58/60 | $0.025 |
-| RAG, prompt v2 | 9/10 | 50/51* | $0.027 |
-| OpenAI web search instead of RAG | (see below) | 31/35 | $0.047 + search fees |
+    * Without RAG the model refused when I named a speaker, but on topic questions it made up quotes.
+    * v1's two bad quotes were a Bible verse from memory and the bot's own example wording in quotes. I added rules for both in v2 and they went away.
+    * Web search found the right talks too, and it gave links. But it usually read only 1-2 pages, so it gave fewer quotes. It also went outside the conference: on the AI question it used the Handbook and a newsroom article. It cost almost double plus a fee per search.
+- Foreordination never appears in the talks, but the agent searched three times and found Bishop Douglas's "God held you in reserve for this time… before you were born."
 
-\*The one "miss" was a talk title in single quotes, which the checker didn't skip, so v2 was actually 51/51.
-
-- **Without RAG the model mostly made up quotes.** It refused when I named a speaker ("I don't have access to the October 2026 conference"). But on topic questions it confidently quoted things like *"Have I understood your concern correctly?"* as if a speaker said them. The 5 quotes that passed were scripture verses that a speaker also happened to quote.
-- **With RAG the quotes were real, but not always credited to the right person.** In an early test, the bot quoted "special [witnesses] of the name of Christ in all the world" and credited it to Elder Caussé. That wording is D&C 107:23 from memory and isn't in any talk. That's why I added the attribution check to the eval.
-- **Prompt v1 → v2.** v1's two failed quotes weren't misquotes of speakers. One was a Bible verse quoted from memory, and the other was example wording the bot wrote for the user and put in quotes. v2 added three rules:
-    * only quote scripture if a speaker quoted it
-    * use italics, not quotes, for the bot's own wording
-    * put its own application under an "Applying this" heading
-  
-  Both quote problems went away. The "Applying this" rule only partly worked: on the AI question the bot added the section, but still slipped lines like "This suggests AI-generated answers should be evaluated carefully" between real quotes.
-- **The model's query rewriting can hurt retrieval.** v2's one miss was "Is the gospel only for certain kinds of people?" The model searched with a long keyword-heavy rewrite and missed President Oaks's "The Gospel of Jesus Christ Is for All." The user's plain question ranks that talk #1.
-- **Not-covered questions were handled well.**
-    * *Foreordination:* the word never appears in the talks, but the agent searched three times and found Bishop Douglas's "God held you in reserve for this time… before you were born." This is the same lesson as hw2d: embeddings find the idea even when the word isn't there.
-    * *AI:* the bot opened with "the conference did not give a detailed policy" and then found Elder Andersen's line about "misinformation, and now artificial information."
-
-## Compared to web search
-I ran the same 12 questions with the same model, using OpenAI's built-in `web_search` tool instead of my database (`python eval.py --label web --web`).
-- **It found the right talks too.** Three weeks after conference the talks are already indexed, and 10 of 12 answers cited the official October 2026 talk page on churchofjesuschrist.org, with clickable links, which my bot doesn't give.
-- **It was narrower.** It usually read 1–2 pages per answer instead of 3 whole talks, so it gave fewer quotes (35 vs 51) and drew less on multiple speakers.
-- **It didn't stay inside the conference.** On the AI question it used the *General Handbook* and a newsroom workshop by Elder Gong. That's arguably a better answer, but it isn't what the bot is supposed to do, and I can't check those quotes against my talks. Of its 4 quotes that failed the check, 2 came from non-conference pages like these and 2 were its own wording put in quotes.
-- **It cost more and depends on someone else's search engine.** Token cost was almost double ($0.047 vs $0.027), plus a fee for each of its 24 searches. Web search only works for content that's public and already indexed, while local RAG works on private or brand-new documents and is limited to exactly the sources I chose.
+## Obstacles I encountered
+- **Chroma crashed in parallel:** Running the eval questions in threads crashed when they all tried to open the database at once. I had to add a lock so only one opens it.
+- **A fake quote that looked real:** In an early test the bot quoted D&C 107:23 from memory and said it was Elder Caussé. Nothing about it looked different from the real quotes, which is why I built the quote checker.
+- **The checker was not perfect:** It flagged talk titles in single quotes and quotes where the speaker's name was too far away. I had to read the flagged answers myself to tell real errors from false alarms.
+- **The model's search wording hurt it:** In v2 it rewrote "Is the gospel only for certain kinds of people?" into a long keyword-heavy query and missed President Oaks's "The Gospel of Jesus Christ Is for All." My plain question ranks that talk first.
 
 ## What I learned
-- **The system prompt is how the model knows what the retrieved text is for.** Without being told "this is the only source, quote it exactly, say when it doesn't cover the question," it mixes retrieved text with what it already knows, and you can't tell which is which.
-- **Return whole talks, not just the matching chunk.** A 1,200-character chunk often cut off right before the point, and full talks are cheap (about $0.002 per question). Deduplicating mattered more than chunk size.
-- **Giving the model tools beat a fixed retrieve-then-answer pipeline.** It searched again when the first search missed and used `list_talks` for speaker questions, which plain semantic search can't answer.
-- **You have to check quotes automatically.** Every answer looks trustworthy, and the one fake quote I found looked exactly like the real ones. A simple word-for-word check against the source was the most useful part of the project.
+- I learned that the system prompt is how the model knows what the retrieved text is for. Without being told it is the only source and to quote it exactly, the model mixes it with what it already knows, and you cannot tell which is which.
+- I learned that RAG fixed made-up quotes but not wrong credit. The words were real, but I still had to check who said them.
+- I learned that returning whole talks worked better than chunks, and removing duplicates mattered more than chunk size.
+- I learned that giving the model search as a tool beat a fixed pipeline. It searched again when it missed and used `list_talks` for speaker questions.
+- I learned that the model is not always better at writing search queries than the user. Its rewrites made one search worse.
+- I learned that web search is close for public content, but local RAG keeps the bot limited to exactly the sources I chose.
 
-## Files
-- `ingest.py`: loads `talks/` into ChromaDB (`chroma/`, rebuildable, not committed)
-- `gc_search.py`: deduplicated whole-talk search
-- `chat.py`: the chatbot and its tools
-- `system_prompt.md` (v2) and `system_prompt_v1.md`
-- `eval.py`, plus `results-no-rag.json`, `results-v1.json`, `results-v2.json` and `results-web.json`
-- `tools.py` and `usage.py`: copied from classwork
+## Why this matters in the context of agent engineering
+Most agents that answer from documents work this way. They search, then answer from whatever came back. RAG as a tool lets the agent decide when and how to search, and that is why it could recover from a missed search or look up a speaker. But the agent also controls the query, and one of its rewrites made the search worse. Retrieval is only as good as the query the agent writes, and nothing tells you when a search missed.
 
-To run: `python ../classwork/2e/download_gc_talks.py https://www.churchofjesuschrist.org/study/general-conference/2026/10 talks`, then `python ingest.py`, then `python chat.py`.
+The bigger thing is that a grounded answer still has to be checked. Every answer looked trustworthy, including the one with a fake quote. A simple word-for-word check against the sources caught what reading the answers did not. Any agent that cites sources needs something like that, because looking right and being right look the same.
+
+## How many hours I spent
+I spent 3 hours on this homework.
