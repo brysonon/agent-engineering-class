@@ -1,0 +1,284 @@
+[
+  {
+    "question": "Why do we need living prophets today?",
+    "expected": [
+      "05_vaiangina_sikahema.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [
+      {
+        "quote": "Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets",
+        "verified": true
+      },
+      {
+        "quote": "it is the same",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 2,
+    "cost": 0.0007866,
+    "answer": "We need living prophets because Jesus Christ continues to lead His Church through revelation. The world changes, new circumstances arise, and the Lord provides timely guidance for His children while preserving the unchanging truths of the gospel.\n\nScripture teaches, “Surely the Lord God will do nothing, but he revealeth his secret unto his servants the prophets” (Amos 3:7). A living prophet helps the Church understand how eternal principles apply to current challenges, protects it from spiritual danger, calls us to repentance, and testifies of Jesus Christ. Prophets also hold priesthood keys to direct the Church in unity and to authorize saving ordinances.\n\nA living prophet does not replace personal revelation or the scriptures. Rather, he teaches us how to seek the Holy Ghost and apply the gospel. We are responsible to study prophetic counsel, pray about it, and act in faith. President Russell M. Nelson has repeatedly taught that receiving personal revelation is a spiritual privilege and that the Lord wants to speak to us individually.\n\nFollowing a prophet is ultimately an act of faith in the Savior—not worship of a mortal leader. Prophets are imperfect people, but the Lord can accomplish His purposes through them as they exercise their keys and testify of Christ. As the Doctrine and Covenants teaches, whether the Lord speaks by His own voice or through His servants, “it is the same” (Doctrine and Covenants 1:38).\n\nI cannot responsibly quote the October 2026 General Conference unless its proceedings are available to me, but this principle is firmly grounded in scripture and longstanding prophetic teaching."
+  },
+  {
+    "question": "How can the Holy Ghost comfort me when I'm grieving?",
+    "expected": [
+      "18_matthew_j_eyring.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [
+      {
+        "quote": "Because I live, ye shall live also",
+        "verified": false
+      },
+      {
+        "quote": "Heavenly Father, I am hurting. Please help me recognize the comfort of the Holy Ghost today.",
+        "verified": false
+      },
+      {
+        "quote": "Adam fell that men might be; and men are, that they might have joy",
+        "verified": false
+      }
+    ],
+    "quotes_verified": 0,
+    "cost": 0.0005916000000000001,
+    "answer": "The Holy Ghost can comfort you without requiring your grief to disappear immediately. He is called the **Comforter** because He brings the Savior’s presence, peace, and sustaining power into painful circumstances.\n\nWhen you grieve, the Spirit may help you by:\n\n- **Assuring you that God is aware of you.** This may come as quiet peace, a tender thought, or strength to endure the next hour.\n- **Testifying of Jesus Christ and the Resurrection.** The Holy Ghost can deepen your hope in the Savior’s promise: “Because I live, ye shall live also” (John 14:19).\n- **Helping you feel love and connection.** Comfort may come through inspired family members, ministering brothers and sisters, temple worship, prayer, or a meaningful memory.\n- **Giving you strength to mourn honestly.** Spiritual comfort is not always a feeling of happiness. Sometimes it is the ability to cry, pray, rest, and continue trusting God.\n- **Bringing personal guidance.** The Spirit may prompt you to seek help, talk with someone, care for your body, or take one small faithful step.\n\nYou might pray simply: *“Heavenly Father, I am hurting. Please help me recognize the comfort of the Holy Ghost today.”* Then allow silence, scripture, music, and kind support to create space to notice gentle promptings.\n\nI cannot accurately quote the October 2026 General Conference because that conference has not yet occurred or its proceedings are not available to me. But the Book of Mormon gives this assurance: “Adam fell that men might be; and men are, that they might have joy”—a joy ultimately made possible through Christ, even amid sorrow (2 Nephi 2:25)."
+  },
+  {
+    "question": "Why should I pay tithing when money is tight?",
+    "expected": [
+      "13_patricio_m_giuffra.txt",
+      "31_moises_villanueva.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [
+      {
+        "quote": "Bring ye all the tithes into the storehouse",
+        "verified": true
+      },
+      {
+        "quote": "one-tenth of all their interest annually",
+        "verified": false
+      },
+      {
+        "quote": "all that she had",
+        "verified": true
+      },
+      {
+        "quote": "Heavenly Father, I want to be faithful, but I am afraid. Please help me know how to proceed.",
+        "verified": false
+      }
+    ],
+    "quotes_verified": 2,
+    "cost": 0.0006938,
+    "answer": "Paying tithing when money is tight is not about buying blessings or proving that you do not have real needs. It is an act of faith and worship—putting God first and trusting Him with what remains.\n\nThe Lord’s command is simple: “Bring ye all the tithes into the storehouse” (Malachi 3:10). In modern revelation, tithing is defined as “one-tenth of all their interest annually” (Doctrine and Covenants 119:4). The Lord does not promise that faithful members will never face financial hardship, but He does promise spiritual blessings, including greater faith, peace, and help in meeting life’s challenges.\n\nThe Savior noticed the widow who gave “all that she had” (Mark 12:41–44). Her offering was small in amount but great in trust. Similarly, tithing is not measured by how much money we give but by our willingness to honor the Lord.\n\nAt the same time, paying tithing does not mean ignoring necessities or acting without counsel. If you are struggling to provide food, housing, medical care, or other essentials, speak confidentially with your bishop. He can offer spiritual guidance and may be able to help through Church resources. A budget, careful planning, and honest prayer can also help.\n\nYou might pray: “Heavenly Father, I want to be faithful, but I am afraid. Please help me know how to proceed.” Paying tithing may require sacrifice, but it can become a declaration that God—not fear or money—will govern your life."
+  },
+  {
+    "question": "What does it mean to be sealed by the Holy Spirit of Promise?",
+    "expected": [
+      "32_david_a_bednar.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [
+      {
+        "quote": "All covenants, contracts, bonds, obligations, oaths, vows, performances, connections, associations, or expectations",
+        "verified": false
+      },
+      {
+        "quote": "efficacy, virtue, or force",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 1,
+    "cost": 0.0008334,
+    "answer": "To be **sealed by the Holy Spirit of Promise** means that the Holy Ghost confirms that a covenant, ordinance, or righteous act is acceptable to God and will have eternal validity as we remain faithful.\n\nThe Lord taught:\n\n> “All covenants, contracts, bonds, obligations, oaths, vows, performances, connections, associations, or expectations” must be “sealed by the Holy Spirit of promise” to have “efficacy, virtue, or force” beyond this life (Doctrine and Covenants 132:7).\n\nThe phrase applies especially to temple covenants and the sealing ordinance. A temple sealing is performed by priesthood authority, but the Holy Ghost must ratify—or approve and confirm—the covenant before it has eternal force. This is not an automatic guarantee. It is conditional upon faith in Jesus Christ, repentance, keeping covenants, and enduring faithfully. Thus, being sealed is not simply having one’s name recorded in a temple ordinance; it involves living so that the Spirit can confirm the covenant before God.\n\nDoctrine and Covenants 76:53 describes those who inherit celestial glory as people who are “sealed by the Holy Spirit of promise.” The Holy Ghost does not merely tell us that an ordinance occurred; He testifies of the Savior, confirms truth, and helps us become the kind of people who can receive the promised blessings.\n\nWe should therefore view temple sealing not as a reason for complacency, but as an invitation to remain spiritually connected to Christ. Through His Atonement, covenant faithfulness, and continuing repentance, the Lord can make our covenants effective eternally."
+  },
+  {
+    "question": "What did President Oaks say in his closing remarks?",
+    "expected": [
+      "38_dallin_h_oaks.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [],
+    "quotes_verified": 0,
+    "cost": 0.0002818,
+    "answer": "I don’t have access to the October 2026 General Conference proceedings or President Oaks’s closing remarks. If you share the transcript, video link, or the specific session, I can summarize his message and highlight key quotations."
+  },
+  {
+    "question": "How should I talk to people I strongly disagree with?",
+    "expected": [
+      "26_alfred_kyungu.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [
+      {
+        "quote": "pure love of Christ",
+        "verified": false
+      },
+      {
+        "quote": "Have I understood your concern correctly?",
+        "verified": false
+      },
+      {
+        "quote": "the servant of the Lord must not strive; but be gentle unto all men",
+        "verified": false
+      },
+      {
+        "quote": "I see this differently because…",
+        "verified": false
+      },
+      {
+        "quote": "A soft answer turneth away wrath",
+        "verified": false
+      },
+      {
+        "quote": "I value you, and I don’t think continuing right now will help either of us.",
+        "verified": false
+      },
+      {
+        "quote": "Lord, help me seek understanding, speak with kindness, and stand for truth without diminishing another person.",
+        "verified": false
+      }
+    ],
+    "quotes_verified": 0,
+    "cost": 0.0006504,
+    "answer": "When speaking with someone you strongly disagree with, try to protect the relationship while honestly expressing your convictions.\n\n- **Begin with love and humility.** Remember that the other person is a child of God, not an opponent to defeat. Pray for charity—the “pure love of Christ” (Moroni 7:47)—and examine your own assumptions before responding.\n- **Listen to understand.** Ask sincere questions and restate what you heard: “Have I understood your concern correctly?” People are more open to our beliefs when they know we have respected theirs.\n- **Speak truth without contention.** The Lord taught that “the servant of the Lord must not strive; but be gentle unto all men” (2 Timothy 2:24). You can say, “I see this differently because…” rather than assigning motives or attacking character.\n- **Look for shared values.** Even when conclusions differ, you may share a desire for justice, family well-being, safety, or human dignity. Common ground can make disagreement less threatening.\n- **Know when to pause.** “A soft answer turneth away wrath” (Proverbs 15:1), but sometimes the most Christlike response is to end the conversation respectfully: “I value you, and I don’t think continuing right now will help either of us.”\n- **Keep boundaries.** Charity does not require accepting abuse, misinformation, or pressure to violate your conscience. Be courteous, firm, and willing to step away.\n\nA useful prayer before difficult conversations is: *“Lord, help me seek understanding, speak with kindness, and stand for truth without diminishing another person.”*"
+  },
+  {
+    "question": "What is the purpose of fasting?",
+    "expected": [
+      "07_ulisses_soares.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [],
+    "quotes_verified": 0,
+    "cost": 0.000556,
+    "answer": "In The Church of Jesus Christ of Latter-day Saints, fasting is a voluntary decision to go without food and drink for a period of time—usually two meals—and to turn our hearts more fully to God through prayer and worship.\n\nThe purposes of fasting include:\n\n- **Drawing closer to Heavenly Father and Jesus Christ.** Hunger can remind us of our dependence on God and help us seek spiritual nourishment.\n- **Receiving spiritual strength and guidance.** Fasting can increase humility, faith, and sensitivity to the promptings of the Holy Ghost.\n- **Repenting and seeking help.** Throughout the scriptures, God’s people fasted while pleading for forgiveness, deliverance, healing, or direction (see Alma 5:46; Helaman 3:35).\n- **Developing self-control and compassion.** Fasting helps us place spiritual priorities above physical appetites and can make us more aware of the needs of others.\n- **Caring for the poor.** Members are encouraged to contribute a generous fast offering—at least the cost of the meals not eaten. These offerings help provide food, housing, and other necessities to people in need.\n\nFasting is not meant to pressure God into granting a specific desire, nor is it simply a test of endurance. Its power comes from sincere prayer, humility, faith in Jesus Christ, and a willingness to follow God’s will. Those who are ill, pregnant or nursing, very young, or otherwise unable to fast may participate through prayer and generosity instead."
+  },
+  {
+    "question": "How can our ward be united when members are so different from each other?",
+    "expected": [
+      "29_dieter_f_uchtdorf.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [
+      {
+        "quote": "the eye cannot say unto the hand, I have no need of thee",
+        "verified": false
+      },
+      {
+        "quote": "have no more disposition to do evil, but to do good continually",
+        "verified": false
+      },
+      {
+        "quote": "Are these people like me?",
+        "verified": false
+      },
+      {
+        "quote": "How can I love and serve them as the Savior would?",
+        "verified": false
+      }
+    ],
+    "quotes_verified": 0,
+    "cost": 0.0007184,
+    "answer": "Ward unity does not require members to be alike. The Savior gathers people with different backgrounds, personalities, abilities, and opinions and invites them to become “one” through Him (see John 17:20–23; Doctrine and Covenants 38:27). Unity is not uniformity; it is shared faith, charity, and covenant purpose.\n\nKing Benjamin taught that when we see ourselves as “beggars” before God, we are more willing to show compassion and withhold judgment (Mosiah 4:19–26). In a ward, this can mean listening before correcting, assuming good intentions, welcoming those who feel different, and making room for others’ gifts. Paul’s teaching about the body of Christ is especially relevant: “the eye cannot say unto the hand, I have no need of thee” (1 Corinthians 12:21). Differences can strengthen a ward when they are consecrated to serving others.\n\nPractical unity might include:\n\n- Focusing discussions on the Savior and covenants rather than preferences.\n- Inviting quieter or newer members to participate.\n- Avoiding gossip, factionalism, and “us versus them” language.\n- Serving together across social and cultural lines.\n- Disagreeing respectfully while keeping charity.\n- Praying for specific members and looking for ways to bless them.\n\nThe sacrament reminds us that we belong to Christ—and therefore to one another. As we “have no more disposition to do evil, but to do good continually” (Mosiah 5:2), the ward becomes united one heart at a time. The question is not, “Are these people like me?” but, “How can I love and serve them as the Savior would?”"
+  },
+  {
+    "question": "What did Elder Christofferson teach about wisdom?",
+    "expected": [
+      "09_d_todd_christofferson.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [],
+    "quotes_verified": 0,
+    "cost": 0.00027459999999999995,
+    "answer": "I don’t have the October 2026 General Conference addresses available, and that conference may not yet have occurred. Could you share the title of Elder Christofferson’s talk—or clarify whether you meant another conference? Then I can summarize exactly what he taught about wisdom and include accurate quotations."
+  },
+  {
+    "question": "Is the gospel only for certain kinds of people?",
+    "expected": [
+      "28_dallin_h_oaks.txt"
+    ],
+    "found_expected": false,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [
+      {
+        "quote": "He inviteth them all to come unto him and partake of his goodness; and he denieth none that come unto him, black and white, bond and free, male and female … all are alike unto God",
+        "verified": false
+      },
+      {
+        "quote": "for people like me.",
+        "verified": false
+      }
+    ],
+    "quotes_verified": 0,
+    "cost": 0.000643,
+    "answer": "No. The gospel of Jesus Christ is for **all people**, regardless of background, culture, past mistakes, abilities, or present circumstances.\n\nThe Book of Mormon teaches:\n\n> “He inviteth them all to come unto him and partake of his goodness; and he denieth none that come unto him, black and white, bond and free, male and female … all are alike unto God” (2 Nephi 26:33).\n\nThat invitation does not mean that discipleship has no standards. Jesus Christ invites everyone to repent, make covenants, receive ordinances, and become sanctified through Him. But the invitation comes **before** perfection—not after we have somehow earned the right to belong. We come to Christ as we are, and He lovingly helps us become more like Him.\n\nThe Church is not reserved for people who have flawless families, unquestioned faith, ideal health, or an untroubled past. It is a community of people who need the Savior and are learning to follow Him. Every person has divine worth and a place in God’s work.\n\nAt the same time, the gospel is not merely “for people like me.” It calls us to make room for others, reject prejudice, minister across differences, and see each person as a beloved child of God. The Savior’s command is to invite, welcome, and serve—not to decide who is worthy of His love.\n\nSo the answer is both simple and profound: **the gospel is for everyone, and everyone is invited to come unto Christ.**"
+  },
+  {
+    "question": "What does the Church teach about using artificial intelligence?",
+    "expected": [],
+    "found_expected": null,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [
+      {
+        "quote": "Men are free…to choose liberty and eternal life",
+        "verified": false
+      },
+      {
+        "quote": "Thou shalt not bear false witness",
+        "verified": false
+      }
+    ],
+    "quotes_verified": 0,
+    "cost": 0.000841,
+    "answer": "The Church teaches that artificial intelligence should be approached with **wisdom, moral agency, and accountability**. I don’t have a verified text from the October 2026 General Conference, so I would not attribute specific comments to conference speakers. However, established gospel principles provide useful guidance:\n\n- **Use agency wisely.** Technology is a tool; it does not replace our responsibility to choose and act. “Men are free…to choose liberty and eternal life” (2 Nephi 2:27).\n- **Seek truth and verify information.** AI can produce inaccurate, biased, or misleading content. We should not treat its answers as revelation or spiritual authority. Prayer, scripture, the Holy Ghost, and living prophets remain the sources of gospel truth.\n- **Be honest and transparent.** Do not use AI to impersonate people, cheat, plagiarize, create deceptive content, or misrepresent work as your own. “Thou shalt not bear false witness” (Exodus 20:16).\n- **Protect people and their privacy.** Avoid entering confidential, sacred, or personal information into AI systems, and do not create material that harms, exploits, humiliates, or objectifies others.\n- **Preserve human relationships and worth.** AI may assist with tasks, but it cannot replace loving service, family relationships, priesthood responsibilities, compassionate teaching, or personal revelation.\n- **Use it for righteous purposes.** AI can help with learning, accessibility, organization, translation, and constructive work when used lawfully and responsibly.\n\nIn short, members can ask: *Is this honest? Is it safe? Does it respect agency and human dignity? Does it invite the Spirit and help me serve God and others?*"
+  },
+  {
+    "question": "What did the conference teach about foreordination?",
+    "expected": [],
+    "found_expected": null,
+    "tool_calls": [],
+    "talks_seen": [],
+    "quotes": [
+      {
+        "quote": "We will make an earth whereon these may dwell; and we will prove them",
+        "verified": false
+      },
+      {
+        "quote": "Every man may act in doctrine and principle pertaining to futurity, according to the moral agency",
+        "verified": false
+      },
+      {
+        "quote": "foreordained us unto the adoption of children by Jesus Christ",
+        "verified": false
+      },
+      {
+        "quote": "does not mean that individuals are guaranteed a calling or blessing,",
+        "verified": false
+      }
+    ],
+    "quotes_verified": 0,
+    "cost": 0.0005371999999999999,
+    "answer": "The October 2026 General Conference has not yet taken place, so I can’t accurately attribute any teaching or quotation about foreordination to that conference.\n\nIn Latter-day Saint doctrine, **foreordination** means that in the premortal existence God appointed some of His children to fulfill particular responsibilities in mortality. It does **not** mean that a person’s salvation or choices are predetermined. We retain agency and must choose whether to accept and magnify those responsibilities.\n\nThe scriptures teach that God’s work is accomplished through willing disciples:\n\n- “We will make an earth whereon these may dwell; and we will prove them” (Abraham 3:24–25).\n- “Every man may act in doctrine and principle pertaining to futurity, according to the moral agency” God has given him (Doctrine and Covenants 101:78).\n- Paul taught that God “foreordained us unto the adoption of children by Jesus Christ” (Ephesians 1:5), emphasizing God’s plan and purposes rather than inevitability.\n\nForeordination should therefore lead to humility, not spiritual status. A calling or potential assignment is an invitation to serve, and faithful choices are still required. President Joseph Fielding Smith taught that foreordination “does not mean that individuals are guaranteed a calling or blessing,” because those blessings depend on faithfulness.\n\nIf you provide the conference talk, quotation, or transcript you have in mind, I can summarize exactly what that speaker taught."
+  }
+]

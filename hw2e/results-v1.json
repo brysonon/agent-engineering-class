@@ -1,0 +1,570 @@
+[
+  {
+    "question": "Why do we need living prophets today?",
+    "expected": [
+      "05_vaiangina_sikahema.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "why the Church needs living prophets today, including continuing revelation, guidance for changing circumstances, and the role of modern prophets in leading God's people"
+        }
+      },
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "modern prophets receive revelation and provide God's authoritative guidance for the Church, helping members know how to follow Jesus Christ in present-day circumstances"
+        }
+      }
+    ],
+    "talks_seen": [
+      "05_vaiangina_sikahema.txt",
+      "04_gerald_causse.txt",
+      "28_dallin_h_oaks.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "even in modern times, there are people who thirst to hear prophetic direction and guidance.",
+        "verified": true
+      },
+      {
+        "quote": "What I the Lord have spoken, I have spoken … whether by mine own voice or by the voice of my servants, it is the same",
+        "verified": true
+      },
+      {
+        "quote": "a unique, authoritative, divinely empowered witness of the living Christ",
+        "verified": true
+      },
+      {
+        "quote": "scriptures, inspired teaching, and personal revelation",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 4,
+    "cost": 0.0029782199999999997,
+    "answer": "We need living prophets because God continues to guide His children through revelation. They are not merely historical teachers; they are called to receive and communicate the Lord’s direction for His Church and people today.\n\nElder Vaiangina Sikahema taught that “even in modern times, there are people who thirst to hear prophetic direction and guidance.” He emphasized the reality of continuing revelation, quoting the Lord: “What I the Lord have spoken, I have spoken … whether by mine own voice or by the voice of my servants, it is the same” (“Prophets, Seers, and Revelators”).\n\nLiving prophets also help us remain centered on Jesus Christ. Elder Gérald Caussé explained that Apostles bear “a unique, authoritative, divinely empowered witness of the living Christ” (“The Gift of Testimony”). Their primary role is not to replace our personal relationship with the Savior, but to testify of Him, teach His restored gospel, and help us follow the covenant path.\n\nPresident Dallin H. Oaks also taught that we gain spiritual knowledge through “scriptures, inspired teaching, and personal revelation” (“The Gospel of Jesus Christ Is for All”). Prophets therefore provide inspired teaching while inviting us to seek our own confirming witness through the Holy Ghost.\n\nIn short, we need living prophets because the Lord loves us enough to speak to us in our time. They provide authorized testimony of Christ, preserve the ordinances and doctrine of His Church, warn and encourage us, and give inspired guidance for the circumstances we face today."
+  },
+  {
+    "question": "How can the Holy Ghost comfort me when I'm grieving?",
+    "expected": [
+      "18_matthew_j_eyring.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "How the Holy Ghost comforts people who are grieving after the death or loss of someone they love, including peace, companionship, healing, and hope"
+        }
+      }
+    ],
+    "talks_seen": [
+      "18_matthew_j_eyring.txt",
+      "35_gary_e_stevenson.txt",
+      "19_ronald_a_rasband.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "exactly how we feel, especially in our darkest and most trying times.",
+        "verified": true
+      },
+      {
+        "quote": "tools, resources, and help from other people.",
+        "verified": true
+      },
+      {
+        "quote": "peace ‘which passeth all understanding.’",
+        "verified": false
+      },
+      {
+        "quote": "peace for despair, joy for sadness, hope for ashes",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 3,
+    "cost": 0.0018256,
+    "answer": "The Holy Ghost can comfort you by bringing the Savior’s peace, companionship, and hope into your grief.\n\nElder Matthew J. Eyring taught that Jesus Christ knows “exactly how we feel, especially in our darkest and most trying times.” As you humbly turn to the Lord and cast your burdens on Him, He can provide comfort and answers—sometimes through the Spirit and sometimes through “tools, resources, and help from other people.” He described this comfort as “peace ‘which passeth all understanding.’” The Savior’s peace is made manifest through the Holy Ghost, especially when you face something you cannot fix on your own (Elder Matthew J. Eyring, “Comfort from the Holy Ghost”).\n\nThe Spirit can also testify of truths that give grief an eternal perspective. Elder Gary E. Stevenson taught that the Holy Ghost warns, comforts, and testifies. In grief, He may quietly remind you that you are a beloved child of God, that Jesus Christ lives, and that death is not the end. Elder Stevenson shared that the gospel brought “peace for despair, joy for sadness, hope for ashes” to a grieving man who learned about God’s plan and the spirit world (Elder Gary E. Stevenson, “Fruit to Make One Happy”).\n\nYou might seek that comfort by praying honestly, spending time in the scriptures, worshipping, accepting loving help from others, and asking for a priesthood blessing. You may not feel relief all at once, and the Spirit’s comfort does not mean you will stop missing the person or feeling sorrow. But the Holy Ghost can help you endure one moment at a time and assure you that the Savior has not left you comfortless."
+  },
+  {
+    "question": "Why should I pay tithing when money is tight?",
+    "expected": [
+      "13_patricio_m_giuffra.txt",
+      "31_moises_villanueva.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "why faithful members should pay tithing when finances are difficult, including trust in God, sacrifice, blessings, and priorities"
+        }
+      }
+    ],
+    "talks_seen": [
+      "13_patricio_m_giuffra.txt",
+      "31_moises_villanueva.txt",
+      "27_ciro_schmeil.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "We keep the commandments because we love God, not merely because we hope to receive the blessings that come from obedience.",
+        "verified": true
+      },
+      {
+        "quote": "financial hardship, illness, or loss,",
+        "verified": true
+      },
+      {
+        "quote": "in His own time and way",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 3,
+    "cost": 0.0017092000000000003,
+    "answer": "The October 2026 conference taught that tithing is primarily an act of **faith, love, and trust in the Lord**, not a guarantee that financial problems will immediately disappear.\n\nElder Patricio M. Giuffra taught, “We keep the commandments because we love God, not merely because we hope to receive the blessings that come from obedience.” He also acknowledged that faithful people still face “financial hardship, illness, or loss,” while assuring us that the Lord knows our circumstances and fulfills His promises “in His own time and way” (“Trusting the Lord Through Tithes and Offerings”).\n\nElder Moisés Villanueva shared that his mother paid tithing while supporting eight children during difficult financial years. He taught that blessings may be “significant but subtle” and listed blessings such as steady employment, preserved possessions, education, gratitude, and guidance from the Holy Ghost (“Prove Me Now Herewith”).\n\nSo, according to these talks, paying tithing when money is tight can:\n\n- Put God first and demonstrate trust in Him.\n- Teach sacrifice and strengthen your relationship with Jesus Christ.\n- Invite spiritual guidance, peace, gratitude, and other blessings.\n- Help you recognize that blessings may come through strength and wisdom rather than simply more money.\n\nThis does not mean tithing makes every hardship disappear or that you should expect instant financial prosperity. But the conference speakers testified that the Lord honors sincere obedience. Prayerfully consider your circumstances and speak with your bishop if you need help understanding tithing or obtaining temporary assistance."
+  },
+  {
+    "question": "What does it mean to be sealed by the Holy Spirit of Promise?",
+    "expected": [
+      "32_david_a_bednar.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "What it means for a covenant, ordinance, marriage, or other gospel blessing to be sealed by the Holy Spirit of Promise, and what that sealing depends on"
+        }
+      }
+    ],
+    "talks_seen": [
+      "32_david_a_bednar.txt",
+      "02_gerrit_w_gong.txt",
+      "12_christian_c_chigbundu.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "ratifies or confirms as acceptable to God the righteous acts of His children.",
+        "verified": true
+      },
+      {
+        "quote": "binding on earth and in heaven.",
+        "verified": true
+      },
+      {
+        "quote": "conditional in mortality and can be broken or forfeited through unrighteousness.",
+        "verified": true
+      },
+      {
+        "quote": "typically is not a one-time event",
+        "verified": true
+      },
+      {
+        "quote": "over time as we repent sincerely and consistently, honor our covenants, and yield our hearts unto God",
+        "verified": true
+      },
+      {
+        "quote": "witnesses to the Father that the saving ordinances have been performed properly and that the covenants associated with them have been kept",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 6,
+    "cost": 0.0017816,
+    "answer": "To be **sealed by the Holy Spirit of Promise** means that the Holy Ghost ratifies—confirms and accepts before God—that an ordinance, covenant, vow, or righteous act has been performed properly and that we are honoring the associated covenant.\n\nElder David A. Bednar taught that the Holy Spirit of Promise “ratifies or confirms as acceptable to God the righteous acts of His children.” He explained that when an ordinance or covenant is sealed by the Holy Spirit of Promise, it is “binding on earth and in heaven.”\n\nThis sealing is **not merely automatic because an ordinance has been performed**. Elder Bednar taught that it is “conditional in mortality and can be broken or forfeited through unrighteousness.” He also said that receiving this confirming seal “typically is not a one-time event”; rather, it comes “over time as we repent sincerely and consistently, honor our covenants, and yield our hearts unto God” (“Sealed by the Holy Spirit of Promise”).\n\nElder Gerrit W. Gong similarly taught that the Holy Ghost “witnesses to the Father that the saving ordinances have been performed properly and that the covenants associated with them have been kept” (“Come to the Lord in His Holy House”).\n\nThus, being sealed by the Holy Spirit of Promise involves both the **valid performance of the ordinance** and our **continued faithfulness to the covenant**. It is the Holy Ghost’s divine confirmation that the promised blessings apply to us as we follow Jesus Christ, repent, and endure faithfully. This doctrine also offers hope: Elder Bednar testified that no faithful disciple will ultimately be deprived of any eternal blessing God has promised because of another person’s unrighteous choices."
+  },
+  {
+    "question": "What did President Oaks say in his closing remarks?",
+    "expected": [
+      "38_dallin_h_oaks.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "list_talks",
+        "arguments": {}
+      },
+      {
+        "tool": "read_talk",
+        "arguments": {
+          "filename": "38_dallin_h_oaks.txt"
+        }
+      }
+    ],
+    "talks_seen": [
+      "38_dallin_h_oaks.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "act in faith on the principles they explain,",
+        "verified": true
+      },
+      {
+        "quote": "Unto him that receiveth I will give more.",
+        "verified": true
+      },
+      {
+        "quote": "Truth is to be found here",
+        "verified": true
+      },
+      {
+        "quote": "the covenant path that will lead us to our destiny",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 4,
+    "cost": 0.00090762,
+    "answer": "In his closing remarks, President Dallin H. Oaks invited members to:\n\n- Study and prayerfully ponder the conference messages and “act in faith on the principles they explain,” reminding us of the Lord’s promise: “Unto him that receiveth I will give more.”\n- Look forward to the public opening of the Salt Lake Temple on April 5, 2027, and learn more through TempleSquare.org or the Temple Square app.\n- Watch the new video series *Dedicate*, including a future virtual tour of the Salt Lake Temple.\n\nHe then invoked blessings of “peace and contentment” on members and their families and testified that the restored gospel is found in The Church of Jesus Christ of Latter-day Saints. He concluded: “Truth is to be found here”—including truth about the Savior’s teachings and “the covenant path that will lead us to our destiny” (President Dallin H. Oaks, “Closing Remarks”)."
+  },
+  {
+    "question": "How should I talk to people I strongly disagree with?",
+    "expected": [
+      "26_alfred_kyungu.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "How disciples can communicate with, listen to, and treat people whose political, cultural, religious, or personal views strongly differ from their own, while preserving charity, respect, unity, and truth."
+        }
+      }
+    ],
+    "talks_seen": [
+      "37_clark_g_gilbert.txt",
+      "34_paul_h_sinclair.txt",
+      "26_alfred_kyungu.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "There are times when being a peacemaker means that we resist the impulse to respond and instead, with dignity, remain quiet",
+        "verified": true
+      },
+      {
+        "quote": "hidden pain or regret.",
+        "verified": true
+      },
+      {
+        "quote": "quick to help and slow to judge",
+        "verified": true
+      },
+      {
+        "quote": "I respect your view,",
+        "verified": true
+      },
+      {
+        "quote": "Let us slow down and talk,",
+        "verified": true
+      },
+      {
+        "quote": "We can work this out",
+        "verified": true
+      },
+      {
+        "quote": "truth and love always walk together.",
+        "verified": true
+      },
+      {
+        "quote": "I see this differently, but I care about you and want to understand your perspective. Can we talk about it calmly?",
+        "verified": false
+      }
+    ],
+    "quotes_verified": 7,
+    "cost": 0.0016704,
+    "answer": "When you strongly disagree with someone, try to make peace before trying to win the argument. The October 2026 conference teachings suggest several practical steps:\n\n- **Pause or disengage when the setting is becoming contentious.** Elder Clark G. Gilbert taught, “There are times when being a peacemaker means that we resist the impulse to respond and instead, with dignity, remain quiet” (“Teach Truth with Love”).\n- **Listen before answering.** Elder Gilbert described how resisting the impulse to respond helped him understand others’ struggles and “built common ground.” Listening does not mean abandoning your convictions; it helps you speak from love rather than frustration.\n- **Assume you may not know the whole story.** He cautioned that apparent hostility may come from “hidden pain or regret.” Elder Paul H. Sinclair likewise taught that disciples should be “quick to help and slow to judge” (“Quick to Help, Slow to Judge”).\n- **Use respectful, peace-building language.** Elder Alfred Kyungu recommended phrases such as “I respect your view,” “Let us slow down and talk,” and “We can work this out” (“Using the Language of Peacemakers”). He urged us to avoid words that humiliate, accuse, or escalate anger.\n- **Hold to truth without withholding love.** Elder Gilbert emphasized that “truth and love always walk together.” Being kind does not require pretending that you agree, but it does require treating the other person as someone worthy of dignity and care.\n\nA helpful pattern might be: *“I see this differently, but I care about you and want to understand your perspective. Can we talk about it calmly?”* If the conversation cannot remain respectful, it may be wisest to end it graciously and revisit it later."
+  },
+  {
+    "question": "What is the purpose of fasting?",
+    "expected": [
+      "07_ulisses_soares.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "the spiritual purpose of fasting, including why disciples abstain from food and how fasting blesses individuals and others"
+        }
+      }
+    ],
+    "talks_seen": [
+      "07_ulisses_soares.txt",
+      "06_kevin_j_hathaway.txt",
+      "27_ciro_schmeil.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "better prepared to receive personal revelation",
+        "verified": true
+      },
+      {
+        "quote": "draw heaven near and endow us with divine power to overcome or endure whatever circumstances we may face.",
+        "verified": true
+      },
+      {
+        "quote": "the oppressed go free.",
+        "verified": true
+      },
+      {
+        "quote": "brings sweeter communion with the Lord and a deeper, more personal connection with Him.",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 4,
+    "cost": 0.001621,
+    "answer": "According to October 2026 General Conference, fasting is meant to be much more than simply going without food. It is an act of worship that helps us draw closer to Heavenly Father and Jesus Christ.\n\nElder Ulisses Soares taught that fasting joined with prayer helps us become more humble, recognize our dependence on the Lord, receive the influence of the Holy Ghost, and become “better prepared to receive personal revelation” (“A Higher and Holier Fast”). Fasting also helps align our desires with God’s purposes and increases our willingness to accept His will—even when answers do not come as we expect.\n\nFasting can also give us spiritual strength to endure temptation and difficulty. Elder Soares explained that fasting and prayer “draw heaven near and endow us with divine power to overcome or endure whatever circumstances we may face.”\n\nFinally, fasting turns our hearts toward others. An acceptable fast includes caring for those in need and helping “the oppressed go free.” Fast offerings are one practical expression of that Christlike love and generosity.\n\nIn summary, the purposes of fasting are to:\n\n- Draw nearer to God through prayer and worship  \n- Humble ourselves and submit our will to His  \n- Seek guidance, revelation, and spiritual strength  \n- Increase faith and dependence on Jesus Christ  \n- Develop compassion and bless those in need through generous fast offerings  \n\nAs Elder Soares summarized, fasting “brings sweeter communion with the Lord and a deeper, more personal connection with Him.”"
+  },
+  {
+    "question": "How can our ward be united when members are so different from each other?",
+    "expected": [
+      "29_dieter_f_uchtdorf.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "How a ward can build unity and belonging when members have different backgrounds, personalities, opinions, and life circumstances, and how disciples can love and serve one another despite differences"
+        }
+      }
+    ],
+    "talks_seen": [
+      "29_dieter_f_uchtdorf.txt",
+      "37_clark_g_gilbert.txt",
+      "11_timothy_l_farnes.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "In the Savior’s Church, it is not our political views, culture, or personal interests that unite us. It is our love for God and neighbor",
+        "verified": true
+      },
+      {
+        "quote": "part of a covenant people.",
+        "verified": true
+      },
+      {
+        "quote": "a sacred reminder, that we are not alone. We have the Savior, and we have each other.",
+        "verified": true
+      },
+      {
+        "quote": "looking on the heart rather than the outward appearance.",
+        "verified": true
+      },
+      {
+        "quote": "a little more patient, a little kinder, more forgiving, more helpful,",
+        "verified": true
+      },
+      {
+        "quote": "from a place of love",
+        "verified": true
+      },
+      {
+        "quote": "Where others saw an inconvenience or an interruption, one man saw an opportunity to minister",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 7,
+    "cost": 0.0019162,
+    "answer": "A ward can be united without becoming uniform. According to Elder Dieter F. Uchtdorf, unity comes from centering our relationships on Jesus Christ—not from having the same culture, politics, personalities, or interests. He taught, “In the Savior’s Church, it is not our political views, culture, or personal interests that unite us. It is our love for God and neighbor” (“Christ-Centered Unity”).\n\nSome practical ways to build that unity are:\n\n- **Focus on our shared covenants.** Baptism and the sacrament remind us that we are not isolated individuals but “part of a covenant people.” Worshipping together each week can become “a sacred reminder, that we are not alone. We have the Savior, and we have each other.”\n- **Look beyond outward differences.** As we draw closer to Christ, we learn to see others more as He sees them—“looking on the heart rather than the outward appearance.”\n- **Choose patience, kindness, and forgiveness.** Elder Uchtdorf said that when we become “a little more patient, a little kinder, more forgiving, more helpful,” there is less room for pride, judgment, and contention.\n- **Listen before responding.** Elder Clark G. Gilbert taught that “find[ing] common ground” and resisting the impulse to respond can help us understand one another and teach “from a place of love” (“Teach Truth with Love”).\n- **Notice and minister to individuals.** Elder Timothy L. Farnes encouraged members to see people rather than interruptions. He said, “Where others saw an inconvenience or an interruption, one man saw an opportunity to minister” (“Divine Appointments”).\n\nUnity grows as ward members build bridges, serve one another, and remember that their deepest identity is not defined by their differences but by their relationship with Jesus Christ."
+  },
+  {
+    "question": "What did Elder Christofferson teach about wisdom?",
+    "expected": [
+      "09_d_todd_christofferson.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "list_talks",
+        "arguments": {}
+      },
+      {
+        "tool": "read_talk",
+        "arguments": {
+          "filename": "09_d_todd_christofferson.txt"
+        }
+      }
+    ],
+    "talks_seen": [
+      "09_d_todd_christofferson.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "Where will this lead?",
+        "verified": true
+      },
+      {
+        "quote": "contributing to the well-being of others",
+        "verified": true
+      },
+      {
+        "quote": "being productive in worthy endeavors.",
+        "verified": true
+      },
+      {
+        "quote": "anxiously engaged in a good cause",
+        "verified": true
+      },
+      {
+        "quote": "O be wise; what can I say more?",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 5,
+    "cost": 0.00142702,
+    "answer": "In his talk **“O Be Wise,”** Elder D. Todd Christofferson taught that wisdom means using our agency, time, and resources in ways that lead to lasting good rather than immediate excitement or gain.\n\nHis main subject was gambling. He warned that gambling can seem harmless but may lead to debt, addiction, wasted time, damaged relationships, and greed. He encouraged us to ask President Dallin H. Oaks’s question: **“Where will this lead?”** Elder Christofferson connected this with the idea of *opportunity cost*—what worthwhile things we give up when we devote our time and resources to something unproductive.\n\nHe also taught that wisdom includes considering our influence on others. Even if someone believes casual gambling will not harm them, their example may encourage someone else who is more vulnerable. Quoting the Apostle Paul’s principle, he urged disciples not to let their “liberty” become “a stumblingblock” to the weak.\n\nMore broadly, Elder Christofferson said that a wise and righteous life involves **“contributing to the well-being of others”** and **“being productive in worthy endeavors.”** He contrasted this with pursuits that seek something without creating value. He encouraged us to use the time and resources saved from gambling to be **“anxiously engaged in a good cause”** and to pursue righteousness.\n\nHe concluded with Jacob’s counsel, which summarized the message: **“O be wise; what can I say more?”** (Elder D. Todd Christofferson, “O Be Wise”)."
+  },
+  {
+    "question": "Is the gospel only for certain kinds of people?",
+    "expected": [
+      "28_dallin_h_oaks.txt"
+    ],
+    "found_expected": true,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "Whether the gospel and Church are meant for everyone regardless of background, identity, worthiness, social status, culture, or personal circumstances, and how all people are invited to come unto Christ"
+        }
+      }
+    ],
+    "talks_seen": [
+      "29_dieter_f_uchtdorf.txt",
+      "24_edward_dube.txt",
+      "28_dallin_h_oaks.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "inviteth **all** to come unto him … and he denieth none that come unto him.",
+        "verified": true
+      },
+      {
+        "quote": "all are alike unto God",
+        "verified": true
+      },
+      {
+        "quote": "We are all a work in progress,",
+        "verified": true
+      },
+      {
+        "quote": "We do not need to perfect ourselves to come to Christ. We come to Christ to be perfected.",
+        "verified": true
+      },
+      {
+        "quote": "continues to invite all to come unto Him",
+        "verified": true
+      },
+      {
+        "quote": "come and see, come and help, and come and belong",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 6,
+    "cost": 0.0016771999999999998,
+    "answer": "No. The gospel of Jesus Christ is for **all people**, not just a particular type of person, culture, background, or level of spiritual maturity.\n\nPresident Dallin H. Oaks taught that the Savior “inviteth **all** to come unto him … and he denieth none that come unto him.” He emphasized that “all are alike unto God” and that Christ’s grace is available to everyone who comes to Him in faith, repentance, and baptism (President Dallin H. Oaks, “The Gospel of Jesus Christ Is for All”).\n\nThat invitation includes people who have doubts, struggles, weaknesses, or feel they do not belong. President Oaks said, “We are all a work in progress,” and urged members to be patient with one another and with themselves.\n\nElder Edward Dube taught that we do not need to become perfect before approaching Christ: “We do not need to perfect ourselves to come to Christ. We come to Christ to be perfected.” He explained that addiction, doubt, pain, guilt, or other burdens do not make someone unwelcome. Instead, the Savior invites each person to come as they are, with a willing heart (Elder Edward Dube, “Come unto Christ”).\n\nPresident Dieter F. Uchtdorf likewise taught that Jesus “continues to invite all to come unto Him” and invited everyone to “come and see, come and help, and come and belong” (President Dieter F. Uchtdorf, “Christ-Centered Unity”).\n\nSo the gospel is not reserved for people who already have everything together. It is the way Jesus Christ helps **every one of us** come closer to Him and become more like Him."
+  },
+  {
+    "question": "What does the Church teach about using artificial intelligence?",
+    "expected": [],
+    "found_expected": null,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "What Church leaders taught about artificial intelligence, generative AI, using new technology responsibly, and gospel principles or cautions for AI use"
+        }
+      },
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "Church guidance on technology, digital tools, computers, automation, or artificial intelligence: how disciples should use technology and avoid deception, dishonesty, harm, or replacing spiritual revelation"
+        }
+      }
+    ],
+    "talks_seen": [
+      "26_alfred_kyungu.txt",
+      "09_d_todd_christofferson.txt",
+      "25_quentin_l_cook.txt",
+      "30_andrea_munoz_spannaus.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "The Lord has inspired marvelous technology that provides us with unparalleled experiences and opportunities when used wisely",
+        "verified": true
+      },
+      {
+        "quote": "Integrity includes being honest with God, yourself, your leaders, and others.",
+        "verified": true
+      },
+      {
+        "quote": "Any use of the internet to bully, destroy a reputation, or place a person in a bad light is reprehensible.",
+        "verified": true
+      },
+      {
+        "quote": "Limit cell phone use,",
+        "verified": true
+      },
+      {
+        "quote": "a thief of our peace of mind",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 5,
+    "cost": 0.0029386200000000003,
+    "answer": "The October 2026 General Conference did not give a specific policy or detailed doctrinal statement about artificial intelligence. However, speakers taught principles that apply to its use.\n\n- **Use technology wisely and for good purposes.** Elder Quentin L. Cook taught that “The Lord has inspired marvelous technology that provides us with unparalleled experiences and opportunities when used wisely” (“Integrity and Virtue Lead to Happiness”). This suggests AI can be a beneficial tool when it supports worthwhile, honest, and Christlike purposes.\n- **Maintain integrity and honesty.** Elder Cook taught that “Integrity includes being honest with God, yourself, your leaders, and others.” AI should not be used to deceive, plagiarize, impersonate people, fabricate evidence, or avoid responsibilities. Users should be transparent when AI meaningfully contributes to their work.\n- **Do not use it to harm others.** Elder Cook said, “Any use of the internet to bully, destroy a reputation, or place a person in a bad light is reprehensible.” The same principle applies to AI-generated images, messages, deepfakes, and other content that humiliates, deceives, or damages someone.\n- **Protect spiritual and personal relationships.** Sister Andrea Muñoz Spannaus invited members to “Limit cell phone use,” warning that social media can become “a thief of our peace of mind” and of genuine face-to-face connection (“God Is at Your Side”). AI should not displace prayer, scripture study, family relationships, service, or personal spiritual effort.\n- **Seek the Spirit and use judgment.** Technology may provide information, but it cannot replace prayer, revelation, moral agency, or the saving power of Jesus Christ.\n\nThus, the conference’s guidance is not “technology is bad,” but rather: use it wisely, honestly, compassionately, and in ways that strengthen—rather than weaken—faith, relationships, and personal responsibility."
+  },
+  {
+    "question": "What did the conference teach about foreordination?",
+    "expected": [],
+    "found_expected": null,
+    "tool_calls": [
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "What is foreordination, and how does it relate to premortal life, agency, mortal purposes, covenants, and God's plans for His children?"
+        }
+      },
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "How God knew and prepared people before mortality for particular responsibilities or missions, while preserving their freedom to choose and act for themselves"
+        }
+      },
+      {
+        "tool": "search_talks",
+        "arguments": {
+          "query": "The premortal preparation or assignment of people to serve God in particular ways in mortality, such as missionary service, and how this is not coercion but a call requiring agency and choice"
+        }
+      }
+    ],
+    "talks_seen": [
+      "02_gerrit_w_gong.txt",
+      "14_jeremiah_j_morgan.txt",
+      "27_ciro_schmeil.txt",
+      "08_sean_douglas.txt",
+      "22_neil_l_andersen.txt"
+    ],
+    "quotes": [
+      {
+        "quote": "God held you in reserve for this time. You were taught and prepared, before you were born, to invite God’s children to come unto Christ.",
+        "verified": true
+      },
+      {
+        "quote": "in your spiritual DNA,",
+        "verified": true
+      },
+      {
+        "quote": "We chose God our Father’s loving plan,",
+        "verified": true
+      },
+      {
+        "quote": "Agency means we choose",
+        "verified": true
+      }
+    ],
+    "quotes_verified": 4,
+    "cost": 0.0042273400000000004,
+    "answer": "The conference addressed foreordination most directly in relation to missionary service. Elder Sean Douglas taught that some missionaries were prepared for their work before mortality:\n\n> “God held you in reserve for this time. You were taught and prepared, before you were born, to invite God’s children to come unto Christ.”  \n> (Bishop Sean Douglas, “The Hour of Your Mission Is Come”)\n\nHe added that this preparation could be described as being “in your spiritual DNA,” but he presented it as a reason to respond faithfully—not as a replacement for agency. He urged members to choose to serve, prioritize the work, and heed the Lord’s call. His account of Elder Merlin Sanchez also showed that personal decisions matter: Sanchez initially had not decided to serve, later chose to do so, and then saw the Lord open the way.\n\nThe conference also emphasized the continuing importance of agency. Elder Gerrit W. Gong taught that in the premortal existence, “We chose God our Father’s loving plan,” and that “Agency means we choose” our relationships and commitments. (Elder Gerrit W. Gong, “Come to the Lord in His Holy House”)\n\nThus, the conference’s teaching is consistent with foreordination as God’s premortal preparation or calling of His children for particular purposes, such as missionary work. It is not presented as predestination or compulsion. God prepares and invites; individuals must still exercise faith, make choices, accept responsibilities, and remain faithful. The emphasis was less on discovering a fixed personal destiny and more on recognizing opportunities to serve Jesus Christ when they come."
+  }
+]
