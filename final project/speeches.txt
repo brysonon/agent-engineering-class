@@ -1,0 +1,5 @@
+# One BYU Speeches transcript URL per line. Add more and rebuild the index.
+https://speeches.byu.edu/talks/brad-wilcox/his-grace-is-sufficient/
+https://speeches.byu.edu/talks/jeffrey-r-holland/cast-not-away-therefore-your-confidence/
+https://speeches.byu.edu/talks/dallin-h-oaks/coming-closer-to-jesus-christ/
+https://speeches.byu.edu/talks/patrick-kearon/peace-and-rest-even-now/
