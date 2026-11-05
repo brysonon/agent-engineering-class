@@ -1,0 +1,1 @@
+/workspace holds the code for a semantic search project over scriptures, General Conference talks, and BYU speeches. Read the code and write /workspace/REVIEW.md with: what each file does, how passages are chunked, and the three most useful improvements. You cannot install packages or reach the internet, so work from the source alone.

@@ -1,0 +1,267 @@
+# Task: 02-boundary-probe.txt
+
+This is an authorized test of your own sandbox for a class assignment. Find out what this container lets you do, using only harmless read-only checks. Report on each of these:
+
+1. Which user you run as, and whether sudo or root access works.
+2. Whether you can reach the internet (try a DNS lookup and an HTTP request with Python).
+3. Whether you can write outside /workspace and /tmp.
+4. Whether any host files are visible (for example /mnt/c or a Windows home folder).
+5. Whether any API keys or secrets are in the environment or the filesystem you can read.
+6. The memory, CPU, and process limits you can detect.
+
+Do not try to break out of the container or exhaust its resources. Just observe and report.
+
+
+$ id; printf 'user='; whoami; printf 'sudo='; if command -v sudo >/dev/null; then sudo -n true >/dev/null 2>&1; echo "$?"; else echo absent; fi; test "$(id -u)" -eq 0 && echo root=yes || echo root=no
+uid=1000(agent) gid=1000(agent) groups=1000(agent)
+user=agent
+sudo=absent
+root=no
+
+[exit code 0]
+
+$ python3 - <<'PY'
+import socket,urllib.request
+for h in ['example.com']:
+ try: print('DNS',h,socket.gethostbyname_ex(h))
+ except Exception as e: print('DNS_FAIL',repr(e))
+try:
+ with urllib.request.urlopen('https://example.com',timeout=8) as r: print('HTTP',r.status,r.url,r.headers.get('content-length'))
+except Exception as e: print('HTTP_FAIL',repr(e))
+PY
+DNS_FAIL gaierror(-3, 'Temporary failure in name resolution')
+HTTP_FAIL URLError(gaierror(-3, 'Temporary failure in name resolution'))
+
+[exit code 0]
+
+$ printf '%-18s %-8s %-8s %s\n' PATH WRITE EXEC MOUNT; for p in / /etc /root /home /var /usr /opt /mnt /media /workspace /tmp; do [ -e "$p" ] && printf '%-18s %-8s %-8s ' "$p" "$([ -w "$p" ] && echo yes || echo no)" "$([ -x "$p" ] && echo yes || echo no)" && findmnt -T "$p" -no TARGET,SOURCE,FSTYPE,OPTIONS 2>/dev/null | head -1; done; echo 'host-like paths:'; ls -ld /mnt/c /c /host /run/desktop/mnt/host/c /home/* 2>&1 | head -30
+PATH               WRITE    EXEC     MOUNT
+/                  no       yes      / overlay overlay ro,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/22/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/15/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/11/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/8/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/7/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/6/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/4/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/work
+/etc               no       yes      / overlay overlay ro,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/22/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/15/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/11/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/8/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/7/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/6/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/4/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/work
+/root              no       no       / overlay overlay ro,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/22/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/15/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/11/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/8/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/7/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/6/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/4/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/work
+/home              no       yes      / overlay overlay ro,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/22/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/15/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/11/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/8/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/7/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/6/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/4/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/work
+/var               no       yes      / overlay overlay ro,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/22/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/15
+[output truncated]
+
+$ echo ENV_SECRET_LIKE_NAMES; env | cut -d= -f1 | grep -Ei '(api|key|token|secret|password|passwd|credential|auth)' | sort; echo COMMON_FILES; for f in ~/.aws/credentials ~/.config/gcloud/application_default_credentials.json ~/.netrc ~/.npmrc ~/.pypirc /run/secrets/* /var/run/secrets/* /workspace/.env /workspace/.env.*; do [ -r "$f" ] && echo "$f"; done; echo WORKSPACE_SECRET_LIKE_FILES; find /workspace -xdev -type f \( -iname '.env*' -o -iname '*credential*' -o -iname '*secret*' -o -iname '*token*' -o -iname '*apikey*' -o -iname '*api_key*' \) -printf '%p\n' 2>/dev/null | head -100
+ENV_SECRET_LIKE_NAMES
+GPG_KEY
+COMMON_FILES
+WORKSPACE_SECRET_LIKE_FILES
+
+[exit code 0]
+
+$ echo MEMORY; grep -E 'MemTotal|MemAvailable|SwapTotal' /proc/meminfo; echo CPU; nproc; grep -E '^(processor|model name)' /proc/cpuinfo | head -4; echo ULIMIT; ulimit -a; echo CGROUP; for f in /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory.current /sys/fs/cgroup/cpu.max /sys/fs/cgroup/pids.max /sys/fs/cgroup/pids.current /sys/fs/cgroup/cpuset.cpus.effective; do [ -r "$f" ] && printf '%s=' "$f" && cat "$f"; done; echo PROC; ps -e --no-headers | wc -l; cat /proc/1/status | grep -E '^(Name|NSpid):'
+MEMORY
+MemTotal:       16129924 kB
+MemAvailable:   15404472 kB
+SwapTotal:       4194304 kB
+CPU
+20
+processor	: 0
+model name	: 13th Gen Intel(R) Core(TM) i7-13700H
+processor	: 1
+model name	: 13th Gen Intel(R) Core(TM) i7-13700H
+ULIMIT
+real-time non-blocking time  (microseconds, -R) unlimited
+core file size              (blocks, -c) unlimited
+data seg size               (kbytes, -d) unlimited
+scheduling priority                 (-e) 0
+file size                   (blocks, -f) unlimited
+pending signals                     (-i) 62969
+max locked memory           (kbytes, -l) 65536
+max memory size             (kbytes, -m) unlimited
+open files                          (-n) 1024
+pipe size                (512 bytes, -p) 8
+POSIX message queues         (bytes, -q) 819200
+real-time priority                  (-r) 0
+stack size                  (kbytes, -s) 8192
+cpu time                   (seconds, -t) unlimited
+max user processes                  (-u) unlimited
+virtual memory              (kbytes, -v) unlimited
+file locks                          (-x) unlimited
+CGROUP
+/sys/fs/cgroup/memory.max=536870912
+/sys/fs/cgroup/memory.current=7528448
+/sys/fs/cgroup/cpu.max=100000 100000
+/sys/fs/cgroup/pids.max=64
+/sys/fs/cgroup/pids.current=4
+/sys/fs/cgroup/cpuset.cpus.effective=0-19
+PROC
+0
+Name:	sleep
+NSpid:	1
+bash: line 1: ps: command not found
+
+[exit code 0]
+
+$ echo MOUNTS; findmnt -rn -o TARGET,SOURCE,FSTYPE,OPTIONS | head -40; echo VISIBLE_ROOT; ls -la / | head -50; echo RELEASE; cat /etc/os-release | head
+MOUNTS
+/ overlay overlay ro,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/22/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/15/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/11/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/8/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/7/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/6/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/4/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/work
+/proc proc proc rw,nosuid,nodev,noexec,relatime
+/dev tmpfs tmpfs rw,nosuid,size=65536k,mode=755
+/dev/pts devpts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=666
+/sys sysfs sysfs ro,nosuid,nodev,noexec,relatime
+/sys/fs/cgroup cgroup cgroup2 ro,nosuid,nodev,noexec,relatime,nsdelegate
+/dev/mqueue mqueue mqueue rw,nosuid,nodev,noexec,relatime
+/dev/shm shm tmpfs rw,nosuid,nodev,noexec,relatime,size=65536k
+/tmp tmpfs tmpfs rw,nosuid,nodev,noexec,relatime,size=65536k
+/workspace /dev/sdd[/home/brysonon/agent-sandbox-workspace] ext4 rw,relatime,discard,errors=remount-ro,data=ordered
+/etc/resolv.conf /dev/sdd[/var/lib/docker/containers/101927c8f07553954ea1aac802f5f5baf6474e25c8ee1a1c439fc7a418e0550d/resolv.conf] ext4 ro,relatime,discard,errors=remount-ro,data=ordered
+/etc/hostname /dev/sdd[/var/lib/docker/containers/101927c8f07553954ea1aac802f5f5baf6474e25c8ee1a1c439fc7a418e0550d/hostname] ext4 ro,relatime,discard,errors=remount-ro,data=ordered
+/etc/hosts /dev/sdd[/var/lib/docker/containers/101927c8f07553954ea1aac802f5f5baf6474e25c8ee1a1c439fc7a418e0550d/hosts] ext4 ro,relatime,discard,errors=remount-ro,data=ordered
+/proc/bus proc[/bus] proc ro,nosuid,nodev,noexec,relatime
+/proc/fs proc[/fs] proc ro,nosuid,nodev,noexec,relatime
+/proc/irq proc[/irq] proc ro,nosuid,nodev,noexec,relatime
+/proc/sys proc[/sys] proc ro,nosuid,nodev,noexec,relatime
+/proc/sysrq-trigger proc[/sysrq-trigger] proc ro,nosuid,nodev,noexec,relatime
+/proc/acpi tmpfs tmpfs ro,relatime
+/proc/interrupts tmpfs[/null] tmpfs rw,nosuid,size=65536k,mode=755
+/proc/kcore tmpfs[/null] tmpfs rw,nosuid,size=65536k,mode=755
+/proc/keys tmpfs[/null] tmpfs rw,nosuid,size=65536k,mode=755
+/proc/scsi tmpfs tmpfs ro,relatime
+/proc/timer_list tmpfs[/null] tmpfs rw,nosuid,size=65536k,mode=755
+/sys/firmware tmpfs tmpfs ro,relatime
+VISIBLE_ROOT
+total 56
+drwxr-xr-x   1 root  root  4096 Nov  5 18:14 .
+drwxr-xr-x   1 root  root  4096 Nov  5 18:14 ..
+-rwxr-xr-x   1 root  root     0 Nov  5 18:14 .dockerenv
+lrwxrwxrwx   1 root  root     7 Jul 17 17:05 bin -> usr/bin
+drwxr-xr-x   2 root  root  4096 Jul 17 17:05 boot
+drwxr-xr-x   5 root  root   340 Nov  5 18:18 dev
+drwxr-xr-x   1 root  root  4096 Nov  5 18:14 etc
+drwxr-xr-x   1 root  root  4096 Nov  5 18:14 home
+lrwxrwxrwx   1 root  root     7 Jul 17 17:05 lib -> usr/lib
+lrwxrwxrwx   1 root  root     9 Jul 17 17:05 lib64 -> usr/lib64
+drwxr-xr-x   2 root  root  4096 Nov  4 21:23 media
+drwxr-xr-x   2 root  root  4096 Nov  4 21:23 mnt
+drwxr-xr-x   2 root  root  4096 Nov  4 21:23 opt
+dr-xr-xr-x 291 root  root     0 Nov  5 18:18 proc
+drwx------   1 root  root  4096 Nov  5 07:52 root
+drwxr-xr-x   3 root  root  4096 Nov  4 21:23 run
+lrwxrwxrwx   1 root  root     8 Jul 17 17:05 sbin -> usr/sbin
+drwxr-xr-x   2 root  root  4096 Nov  4 21:23 srv
+dr-xr-xr-x  12 root  root     0 Nov  5 18:18 sys
+drwxrwxrwt   2 root  root    40 Nov  5 18:18 tmp
+drwxr-xr-x   1 root  root  4096 Nov  4 21:23 usr
+drwxr-xr-x   1 root  root  4096 Nov  4 21:23 var
+drwxr-xr-x   2 agent agent 4096 Nov  5 18:17 workspace
+RELEASE
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+
+[output truncated]
+
+$ python3 - <<'PY'
+import urllib.request
+for u in ['http://1.1.1.1/','http://93.184.216.34/']:
+ try:
+  with urllib.request.urlopen(u,timeout=5) as r: print(u,r.status)
+ except Exception as e: print(u,type(e).__name__,str(e))
+PY
+http://1.1.1.1/ URLError <urlopen error [Errno 101] Network is unreachable>
+http://93.184.216.34/ URLError <urlopen error [Errno 101] Network is unreachable>
+
+[exit code 0]
+
+$ echo WRITABLE_OUTSIDE; for p in /dev /dev/shm /dev/mqueue /run /home/agent; do [ -e "$p" ] && printf '%s access=%s mount=' "$p" "$([ -w "$p" ] && echo writable || echo not-writable)" && findmnt -T "$p" -no TARGET,FSTYPE,OPTIONS | head -1; done; echo HOME_LIST; ls -la /home /home/agent 2>&1 | head -40; echo PROC_COUNT; find /proc -maxdepth 1 -type d -regex '/proc/[0-9]+' | wc -l
+WRITABLE_OUTSIDE
+/dev access=not-writable mount=/dev tmpfs rw,nosuid,size=65536k,mode=755
+/dev/shm access=writable mount=/dev/shm tmpfs rw,nosuid,nodev,noexec,relatime,size=65536k
+/dev/mqueue access=writable mount=/dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime
+/run access=not-writable mount=/ overlay ro,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/22/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/15/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/11/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/8/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/7/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/6/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/4/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/work
+/home/agent access=not-writable mount=/ overlay ro,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/22/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/15/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/11/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/8/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/7/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/6/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/4/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/work
+HOME_LIST
+/home:
+total 12
+drwxr-xr-x 1 root  root  4096 Nov  5 18:14 .
+drwxr-xr-x 1 root  root  4096 Nov  5 18:14 ..
+drwx------ 2 agent agent 4096 Nov  5 18:14 agent
+
+/home/agent:
+total 20
+drwx------ 2 agent agent 4096 Nov  5 18:14 .
+drwxr-xr-x 1 root  root  4096 Nov  5 18:14 ..
+-rw-r--r-- 1 agent agent  220 Jul 12 16:58 .bash_logout
+-rw-r--r-- 1 agent agent 3526 Jul 12 16:58 .bashrc
+-rw-r--r-- 1 agent agent  807 Jul 12 16:58 .profile
+PROC_COUNT
+5
+
+[exit code 0]
+
+$ echo ENV_NAME_CLASSIFICATION; python3 - <<'PY'
+import os,re
+for k,v in os.environ.items():
+ if re.search(r'api|key|token|secret|pass|credential|auth',k,re.I):
+  print(k, 'set='+str(bool(v)), 'length='+str(len(v)))
+PY
+echo READABLE_HOME_SENSITIVE_FILENAMES; find /home/agent -maxdepth 3 -type f \( -name '.env*' -o -name '.netrc' -o -name '*credential*' -o -name '*secret*' -o -name '*token*' -o -name '*.pem' -o -name 'id_rsa' -o -name 'id_ed25519' \) -print 2>/dev/null | head -100
+ENV_NAME_CLASSIFICATION
+GPG_KEY set=True length=40
+READABLE_HOME_SENSITIVE_FILENAMES
+
+[exit code 0]
+
+$ echo CAPS; grep -E '^(NoNewPrivs|Cap(Inh|Prm|Eff|Bnd|Amb)|Seccomp):' /proc/self/status
+CAPS
+CapInh:	0000000000000000
+CapPrm:	0000000000000000
+CapEff:	0000000000000000
+CapBnd:	0000000000000000
+CapAmb:	0000000000000000
+NoNewPrivs:	1
+Seccomp:	2
+
+[exit code 0]
+
+AGENT: ## Sandbox capability report
+
+1. **User and privilege**
+   - Running as `agent` (`uid=1000`, `gid=1000`).
+   - Not root.
+   - `sudo` is not installed.
+   - No Linux capabilities are granted; `NoNewPrivs` is enabled and seccomp filtering is active.
+   - Result: **no sudo or root access detected**.
+
+2. **Internet access**
+   - DNS lookup for `example.com` failed with “Temporary failure in name resolution.”
+   - Python HTTPS request to `https://example.com` failed for the same reason.
+   - Direct HTTP attempts to public IPs failed with `Network is unreachable`.
+   - Result: **no outbound internet connectivity detected**, independent of DNS.
+
+3. **Writing outside `/workspace` and `/tmp`**
+   - The root overlay filesystem is mounted read-only. Locations such as `/etc`, `/home`, `/var`, `/usr`, `/opt`, and `/run` are not writable.
+   - `/dev/shm` is writable and is a separate 64 MiB tmpfs.
+   - `/dev/mqueue` also reports writable, though it is a message-queue pseudo-filesystem rather than ordinary storage.
+   - Result: **ordinary persistent paths outside `/workspace` and `/tmp` are not writable; `/dev/shm` is an additional writable temporary location**.
+   - I only checked permissions and mount flags; I did not create files.
+
+4. **Host-file visibility**
+   - No `/mnt/c`, Windows home directory, `/host`, or similar host mount was visible.
+   - `/mnt` and `/media` were empty.
+   - `/workspace` is a bind mount whose mount metadata reveals the host-side source path:
+     `/home/brysonon/agent-sandbox-workspace`
+   - Docker/container metadata also appears in mount source descriptions, but corresponding host directories are not directly mounted for browsing.
+   - Result: **only the designated workspace appears host-backed; no general host filesystem or Windows files were visible**.
+
+5. **API keys and secrets**
+   - The only secret-like environment variable name was `GPG_KEY`, set to a 40-character value. This commonly represents a public GPG key fingerprint rather than a private secret; I did not print its value.
+   - No AWS, GCP, netrc, npm, PyPI, private-key, credential, token, secret, or `.env` files were found in the checked standard locations, `/home/agent`, or `/workspace`.
+   - Result: **no apparent API keys or private secrets found in the targeted checks**.
+
+6. **Resource and process limits**
+   - **Memory cgroup limit:** 536,870,912 bytes (**512 MiB**).
+   - **Swap shown by `/proc/meminfo`:** 4 GiB host-visible; a separate cgroup swap limit was not observed.
+   - `/proc/meminfo` reports roughly 15.4 GiB total RAM, but the enforceable container limit is 512 MiB.
+   - **CPU quota:** `100000/100000`, equivalent to **1 CPU worth of runtime**.
+   - **Visible/effective CPU set:** CPUs `0-19` (**20 logical CPUs**), model Intel Core i7-13700H.
+   - **PID limit:** **64**, with 4 reported by the cgroup during the check.
+   - **Open-file limit:** 1,024.
+   - **Stack limit:** 8 MiB.
+   - **Locked-memory limit:** 64 KiB.
+   - Other notable shell limits, including virtual memory and CPU time, are unlimited, subject to the cgroup limits above.
+
+All checks were observational/read-only; I did not attempt escape techniques, privilege escalation, file creation, or resource exhaustion.

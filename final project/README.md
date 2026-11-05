@@ -22,9 +22,30 @@ From `CS 301R/final project` in PowerShell:
 ..\.venv\Scripts\python.exe search.py "grace helps us change" --source byu
 ..\.venv\Scripts\python.exe search.py "temple covenants" --source conference --limit 10
 ..\.venv\Scripts\python.exe search.py --stats
+..\.venv\Scripts\python.exe evaluate.py
+..\.venv\Scripts\python.exe evaluate.py --gold-source conference --show-misses 8
+..\.venv\Scripts\python.exe evaluate.py --json
 ```
 
 The OpenAI key is read from the course root `.env` as `OPENAI_API_KEY`. Building the conference and BYU indexes makes embedding API calls; each search embeds only the query. The existing scripture index was built with the same model. By default, results rank together across sources. Use `--per-source` to see the strongest matches from each collection, or `--json` for structured results for an app or evaluation script.
+
+## Evaluate it
+
+`evaluate.py` measures retrieval quality on a gold question set stored in `eval_questions_church.json`. The included set is adapted from official Church resources so the prompts are grounded in the same study materials a user might naturally ask from: the October 2026 general conference index page and several `Topics and Questions` / seminary study guides. Each question maps to one or more expected scripture verses or conference talks already present in this prototype.
+
+The evaluator reports `hit@k` and `MRR`, comparing four retrieval views:
+
+- `vector`: the current cross-source semantic search behavior.
+- `vector-per-source`: semantic search restricted to the gold source, modeling a user checking the per-source view.
+- `keyword`: a BM25-style lexical baseline over the same indexed passages.
+- `hybrid`: a simple reciprocal-rank fusion of vector and keyword results.
+
+Useful options:
+
+- `--gold-source scripture` or `--gold-source conference` to score one subset.
+- `--tag faith` or other repeated `--tag` filters to focus on a topic.
+- `--show-misses 10` to print hard failures for manual review.
+- `--question-limit 5` for a quick smoke test while iterating.
 
 To add speeches, put one `https://speeches.byu.edu/talks/.../` URL per line in `speeches.txt` and run `build_index.py --source byu`. To add a conference, use the existing `classwork/2e/download_gc_talks.py` downloader to save its talks to a folder, add that folder and its official conference index URL to `conferences.json`, then run `build_index.py --source conference`. Folder paths in `conferences.json` are relative to that file. Matching conference folders and URLs are required so citations remain correct.
 

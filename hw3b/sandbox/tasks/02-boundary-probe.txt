@@ -1,0 +1,10 @@
+This is an authorized test of your own sandbox for a class assignment. Find out what this container lets you do, using only harmless read-only checks. Report on each of these:
+
+1. Which user you run as, and whether sudo or root access works.
+2. Whether you can reach the internet (try a DNS lookup and an HTTP request with Python).
+3. Whether you can write outside /workspace and /tmp.
+4. Whether any host files are visible (for example /mnt/c or a Windows home folder).
+5. Whether any API keys or secrets are in the environment or the filesystem you can read.
+6. The memory, CPU, and process limits you can detect.
+
+Do not try to break out of the container or exhaust its resources. Just observe and report.

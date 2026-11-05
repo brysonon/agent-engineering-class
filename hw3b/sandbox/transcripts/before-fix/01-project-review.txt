@@ -1,0 +1,936 @@
+# Task: 01-project-review.txt
+
+/workspace holds the code for a semantic search project over scriptures, General Conference talks, and BYU speeches. Read the code and write /workspace/REVIEW.md with: what each file does, how passages are chunked, and the three most useful improvements. You cannot install packages or reach the internet, so work from the source alone.
+
+
+$ find . -maxdepth 3 -type f -not -path './.git/*' | sort
+./README.md
+./build_index.py
+./conferences.json
+./requirements.txt
+./search.py
+./settings.py
+./speeches.txt
+
+[exit code 0]
+
+$ sed -n '1,240p' README.md; printf '\n--- build_index.py ---\n'; sed -n '1,280p' build_index.py
+# Final project: semantic search across Church and BYU texts
+
+Search the scriptures, October 2026 general conference, and selected BYU Speeches with one embedding model. Results show the matching passage, a cosine similarity score, and a link to the original source. This is retrieval only; it does not generate an answer or claim that the highest score is doctrinally correct.
+
+## Data included in this first version
+
+- **Scriptures:** 41,995 verses from all five standard works. The project reuses the `hw2d/cache-verse` embeddings and text already created for class, so these verses do not need to be embedded again.
+- **General conference:** the 38 local text files in `hw2e/talks`, corresponding to October 2026. The builder checks their order and titles against the [official conference index](https://www.churchofjesuschrist.org/study/general-conference/2026/10?lang=eng) so each result gets the right source URL. More conference folders can be added in `conferences.json`.
+- **BYU Speeches:** four published transcripts listed in `speeches.txt`. Add more BYU Speeches URLs to that file and rebuild. Speeches without published text are skipped; [BYU explains why some transcripts are unavailable](https://speeches.byu.edu/faq/).
+
+Talks and speeches are split into overlapping passages of about 180 words. All three sources use OpenAI `text-embedding-3-small`, and search compares normalized vectors with cosine similarity. The generated indexes stay in `data/`, which Git ignores. Do not commit the downloaded text or generated index if you plan to share this repository publicly without checking the source publishers' permissions.
+
+## Run it
+
+From `CS 301R/final project` in PowerShell:
+
+```powershell
+..\.venv\Scripts\python.exe -m pip install -r requirements.txt
+..\.venv\Scripts\python.exe build_index.py
+..\.venv\Scripts\python.exe search.py "God knew me before I was born"
+..\.venv\Scripts\python.exe search.py "God knew me before I was born" --per-source --limit 2
+..\.venv\Scripts\python.exe search.py "grace helps us change" --source byu
+..\.venv\Scripts\python.exe search.py "temple covenants" --source conference --limit 10
+..\.venv\Scripts\python.exe search.py --stats
+```
+
+The OpenAI key is read from the course root `.env` as `OPENAI_API_KEY`. Building the conference and BYU indexes makes embedding API calls; each search embeds only the query. The existing scripture index was built with the same model. By default, results rank together across sources. Use `--per-source` to see the strongest matches from each collection, or `--json` for structured results for an app or evaluation script.
+
+To add speeches, put one `https://speeches.byu.edu/talks/.../` URL per line in `speeches.txt` and run `build_index.py --source byu`. To add a conference, use the existing `classwork/2e/download_gc_talks.py` downloader to save its talks to a folder, add that folder and its official conference index URL to `conferences.json`, then run `build_index.py --source conference`. Folder paths in `conferences.json` are relative to that file. Matching conference folders and URLs are required so citations remain correct.
+
+The initial BYU list is deliberately small enough to verify by hand. Expanding to the full BYU archive or many decades of conference talks would need a source inventory, incremental indexing, and retrieval evaluation. Embeddings can miss passages that express an idea indirectly, as the `hw2d` experiments showed, so inspect the linked source before relying on a result.
+
+--- build_index.py ---
+"""Build local embedding indexes for conference talks and BYU Speeches."""
+
+import argparse
+import json
+import unicodedata
+from pathlib import Path
+from urllib.parse import urljoin, urlparse
+
+import numpy as np
+import requests
+from bs4 import BeautifulSoup
+from openai import OpenAI
+
+from settings import DATA_DIR, MODEL, PROJECT_DIR
+
+
+CONFERENCES = PROJECT_DIR / "conferences.json"
+SPEECH_URLS = PROJECT_DIR / "speeches.txt"
+USER_AGENT = "CS301R-semantic-search/1.0 (perso
+[output truncated]
+
+$ printf '%s\n' '--- search.py ---'; sed -n '1,280p' search.py; printf '%s\n' '--- settings.py ---'; cat settings.py; printf '%s\n' '--- requirements.txt ---'; cat requirements.txt
+--- search.py ---
+"""Semantic search across scriptures, general conference, and BYU Speeches."""
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+import numpy as np
+from openai import OpenAI
+
+from settings import COURSE_DIR, DATA_DIR, MODEL
+
+
+SCRIPTURE_CACHE = COURSE_DIR / "hw2d" / "cache-verse"
+SOURCES = ("scripture", "conference", "byu")
+VOLUME_SLUGS = {
+    "old_testament": "ot",
+    "new_testament": "nt",
+    "book_of_mormon": "bofm",
+    "doctrine_and_covenants": "dc-testament",
+    "pearl_of_great_price": "pgp",
+}
+BOOK_SLUGS = {
+    "Abraham": "abr", "Moses": "moses", "JS-History": "js-h",
+    "JS-Matthew": "js-m", "Articles of Faith": "a-of-f",
+    "D&C": "dc", "Alma": "alma", "Ether": "ether",
+    "Helaman": "hel", "Mormon": "morm", "Moroni": "moro",
+    "Mosiah": "mosiah", "Jacob": "jacob", "Enos": "enos",
+    "Jarom": "jarom", "Omni": "omni", "1 Nephi": "1-ne",
+    "2 Nephi": "2-ne", "3 Nephi": "3-ne", "4 Nephi": "4-ne",
+    "Words of Mormon": "w-of-m", "Jeremiah": "jer", "Job": "job",
+    "Isaiah": "isa", "Genesis": "gen", "Psalms": "ps",
+    "Proverbs": "prov", "Ecclesiastes": "eccl", "Matthew": "matt",
+    "Mark": "mark", "Luke": "luke", "John": "john",
+    "Acts": "acts", "Romans": "rom", "Ephesians": "eph",
+    "Hebrews": "heb", "Revelation": "rev", "1 Corinthians": "1-cor",
+    "2 Corinthians": "2-cor", "1 Peter": "1-pet",
+    "2 Peter": "2-pet", "1 Timothy": "1-tim",
+    "2 Timothy": "2-tim",
+}
+
+
+def scripture_url(record: dict) -> str:
+    reference = record["ref"]
+    book, location = reference.rsplit(" ", 1)
+    chapter, verse = location.split(":", 1)
+    volume = VOLUME_SLUGS[record["volume"]]
+    slug = BOOK_SLUGS.get(book, re.sub(r"[^a-z0-9]+", "-", book.lower()).strip("-"))
+    return f"https://www.churchofjesuschrist.org/study/scriptures/{volume}/{slug}/{chapter}?lang=eng#p{verse}"
+
+
+def load_index(source: str, scripture_cache: Path) -> tuple[np.ndarray, list[dict]]:
+    stem = scripture_cache if source == "scripture" else DATA_DIR / source
+    vector_path = stem.with_suffix(".npy")
+    metadata_path = stem.with_suffix(".json")
+    if not vector_path.exists() or not metadata_path.exists():
+        if source == "scripture":
+            raise FileNotFoundError(f"Missing scripture cache at {stem}; see README.md")
+        raise FileNotFoundError(f"Missing {source} index; run build_index.py first")
+
+    vectors = np.load(vector_path, mmap_mode="r")
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    if source == "scripture":
+        records = metadata
+    else:
+        if metadata["model"] != MODEL:
+            raise ValueError(f"{source} index uses {metadata['model']}; rebuild it with {MODEL}")
+        records = metadata["records"]
+    if vectors.ndim != 2 or vectors.shape[0] != len(records):
+        raise ValueError(f"{source} index has mismatched vectors and records; rebuild it")
+    return vectors, records
+
+
+def search(query: str, indexes: dict, limit: int, per_source: bool = False) -> list[dict]:
+    embedding = OpenAI().embeddings.create(model=MODEL, input=[query]).data[0].embedding
+    query_vector = np.asarray(embedding, dtype=np.float32)
+    query_vector /= np.linalg.norm(query_vector)
+    candidates = []
+    for source, (vectors, records) in indexes.items():
+        if vectors.shape[1] != len(query_vector):
+            raise ValueError(f"{source} index has a different embedding dimension")
+        scores = vectors @ query_vector
+        count = min(len(records), max(50, limit * 30))
+        top = np.argpartition(-scores, count - 1)[:count]
+        for index in top:
+            record = records[int(index)]
+            candidates.append({
+                "source": source,
+                "score": float(scores[index]),
+                "reference": record["ref"] if source == "scripture" else record["title"],
+                "speaker": record.get("speaker", ""),
+                "date": record.get("date", ""),
+                "url": scripture_url(record) if
+[output truncated]
+
+$ wc -lc conferences.json speeches.txt; printf '%s\n' '--- conferences sample ---'; head -c 1500 conferences.json; printf '\n--- speeches sample ---\n'; sed -n '1,20p' speeches.txt
+  6 134 conferences.json
+  5 381 speeches.txt
+ 11 515 total
+--- conferences sample ---
+[
+  {
+    "url": "https://www.churchofjesuschrist.org/study/general-conference/2026/10?lang=eng",
+    "folder": "../hw2e/talks"
+  }
+]
+
+--- speeches sample ---
+# One BYU Speeches transcript URL per line. Add more and rebuild the index.
+https://speeches.byu.edu/talks/brad-wilcox/his-grace-is-sufficient/
+https://speeches.byu.edu/talks/jeffrey-r-holland/cast-not-away-therefore-your-confidence/
+https://speeches.byu.edu/talks/dallin-h-oaks/coming-closer-to-jesus-christ/
+https://speeches.byu.edu/talks/patrick-kearon/peace-and-rest-even-now/
+
+[exit code 0]
+
+$ cat build_index.py
+"""Build local embedding indexes for conference talks and BYU Speeches."""
+
+import argparse
+import json
+import unicodedata
+from pathlib import Path
+from urllib.parse import urljoin, urlparse
+
+import numpy as np
+import requests
+from bs4 import BeautifulSoup
+from openai import OpenAI
+
+from settings import DATA_DIR, MODEL, PROJECT_DIR
+
+
+CONFERENCES = PROJECT_DIR / "conferences.json"
+SPEECH_URLS = PROJECT_DIR / "speeches.txt"
+USER_AGENT = "CS301R-semantic-search/1.0 (personal course project)"
+WINDOW_WORDS = 180
+OVERLAP_WORDS = 30
+BATCH_SIZE = 100
+
+
+def normalized_title(title: str) -> str:
+    folded = unicodedata.normalize("NFKD", title).casefold()
+    return "".join(character for character in folded if character.isalnum())
+
+
+def chunks(text: str) -> list[str]:
+    words = text.split()
+    if not words:
+        return []
+    result = []
+    step = WINDOW_WORDS - OVERLAP_WORDS
+    for start in range(0, len(words), step):
+        piece = words[start : start + WINDOW_WORDS]
+        if len(piece) < OVERLAP_WORDS and result:
+            break
+        result.append(" ".join(piece))
+        if start + WINDOW_WORDS >= len(words):
+            break
+    return result
+
+
+def fetch_page(url: str) -> BeautifulSoup:
+    response = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=30)
+    response.raise_for_status()
+    return BeautifulSoup(response.content, "html.parser")
+
+
+def conference_links(conference_url: str) -> list[tuple[str, str]]:
+    parsed = urlparse(conference_url)
+    if parsed.netloc != "www.churchofjesuschrist.org" or not parsed.path.startswith("/study/general-conference/"):
+        raise ValueError("Conference URL must be a Church general conference page")
+    prefix = parsed.path.rstrip("/") + "/"
+    links = []
+    for anchor in fetch_page(conference_url).select("li a[href]"):
+        title = anchor.select_one("p.title")
+        href = anchor.get("href", "")
+        path = urlparse(href).path
+        if title and path.startswith(prefix) and "session" not in path:
+            links.append((title.get_text(" ", strip=True), urljoin(conference_url, href)))
+    if not links:
+        raise ValueError("No talk links found on the conference page")
+    return links
+
+
+def conference_records(folder: Path, conference_url: str) -> tuple[list[dict], int]:
+    files = sorted(folder.glob("*.txt"))
+    links = conference_links(conference_url)
+    if not files or len(files) != len(links):
+        raise ValueError(f"Found {len(files)} local talks but {len(links)} source links; check the conference folder and URL")
+
+    records = []
+    for path, (source_title, url) in zip(files, links):
+        lines = path.read_text(encoding="utf-8").splitlines()
+        if len(lines) < 3:
+            raise ValueError(f"Talk has no body: {path}")
+        speaker, title = lines[:2]
+        if normalized_title(title) != normalized_title(source_title):
+            raise ValueError(f"Talk order or title mismatch: {path.name} / {source_title}")
+        for index, text in enumerate(chunks("\n".join(lines[2:]))):
+            records.append({
+                "source": "conference",
+                "document_id": url,
+                "title": title,
+                "speaker": speaker,
+                "url": url,
+                "chunk": index + 1,
+                "text": text,
+            })
+    return records, len(files)
+
+
+def all_conference_records(config_path: Path) -> tuple[list[dict], int]:
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    if not isinstance(config, list) or not config:
+        raise ValueError("Conference list must contain at least one URL and folder")
+    records = []
+    documents = 0
+    seen_urls = set()
+    for entry in config:
+        folder = (config_path.parent / entry["folder"]).resolve()
+        batch, count = conference_records(folder, entry["url"])
+        batch_urls = {record["document_id"] for record in batch}
+        duplicates = seen_urls & batch_urls
+        if duplicates:
+            raise ValueError
+[output truncated]
+
+$ cat search.py
+"""Semantic search across scriptures, general conference, and BYU Speeches."""
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+import numpy as np
+from openai import OpenAI
+
+from settings import COURSE_DIR, DATA_DIR, MODEL
+
+
+SCRIPTURE_CACHE = COURSE_DIR / "hw2d" / "cache-verse"
+SOURCES = ("scripture", "conference", "byu")
+VOLUME_SLUGS = {
+    "old_testament": "ot",
+    "new_testament": "nt",
+    "book_of_mormon": "bofm",
+    "doctrine_and_covenants": "dc-testament",
+    "pearl_of_great_price": "pgp",
+}
+BOOK_SLUGS = {
+    "Abraham": "abr", "Moses": "moses", "JS-History": "js-h",
+    "JS-Matthew": "js-m", "Articles of Faith": "a-of-f",
+    "D&C": "dc", "Alma": "alma", "Ether": "ether",
+    "Helaman": "hel", "Mormon": "morm", "Moroni": "moro",
+    "Mosiah": "mosiah", "Jacob": "jacob", "Enos": "enos",
+    "Jarom": "jarom", "Omni": "omni", "1 Nephi": "1-ne",
+    "2 Nephi": "2-ne", "3 Nephi": "3-ne", "4 Nephi": "4-ne",
+    "Words of Mormon": "w-of-m", "Jeremiah": "jer", "Job": "job",
+    "Isaiah": "isa", "Genesis": "gen", "Psalms": "ps",
+    "Proverbs": "prov", "Ecclesiastes": "eccl", "Matthew": "matt",
+    "Mark": "mark", "Luke": "luke", "John": "john",
+    "Acts": "acts", "Romans": "rom", "Ephesians": "eph",
+    "Hebrews": "heb", "Revelation": "rev", "1 Corinthians": "1-cor",
+    "2 Corinthians": "2-cor", "1 Peter": "1-pet",
+    "2 Peter": "2-pet", "1 Timothy": "1-tim",
+    "2 Timothy": "2-tim",
+}
+
+
+def scripture_url(record: dict) -> str:
+    reference = record["ref"]
+    book, location = reference.rsplit(" ", 1)
+    chapter, verse = location.split(":", 1)
+    volume = VOLUME_SLUGS[record["volume"]]
+    slug = BOOK_SLUGS.get(book, re.sub(r"[^a-z0-9]+", "-", book.lower()).strip("-"))
+    return f"https://www.churchofjesuschrist.org/study/scriptures/{volume}/{slug}/{chapter}?lang=eng#p{verse}"
+
+
+def load_index(source: str, scripture_cache: Path) -> tuple[np.ndarray, list[dict]]:
+    stem = scripture_cache if source == "scripture" else DATA_DIR / source
+    vector_path = stem.with_suffix(".npy")
+    metadata_path = stem.with_suffix(".json")
+    if not vector_path.exists() or not metadata_path.exists():
+        if source == "scripture":
+            raise FileNotFoundError(f"Missing scripture cache at {stem}; see README.md")
+        raise FileNotFoundError(f"Missing {source} index; run build_index.py first")
+
+    vectors = np.load(vector_path, mmap_mode="r")
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    if source == "scripture":
+        records = metadata
+    else:
+        if metadata["model"] != MODEL:
+            raise ValueError(f"{source} index uses {metadata['model']}; rebuild it with {MODEL}")
+        records = metadata["records"]
+    if vectors.ndim != 2 or vectors.shape[0] != len(records):
+        raise ValueError(f"{source} index has mismatched vectors and records; rebuild it")
+    return vectors, records
+
+
+def search(query: str, indexes: dict, limit: int, per_source: bool = False) -> list[dict]:
+    embedding = OpenAI().embeddings.create(model=MODEL, input=[query]).data[0].embedding
+    query_vector = np.asarray(embedding, dtype=np.float32)
+    query_vector /= np.linalg.norm(query_vector)
+    candidates = []
+    for source, (vectors, records) in indexes.items():
+        if vectors.shape[1] != len(query_vector):
+            raise ValueError(f"{source} index has a different embedding dimension")
+        scores = vectors @ query_vector
+        count = min(len(records), max(50, limit * 30))
+        top = np.argpartition(-scores, count - 1)[:count]
+        for index in top:
+            record = records[int(index)]
+            candidates.append({
+                "source": source,
+                "score": float(scores[index]),
+                "reference": record["ref"] if source == "scripture" else record["title"],
+                "speaker": record.get("speaker", ""),
+                "date": record.get("date", ""),
+                "url": scripture_url(record) if source == "script
+[output truncated]
+
+$ cat settings.py; du -h *; ls -la
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+
+PROJECT_DIR = Path(__file__).resolve().parent
+COURSE_DIR = PROJECT_DIR.parent
+DATA_DIR = PROJECT_DIR / "data"
+MODEL = "text-embedding-3-small"
+
+load_dotenv(COURSE_DIR / ".env")
+4.0K	README.md
+12K	build_index.py
+4.0K	conferences.json
+4.0K	requirements.txt
+8.0K	search.py
+4.0K	settings.py
+4.0K	speeches.txt
+total 48
+drwxr-xr-x 2 agent agent 4096 Nov  5 18:14 .
+drwxr-xr-x 1 root  root  4096 Nov  5 18:14 ..
+-rwxr-xr-x 1 agent agent 3503 Nov  5 18:14 README.md
+-rwxr-xr-x 1 agent agent 8684 Nov  5 18:14 build_index.py
+-rwxr-xr-x 1 agent agent  134 Nov  5 18:14 conferences.json
+-rwxr-xr-x 1 agent agent   79 Nov  5 18:14 requirements.txt
+-rwxr-xr-x 1 agent agent 6761 Nov  5 18:14 search.py
+-rwxr-xr-x 1 agent agent  236 Nov  5 18:14 settings.py
+-rwxr-xr-x 1 agent agent  381 Nov  5 18:14 speeches.txt
+
+[exit code 0]
+
+$ nl -ba build_index.py | sed -n '100,260p'
+   100	    records = []
+   101	    documents = 0
+   102	    seen_urls = set()
+   103	    for entry in config:
+   104	        folder = (config_path.parent / entry["folder"]).resolve()
+   105	        batch, count = conference_records(folder, entry["url"])
+   106	        batch_urls = {record["document_id"] for record in batch}
+   107	        duplicates = seen_urls & batch_urls
+   108	        if duplicates:
+   109	            raise ValueError(f"Duplicate conference talk: {next(iter(duplicates))}")
+   110	        seen_urls.update(batch_urls)
+   111	        records.extend(batch)
+   112	        documents += count
+   113	    return records, documents
+   114	
+   115	
+   116	def read_speech_urls(path: Path) -> list[str]:
+   117	    urls = []
+   118	    for line in path.read_text(encoding="utf-8").splitlines():
+   119	        url = line.strip()
+   120	        if not url or url.startswith("#"):
+   121	            continue
+   122	        parsed = urlparse(url)
+   123	        if parsed.scheme != "https" or parsed.netloc != "speeches.byu.edu" or not parsed.path.startswith("/talks/"):
+   124	            raise ValueError(f"Not a BYU Speeches transcript URL: {url}")
+   125	        canonical = f"https://speeches.byu.edu{parsed.path.rstrip('/')}/"
+   126	        if canonical not in urls:
+   127	            urls.append(canonical)
+   128	    return urls
+   129	
+   130	
+   131	def speech_record(url: str) -> dict | None:
+   132	    page = fetch_page(url)
+   133	    body = page.select_one(".individual-speech__content")
+   134	    if body is None:
+   135	        return None
+   136	    parts = [node.get_text(" ", strip=True) for node in body.find_all(["h2", "h3", "p"])]
+   137	    text = "\n".join(part for part in parts if part)
+   138	    if len(text.split()) < 100:
+   139	        return None
+   140	    title_node = page.select_one("h1.individual-speech__title")
+   141	    speaker_node = page.select_one(".individual-speech__speakers")
+   142	    date_node = page.select_one(".individual-speech__date")
+   143	    if not title_node or not speaker_node:
+   144	        raise ValueError(f"Missing title or speaker on {url}")
+   145	    return {
+   146	        "title": title_node.get_text(" ", strip=True),
+   147	        "speaker": speaker_node.get_text(" ", strip=True),
+   148	        "date": date_node.get_text(" ", strip=True) if date_node else "",
+   149	        "url": url,
+   150	        "text": text,
+   151	    }
+   152	
+   153	
+   154	def byu_records(url_file: Path) -> tuple[list[dict], int]:
+   155	    records = []
+   156	    found = 0
+   157	    for url in read_speech_urls(url_file):
+   158	        speech = speech_record(url)
+   159	        if speech is None:
+   160	            print(f"Skipping speech without a published transcript: {url}")
+   161	            continue
+   162	        found += 1
+   163	        for index, text in enumerate(chunks(speech["text"])):
+   164	            records.append({
+   165	                "source": "byu",
+   166	                "document_id": url,
+   167	                "title": speech["title"],
+   168	                "speaker": speech["speaker"],
+   169	                "date": speech["date"],
+   170	                "url": url,
+   171	                "chunk": index + 1,
+   172	                "text": text,
+   173	            })
+   174	    if not records:
+   175	        raise ValueError("No BYU transcripts were found")
+   176	    return records, found
+   177	
+   178	
+   179	def embed_records(records: list[dict]) -> np.ndarray:
+   180	    client = OpenAI()
+   181	    vectors = []
+   182	    for start in range(0, len(records), BATCH_SIZE):
+   183	        batch = records[start : start + BATCH_SIZE]
+   184	        inputs = [f"{record['title']}\n{record['speaker']}\n{record['text']}" for record in batch]
+   185	        response = client.embeddings.create(model=MODEL, input=inputs)
+   186	        vectors.extend(item.embedding for item in sorted(response.data, key=lambda item: item.index))
+   187	        print(f"Embedded {len(vec
+[output truncated]
+
+$ nl -ba search.py | sed -n '85,240p'
+    85	        top = np.argpartition(-scores, count - 1)[:count]
+    86	        for index in top:
+    87	            record = records[int(index)]
+    88	            candidates.append({
+    89	                "source": source,
+    90	                "score": float(scores[index]),
+    91	                "reference": record["ref"] if source == "scripture" else record["title"],
+    92	                "speaker": record.get("speaker", ""),
+    93	                "date": record.get("date", ""),
+    94	                "url": scripture_url(record) if source == "scripture" else record["url"],
+    95	                "text": record["text"],
+    96	                "document_id": record["ref"] if source == "scripture" else record["document_id"],
+    97	            })
+    98	
+    99	    hits = []
+   100	    seen = set()
+   101	    source_counts = {source: 0 for source in indexes}
+   102	    for hit in sorted(candidates, key=lambda item: item["score"], reverse=True):
+   103	        key = (hit["source"], hit["document_id"])
+   104	        if key in seen or (per_source and source_counts[hit["source"]] >= limit):
+   105	            continue
+   106	        hits.append(hit)
+   107	        seen.add(key)
+   108	        source_counts[hit["source"]] += 1
+   109	        if len(hits) >= limit * (len(indexes) if per_source else 1):
+   110	            break
+   111	    for hit in hits:
+   112	        del hit["document_id"]
+   113	    return hits
+   114	
+   115	
+   116	def main() -> None:
+   117	    parser = argparse.ArgumentParser(description=__doc__)
+   118	    parser.add_argument("query", nargs="*")
+   119	    parser.add_argument("--source", choices=("all",) + SOURCES, default="all")
+   120	    parser.add_argument("--limit", type=int, default=5)
+   121	    parser.add_argument("--scripture-cache", type=Path, default=SCRIPTURE_CACHE)
+   122	    parser.add_argument("--stats", action="store_true")
+   123	    parser.add_argument("--json", action="store_true")
+   124	    parser.add_argument("--per-source", action="store_true", help="show --limit results from each source")
+   125	    args = parser.parse_args()
+   126	    if args.limit < 1:
+   127	        parser.error("--limit must be at least 1")
+   128	    if args.per_source and args.source != "all":
+   129	        parser.error("--per-source requires --source all")
+   130	    selected = SOURCES if args.source == "all" else (args.source,)
+   131	    indexes = {source: load_index(source, args.scripture_cache) for source in selected}
+   132	    if args.stats:
+   133	        for source, (_, records) in indexes.items():
+   134	            documents = len({record.get("document_id", record.get("ref")) for record in records})
+   135	            print(f"{source}: {documents} documents, {len(records)} searchable passages")
+   136	        return
+   137	    query = " ".join(args.query).strip()
+   138	    if not query:
+   139	        parser.error("provide a search query or use --stats")
+   140	    hits = search(query, indexes, args.limit, args.per_source)
+   141	    if args.json:
+   142	        print(json.dumps(hits, ensure_ascii=False, indent=2))
+   143	        return
+   144	    for rank, hit in enumerate(hits, 1):
+   145	        label = f"{hit['reference']} — {hit['speaker']}" if hit["speaker"] else hit["reference"]
+   146	        date = f" ({hit['date']})" if hit["date"] else ""
+   147	        excerpt = hit["text"].replace("\n", " ")[:360].strip()
+   148	        print(f"{rank}. [{hit['source']}] {label}{date}  cosine={hit['score']:.3f}")
+   149	        print(f"   {excerpt}{'…' if len(hit['text']) > 360 else ''}")
+   150	        print(f"   {hit['url']}\n")
+   151	
+   152	
+   153	if __name__ == "__main__":
+   154	    sys.stdout.reconfigure(encoding="utf-8")
+   155	    main()
+
+[exit code 0]
+
+$ cat requirements.txt
+beautifulsoup4>=4.12
+numpy>=1.26
+openai>=1.0
+python-dotenv>=1.0
+requests>=2.31
+
+[exit code 0]
+
+$ nl -ba build_index.py | sed -n '175,280p'; find .. -maxdepth 2 -type f | sort | head -30
+   175	        raise ValueError("No BYU transcripts were found")
+   176	    return records, found
+   177	
+   178	
+   179	def embed_records(records: list[dict]) -> np.ndarray:
+   180	    client = OpenAI()
+   181	    vectors = []
+   182	    for start in range(0, len(records), BATCH_SIZE):
+   183	        batch = records[start : start + BATCH_SIZE]
+   184	        inputs = [f"{record['title']}\n{record['speaker']}\n{record['text']}" for record in batch]
+   185	        response = client.embeddings.create(model=MODEL, input=inputs)
+   186	        vectors.extend(item.embedding for item in sorted(response.data, key=lambda item: item.index))
+   187	        print(f"Embedded {len(vectors)}/{len(records)} chunks", flush=True)
+   188	    matrix = np.asarray(vectors, dtype=np.float32)
+   189	    matrix /= np.linalg.norm(matrix, axis=1, keepdims=True)
+   190	    return matrix
+   191	
+   192	
+   193	def save_index(source: str, records: list[dict], vectors: np.ndarray) -> None:
+   194	    DATA_DIR.mkdir(exist_ok=True)
+   195	    vector_path = DATA_DIR / f"{source}.npy"
+   196	    metadata_path = DATA_DIR / f"{source}.json"
+   197	    temporary_vectors = DATA_DIR / f"{source}.npy.tmp"
+   198	    temporary_metadata = DATA_DIR / f"{source}.json.tmp"
+   199	    with temporary_vectors.open("wb") as output:
+   200	        np.save(output, vectors)
+   201	    temporary_metadata.write_text(
+   202	        json.dumps({"model": MODEL, "records": records}, ensure_ascii=False),
+   203	        encoding="utf-8",
+   204	    )
+   205	    temporary_vectors.replace(vector_path)
+   206	    temporary_metadata.replace(metadata_path)
+   207	    print(f"Saved {len(records)} {source} chunks to {DATA_DIR}")
+   208	
+   209	
+   210	def main() -> None:
+   211	    parser = argparse.ArgumentParser(description=__doc__)
+   212	    parser.add_argument("--source", choices=["all", "conference", "byu"], default="all")
+   213	    parser.add_argument("--conferences", type=Path, default=CONFERENCES)
+   214	    parser.add_argument("--speech-urls", type=Path, default=SPEECH_URLS)
+   215	    args = parser.parse_args()
+   216	    for source in (["conference", "byu"] if args.source == "all" else [args.source]):
+   217	        if source == "conference":
+   218	            records, documents = all_conference_records(args.conferences)
+   219	        else:
+   220	            records, documents = byu_records(args.speech_urls)
+   221	        print(f"Found {documents} {source} documents and {len(records)} chunks")
+   222	        save_index(source, records, embed_records(records))
+   223	
+   224	
+   225	if __name__ == "__main__":
+   226	    main()
+../.dockerenv
+../etc/.pwd.lock
+../etc/adduser.conf
+../etc/bash.bashrc
+../etc/bindresvport.blacklist
+../etc/ca-certificates.conf
+../etc/debconf.conf
+../etc/debian_version
+../etc/deluser.conf
+../etc/environment
+../etc/ethertypes
+../etc/fstab
+../etc/gai.conf
+../etc/group
+../etc/group-
+../etc/gshadow
+../etc/gshadow-
+../etc/host.conf
+../etc/hostname
+../etc/hosts
+../etc/inputrc
+../etc/issue
+../etc/issue.net
+../etc/ld.so.cache
+../etc/ld.so.conf
+../etc/libaudit.conf
+../etc/login.defs
+../etc/motd
+../etc/networks
+../etc/nsswitch.conf
+find: ‘../root’: Permission denied
+
+[exit code 0]
+
+$ cat > REVIEW.md <<'EOF'
+# Source review
+
+This repository is a small command-line semantic retrieval system. It builds local indexes for conference talks and BYU speeches, reuses a pre-existing scripture index, embeds a query with OpenAI, and ranks normalized vectors by dot product (cosine similarity). It does not generate answers.
+
+## Files
+
+### `README.md`
+
+Describes the scope, data sources, setup and CLI examples. It also documents important operational assumptions that are not contained in this directory: the scripture cache is expected at `../hw2d/cache-verse.{npy,json}`, conference text is expected at `../hw2e/talks`, an API key is expected in the parent directory's `.env`, and generated indexes go in `data/`. It notes copyright, retrieval limitations, and how to extend the two source lists.
+
+### `settings.py`
+
+Defines paths relative to the source file (`PROJECT_DIR`, parent `COURSE_DIR`, and `DATA_DIR`), fixes the embedding model to `text-embedding-3-small`, and loads environment variables from `../.env`.
+
+### `build_index.py`
+
+Builds the conference and BYU indexes (not the scripture index).
+
+* Reads conference configurations, fetches each official conference index, extracts talk titles/URLs, and pairs those links positionally with sorted local `.txt` files. Each local file is interpreted as speaker on line 1, title on line 2, and body thereafter. Normalized titles are checked to detect ordering mismatches, and duplicate talk URLs across configured conferences are rejected.
+* Reads, validates, canonicalizes, and deduplicates BYU URLs. It downloads each page, extracts transcript headings and paragraphs from `.individual-speech__content`, and extracts title, speaker, and optional date. Missing or very short transcripts are skipped.
+* Turns documents into chunk records, embeds batches of 100 after prefixing every chunk with its title and speaker, converts vectors to `float32`, and L2-normalizes each row.
+* Atomically replaces `data/conference.{npy,json}` and `data/byu.{npy,json}` using temporary files. JSON stores the model and record metadata; NPY stores vectors.
+
+The source relies on the current HTML structure of both sites and always downloads and re-embeds a selected collection from scratch.
+
+### `search.py`
+
+Loads selected NPY/JSON indexes, memory-mapping vector arrays. Non-scripture indexes are checked for the configured model and for matching vector/record counts. Scripture records receive Church URLs from volume/book mappings and a fallback slug rule.
+
+A query is embedded and normalized, then scored against each index with a matrix-vector product. The code takes a candidate pool of at least 50 (or `limit * 30`) per source, globally sorts it, and returns at most one passage per document. Thus a talk or speech cannot occupy several result positions, while each scripture verse is effectively its own document. `--per-source` returns the requested number for each collection; other options provide source filtering, JSON, counts, and human-readable excerpts.
+
+### `conferences.json`
+
+Configuration for conference ingestion. The one entry connects the official October 2026 conference index URL to the external local folder `../hw2e/talks`. Folder paths are resolved relative to this JSON file.
+
+### `speeches.txt`
+
+Seed inventory of four BYU Speech transcript URLs. Blank lines and comments are allowed. The builder accepts only HTTPS URLs on `speeches.byu.edu` under `/talks/`.
+
+### `requirements.txt`
+
+Declares Beautiful Soup, NumPy, the OpenAI client, python-dotenv, and Requests with minimum versions. There is no lock file or upper bounds.
+
+## Passage chunking
+
+Scriptures follow a different path from the other collections: this project does not parse or chunk them. It assumes the reused cache contains 41,995 records and treats every cached verse (`record["text"]`) as one searchable passage.
+
+Conference and BYU documents use the same whitespace-based `chunks()` function:
+
+* Split all text with Python `str.split()`, so paragraph breaks and headings are discarded as boundaries and whitespace is normalized.
+* Take windows of at most **180 words**.
+* Advance by **150 words**, producing a **30-word overlap** between full adjacent windows.
+* Keep the final partial window. The code has a guard against adding a trailing piece shorter than 30 words when a prior piece exists; with the current step/window arithmetic and immediate end check, normal iterations make final windows at least 31 words, so this guard is effectively redundant.
+* Number chunks from 1 within each document.
+
+For conference text, only the body after the first two lines is chunked. For BYU text, selected `h2`, `h3`, and `p` elements are joined and then chunked. The embedding input is `title + newline + speaker + newline + chunk`, although the displayed/stored passage text is only the chunk. Search returns only the highest-scoring chunk from any given talk or speech.
+
+## Three most useful improvements
+
+1. **Add a retrieval evaluation suite, then improve ranking against it.** Create a small, versioned set of queries with relevant passages/source types and report recall@k, MRR, and per-source results. This is especially important because verse-sized scripture embeddings are being compared directly with title/speaker-prefixed 180-word embeddings; score distributions may not be comparable. Evaluation can guide source calibration and a hybrid lexical/semantic ranker (useful for exact names and quotations), rather than relying on plausible demo queries.
+
+2. **Use structure-aware passages and expose context.** Split talks at paragraph/sentence boundaries near a token budget instead of cutting every 150 whitespace-separated words. Store character/paragraph locations, link to anchors where available, and optionally return the neighboring chunk. This avoids broken ideas, preserves headings as useful section context, and makes results easier to verify. Consider verse groups with overlap for scripture too: one verse often lacks enough context, while the present three collections have substantially different passage granularity.
+
+3. **Make indexing incremental, reproducible, and resilient.** Cache fetched source text and embeddings by canonical URL plus a content hash, update only changed documents, checkpoint batches, and retry rate limits/transient HTTP or API failures with backoff. Record model, dimensions, build time, chunking parameters, and source hash in every index (including imported scripture), and validate finite/nonzero normalized vectors at load time. A lock file and fixture-based parser tests would also protect against dependency and website-markup changes. This would reduce API cost and make expansion beyond the current four speeches/one conference practical.
+EOF
+wc -l REVIEW.md
+64 REVIEW.md
+/bin/bash: line 1: README.md: command not found
+/bin/bash: line 1: ../hw2d/cache-verse.npy: No such file or directory
+/bin/bash: line 1: ../hw2e/talks: No such file or directory
+/bin/bash: line 1: .env: command not found
+/bin/bash: line 1: data/: No such file or directory
+/bin/bash: line 1: settings.py: command not found
+/bin/bash: line 1: PROJECT_DIR: command not found
+/bin/bash: line 1: COURSE_DIR: command not found
+/bin/bash: line 1: DATA_DIR: command not found
+/bin/bash: line 1: text-embedding-3-small: command not found
+/bin/bash: line 1: ../.env: No such file or directory
+/bin/bash: line 1: build_index.py: command not found
+/bin/bash: line 1: .txt: command not found
+/bin/bash: line 1: .individual-speech__content: command not found
+/bin/bash: line 1: float32: command not found
+/bin/bash: line 1: data/conference.npy: No such file or directory
+/bin/bash: line 1: data/byu.npy: No such file or directory
+/bin/bash: line 1: search.py: command not found
+/bin/bash: line 1: limit: command not found
+/bin/bash: line 1: --per-source: command not found
+/bin/bash: line 1: conferences.json: command not found
+/bin/bash: line 1: ../hw2e/talks: No such file or directory
+/bin/bash: line 1: speeches.txt: command not found
+/bin/bash: line 1: speeches.byu.edu: command not found
+/bin/bash: line 1: /talks/: No such file or directory
+/bin/bash: line 1: requirements.txt: command not found
+/bin/bash: line 1: record[text]: command not found
+/bin/bash: command substitution: line 2: syntax error: unexpected end of file
+/bin/bash: command substitution: line 2: syntax error: unexpected end of file
+/bin/bash: line 1: h2: command not found
+/bin/bash: line 1: h3: command not found
+/bin/bash: line 1: p: command not found
+/bin/bash: line 1: title: command not found
+
+[exit code 0]
+
+$ sed -n '1,100p' REVIEW.md
+# Source review
+
+This repository is a small command-line semantic retrieval system. It builds local indexes for conference talks and BYU speeches, reuses a pre-existing scripture index, embeds a query with OpenAI, and ranks normalized vectors by dot product (cosine similarity). It does not generate answers.
+
+## Files
+
+### 
+
+Describes the scope, data sources, setup and CLI examples. It also documents important operational assumptions that are not contained in this directory: the scripture cache is expected at , conference text is expected at , an API key is expected in the parent directory's , and generated indexes go in . It notes copyright, retrieval limitations, and how to extend the two source lists.
+
+### 
+
+Defines paths relative to the source file (, parent , and ), fixes the embedding model to , and loads environment variables from .
+
+### 
+
+Builds the conference and BYU indexes (not the scripture index).
+
+* Reads conference configurations, fetches each official conference index, extracts talk titles/URLs, and pairs those links positionally with sorted local  files. Each local file is interpreted as speaker on line 1, title on line 2, and body thereafter. Normalized titles are checked to detect ordering mismatches, and duplicate talk URLs across configured conferences are rejected.
+* Reads, validates, canonicalizes, and deduplicates BYU URLs. It downloads each page, extracts transcript headings and paragraphs from , and extracts title, speaker, and optional date. Missing or very short transcripts are skipped.
+* Turns documents into chunk records, embeds batches of 100 after prefixing every chunk with its title and speaker, converts vectors to , and L2-normalizes each row.
+* Atomically replaces  and  using temporary files. JSON stores the model and record metadata; NPY stores vectors.
+
+The source relies on the current HTML structure of both sites and always downloads and re-embeds a selected collection from scratch.
+
+### 
+
+Loads selected NPY/JSON indexes, memory-mapping vector arrays. Non-scripture indexes are checked for the configured model and for matching vector/record counts. Scripture records receive Church URLs from volume/book mappings and a fallback slug rule.
+
+A query is embedded and normalized, then scored against each index with a matrix-vector product. The code takes a candidate pool of at least 50 (or ) per source, globally sorts it, and returns at most one passage per document. Thus a talk or speech cannot occupy several result positions, while each scripture verse is effectively its own document.  returns the requested number for each collection; other options provide source filtering, JSON, counts, and human-readable excerpts.
+
+### 
+
+Configuration for conference ingestion. The one entry connects the official October 2026 conference index URL to the external local folder . Folder paths are resolved relative to this JSON file.
+
+### 
+
+Seed inventory of four BYU Speech transcript URLs. Blank lines and comments are allowed. The builder accepts only HTTPS URLs on  under .
+
+### 
+
+Declares Beautiful Soup, NumPy, the OpenAI client, python-dotenv, and Requests with minimum versions. There is no lock file or upper bounds.
+
+## Passage chunking
+
+Scriptures follow a different path from the other collections: this project does not parse or chunk them. It assumes the reused cache contains 41,995 records and treats every cached verse () as one searchable passage.
+
+Conference and BYU documents use the same whitespace-based  function:
+
+* Split all text with Python , so paragraph breaks and headings are discarded as boundaries and whitespace is normalized.
+* Take windows of at most **180 words**.
+* Advance by **150 words**, producing a **30-word overlap** between full adjacent windows.
+* Keep the final partial window. The code has a guard against adding a trailing piece shorter than 30 words when a prior piece exists; with the current step/window arithmetic and immediate end check, normal iterations make final windows at least
+[output truncated]
+
+$ sed -i 's/### $/### (filename lost)/' REVIEW.md; python - <<'PY'
+p='REVIEW.md'
+s=open(p).read()
+heads=['README.md','settings.py','build_index.py','search.py','conferences.json','speeches.txt','requirements.txt']
+for h in heads:s=s.replace('### (filename lost)', '### '+h, 1)
+open(p,'w').write(s)
+PY
+sed -n '35,90p' REVIEW.md
+
+### speeches.txt
+
+Seed inventory of four BYU Speech transcript URLs. Blank lines and comments are allowed. The builder accepts only HTTPS URLs on  under .
+
+### requirements.txt
+
+Declares Beautiful Soup, NumPy, the OpenAI client, python-dotenv, and Requests with minimum versions. There is no lock file or upper bounds.
+
+## Passage chunking
+
+Scriptures follow a different path from the other collections: this project does not parse or chunk them. It assumes the reused cache contains 41,995 records and treats every cached verse () as one searchable passage.
+
+Conference and BYU documents use the same whitespace-based  function:
+
+* Split all text with Python , so paragraph breaks and headings are discarded as boundaries and whitespace is normalized.
+* Take windows of at most **180 words**.
+* Advance by **150 words**, producing a **30-word overlap** between full adjacent windows.
+* Keep the final partial window. The code has a guard against adding a trailing piece shorter than 30 words when a prior piece exists; with the current step/window arithmetic and immediate end check, normal iterations make final windows at least 31 words, so this guard is effectively redundant.
+* Number chunks from 1 within each document.
+
+For conference text, only the body after the first two lines is chunked. For BYU text, selected , , and  elements are joined and then chunked. The embedding input is , although the displayed/stored passage text is only the chunk. Search returns only the highest-scoring chunk from any given talk or speech.
+
+## Three most useful improvements
+
+1. **Add a retrieval evaluation suite, then improve ranking against it.** Create a small, versioned set of queries with relevant passages/source types and report recall@k, MRR, and per-source results. This is especially important because verse-sized scripture embeddings are being compared directly with title/speaker-prefixed 180-word embeddings; score distributions may not be comparable. Evaluation can guide source calibration and a hybrid lexical/semantic ranker (useful for exact names and quotations), rather than relying on plausible demo queries.
+
+2. **Use structure-aware passages and expose context.** Split talks at paragraph/sentence boundaries near a token budget instead of cutting every 150 whitespace-separated words. Store character/paragraph locations, link to anchors where available, and optionally return the neighboring chunk. This avoids broken ideas, preserves headings as useful section context, and makes results easier to verify. Consider verse groups with overlap for scripture too: one verse often lacks enough context, while the present three collections have substantially different passage granularity.
+
+3. **Make indexing incremental, reproducible, and resilient.** Cache fetched source text and embeddings by canonical URL plus a content hash, update only changed documents, checkpoint batches, and retry rate limits/transient HTTP or API failures with backoff. Record model, dimensions, build time, chunking parameters, and source hash in every index (including imported scripture), and validate finite/nonzero normalized vectors at load time. A lock file and fixture-based parser tests would also protect against dependency and website-markup changes. This would reduce API cost and make expansion beyond the current four speeches/one conference practical.
+
+[exit code 0]
+
+$ python - <<'PY'
+p='REVIEW.md';s=open(p).read(); reps={
+'expected at , conference':'expected at ../hw2d/cache-verse (NPY/JSON), conference',
+'expected at , an API':'expected at ../hw2e/talks, an API',
+"parent directory's , and generated indexes go in .":"parent directory's .env, and generated indexes go in data/.",
+'relative to the source file (, parent , and ), fixes':'relative to the source file (PROJECT_DIR, parent COURSE_DIR, and DATA_DIR), fixes',
+'model to , and loads':'model to text-embedding-3-small, and loads',
+'variables from .':'variables from ../.env.',
+'local  files':'local .txt files',
+'paragraphs from ,':'paragraphs from .individual-speech__content,',
+'vectors to ,':'vectors to float32,',
+'Atomically replaces  and  using':'Atomically replaces data/conference and data/byu index files using',
+'(or ) per source':'(or limit times 30) per source',
+'.  returns the requested':'. --per-source returns the requested',
+'folder . Folder':'folder ../hw2e/talks. Folder',
+'HTTPS URLs on  under .':'HTTPS URLs on speeches.byu.edu under /talks/.',
+'cached verse ()':'cached verse record text',
+'whitespace-based  function':'whitespace-based chunks function',
+'with Python ,':'with Python str.split(),',
+'selected , , and  elements':'selected h2, h3, and p elements',
+'The embedding input is , although':'The embedding input is title, speaker, then chunk separated by newlines, although'}
+for a,b in reps.items():s=s.replace(a,b)
+open(p,'w').write(s)
+PY
+grep '^###' REVIEW.md; grep -n '  ' REVIEW.md | head
+### README.md
+### settings.py
+### build_index.py
+### search.py
+### conferences.json
+### speeches.txt
+### requirements.txt
+
+[exit code 0]
+
+AGENT: Created `/workspace/REVIEW.md` with:
+
+- A description of every project file.
+- Detailed passage chunking behavior for scriptures, conference talks, and BYU speeches.
+- Three prioritized improvements covering retrieval evaluation, structure-aware chunking, and resilient incremental indexing.
+
+The review is based entirely on the local source; no packages were installed and no network access was used.
