@@ -1,16 +1,23 @@
-# Final project: semantic search across Church and BYU texts
+# Semantic Search Across Church and BYU Texts
 
-Search the scriptures, October 2026 general conference, and selected BYU Speeches with one embedding model. Results show the matching passage, a cosine similarity score, and a link to the original source. This is retrieval only; it does not generate an answer or claim that the highest score is doctrinally correct.
+This project evaluates semantic retrieval for personal gospel study across three source types: the standard works, October 2026 general conference, and selected BYU speeches. It is intentionally a search system rather than a free-form answer generator. The goal is to return relevant passages, similarity scores, and source links so the user can inspect the evidence directly.
 
-## Data included in this first version
+## Highlights
+
+- Searches **41,995 scripture verses**, **38 October 2026 general conference talks**, and selected **BYU speeches**
+- Uses one embedding model and a shared indexing pipeline across all corpora
+- Compares **vector**, **keyword**, and **hybrid** retrieval on a labeled question set
+- Returns source-aware results with canonical links back to the original text
+
+## Data included in this version
 
 - **Scriptures:** 41,995 verses from all five standard works. The project reuses the `hw2d/cache-verse` embeddings and text already created for class, so these verses do not need to be embedded again.
-- **General conference:** the 38 local text files in `hw2e/talks`, corresponding to October 2026. The builder checks their order and titles against the [official conference index](https://www.churchofjesuschrist.org/study/general-conference/2026/10?lang=eng) so each result gets the right source URL. More conference folders can be added in `conferences.json`.
-- **BYU Speeches:** four published transcripts listed in `speeches.txt`. Add more BYU Speeches URLs to that file and rebuild. Speeches without published text are skipped; [BYU explains why some transcripts are unavailable](https://speeches.byu.edu/faq/).
+- **General conference:** the 38 local text files in `hw2e/talks`, corresponding to October 2026. The builder checks their order and titles against the official conference index so each result gets the right source URL. More conference folders can be added in `conferences.json`.
+- **BYU Speeches:** four published transcripts listed in `speeches.txt`. Add more BYU Speeches URLs to that file and rebuild. Speeches without published text are skipped.
 
-Talks and speeches are split into overlapping passages of about 180 words. All three sources use OpenAI `text-embedding-3-small`, and search compares normalized vectors with cosine similarity. The generated indexes stay in `data/`, which Git ignores. Do not commit the downloaded text or generated index if you plan to share this repository publicly without checking the source publishers' permissions.
+Talks and speeches are split into overlapping passages of about 180 words. All three sources use OpenAI `text-embedding-3-small`, and search compares normalized vectors with cosine similarity. The generated indexes stay in `data/`, which Git ignores.
 
-## Run it
+## Run locally
 
 From `CS 301R/final project` in PowerShell:
 
@@ -27,26 +34,24 @@ From `CS 301R/final project` in PowerShell:
 ..\.venv\Scripts\python.exe evaluate.py --json
 ```
 
-The OpenAI key is read from the course root `.env` as `OPENAI_API_KEY`. Building the conference and BYU indexes makes embedding API calls; each search embeds only the query. The existing scripture index was built with the same model. By default, results rank together across sources. Use `--per-source` to see the strongest matches from each collection, or `--json` for structured results for an app or evaluation script.
+The OpenAI key is read from the course root `.env` as `OPENAI_API_KEY`. Building the conference and BYU indexes makes embedding API calls; each search embeds only the query. The existing scripture index was built with the same model. By default, results rank together across sources. Use `--per-source` to see the strongest matches from each collection, or `--json` for structured results.
 
-## Evaluate it
+## Evaluation
 
-`evaluate.py` measures retrieval quality on a gold question set stored in `eval_questions_church.json`. The included set is adapted from official Church resources so the prompts are grounded in the same study materials a user might naturally ask from: the October 2026 general conference index page and several `Topics and Questions` / seminary study guides. Each question maps to one or more expected scripture verses or conference talks already present in this prototype.
+`evaluate.py` measures retrieval quality on a gold question set stored in `eval_questions_church.json`. The evaluator reports `hit@k` and `MRR`, comparing four retrieval views:
 
-The evaluator reports `hit@k` and `MRR`, comparing four retrieval views:
-
-- `vector`: the current cross-source semantic search behavior.
-- `vector-per-source`: semantic search restricted to the gold source, modeling a user checking the per-source view.
-- `keyword`: a BM25-style lexical baseline over the same indexed passages.
-- `hybrid`: a simple reciprocal-rank fusion of vector and keyword results.
+- `vector`: the default cross-source semantic search behavior
+- `vector-per-source`: semantic search restricted to the gold source
+- `keyword`: a BM25-style lexical baseline over the same indexed passages
+- `hybrid`: a simple reciprocal-rank fusion of vector and keyword results
 
 Useful options:
 
-- `--gold-source scripture` or `--gold-source conference` to score one subset.
-- `--tag faith` or other repeated `--tag` filters to focus on a topic.
-- `--show-misses 10` to print hard failures for manual review.
-- `--question-limit 5` for a quick smoke test while iterating.
+- `--gold-source scripture` or `--gold-source conference` to score one subset
+- `--tag faith` or other repeated `--tag` filters to focus on a topic
+- `--show-misses 10` to print hard failures for manual review
+- `--question-limit 5` for a quick smoke test while iterating
 
-To add speeches, put one `https://speeches.byu.edu/talks/.../` URL per line in `speeches.txt` and run `build_index.py --source byu`. To add a conference, use the existing `classwork/2e/download_gc_talks.py` downloader to save its talks to a folder, add that folder and its official conference index URL to `conferences.json`, then run `build_index.py --source conference`. Folder paths in `conferences.json` are relative to that file. Matching conference folders and URLs are required so citations remain correct.
+To add speeches, put one `https://speeches.byu.edu/talks/.../` URL per line in `speeches.txt` and run `build_index.py --source byu`. To add a conference, use the existing `classwork/2e/download_gc_talks.py` downloader to save its talks to a folder, add that folder and its official conference index URL to `conferences.json`, then run `build_index.py --source conference`. Folder paths in `conferences.json` are relative to that file.
 
-The initial BYU list is deliberately small enough to verify by hand. Expanding to the full BYU archive or many decades of conference talks would need a source inventory, incremental indexing, and retrieval evaluation. Embeddings can miss passages that express an idea indirectly, as the `hw2d` experiments showed, so inspect the linked source before relying on a result.
+The BYU list stays small enough to verify by hand. The project keeps the scope at retrieval so results remain inspectable and grounded in the linked source text.

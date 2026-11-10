@@ -1,74 +1,42 @@
-# CS 301R — Agent Engineering
+# Agent Engineering Portfolio
 
-This repository contains my coursework, experiments, and projects for **CS 301R: Agent Engineering** at Brigham Young University (Fall 2026).
+This repository contains completed coursework, experiments, and a final project from **CS 301R: Agent Engineering** at Brigham Young University (Fall 2026).
 
-The course focuses on building software around large language models (LLMs), with an emphasis on designing **agentic applications that can reason, use tools, manage context, and take action**.
+Across the class, I built and evaluated LLM-based systems that use retrieval, tool calling, structured outputs, and safety controls to solve practical tasks. The work in this repository emphasizes grounded AI, tool-using agents, evaluation, and safe agent behavior.
 
-## Current Progress
+## Final project
 
-I have completed **Unit 1**, which introduced the foundations of agent engineering through hands-on work with:
+My final project is a **semantic search system for personal gospel study**.
 
-- LLM completions and conversational interfaces
-- Prompt engineering
-- Chat and context
-- Reasoning
-- Tool calling
-- Agent fundamentals
-- Ethical and human-centered considerations for AI systems
+- Searches **41,995 scripture verses** from the standard works
+- Searches **38 October 2026 general conference talks**
+- Searches selected **BYU speeches**
+- Compares **vector**, **keyword**, and **hybrid** retrieval
+- Returns source-linked passages instead of unsupported generated answers
 
-I am now beginning **Unit 2**, where the course moves further into building and evaluating more capable agentic systems.
+The project includes a labeled evaluation set to measure retrieval quality across sources and is documented here: [`final project/README.md`](final%20project/README.md)
 
-## Topics Covered / Upcoming
+## Selected coursework
 
-Across the course, I am developing experience with concepts such as:
+- [`hw2d/hw2d.md`](hw2d/hw2d.md) — semantic search over the standard works
+- [`hw2e/hw2e.md`](hw2e/hw2e.md) — conference retrieval with quote checking
+- [`hw3b/hw3b.md`](hw3b/hw3b.md) — sandboxed agent execution and prompt injection testing
+- [`hw3c/hw3c.md`](hw3c/hw3c.md) — GitHub connector experimentation and repository presentation work
 
-- Prompt engineering
-- Structured outputs
-- Context management
-- Tool calling
-- Retrieval-Augmented Generation (RAG)
-- Model Context Protocol (MCP)
-- Custom tools and external integrations
-- Agent and workflow design
-- Multi-agent systems
-- Agent evaluation and LLM-as-a-judge approaches
-- Hallucination mitigation and guardrails
-- Multimodal inputs
+## Skills demonstrated
 
-> Items in this section include both topics already introduced and topics planned for later in the course.
+- Prompt engineering and system prompt design
+- Tool calling and structured outputs
+- Semantic search, retrieval evaluation, and RAG workflows
+- Prompt injection testing, sandboxing, and agent safety
+- Python, Git/GitHub, CLI workflows, and Markdown documentation
 
-## What I'm Building
+## Repository structure
 
-The course is designed around hands-on experimentation and portfolio development. This repository will grow throughout the semester as I build small agentic applications, test different prompting and tool-use patterns, and explore how LLM-based systems behave under real-world constraints.
+- [`final project/`](final%20project/) — final project code and documentation
+- `hw0a/` through `hw3c/` — homework submissions and reports
+- `classwork/` — smaller in-class experiments and supporting prototypes
 
-My goal is not only to make agents that work, but to understand:
+## Course themes
 
-- **Why** a particular agent design works
-- When an LLM is the right tool for a problem
-- How to structure context and tools effectively
-- How to evaluate agent behavior
-- How to make AI systems more reliable, useful, and understandable
-
-## Technologies
-
-Technologies and concepts used throughout the course include:
-
-- Python
-- LLM APIs
-- Tool-calling interfaces
-- Git / GitHub
-- Structured data and outputs
-- Retrieval and context pipelines
-- Agent evaluation workflows
-
-## Repository Purpose
-
-This repository serves as a record of my progression through agent engineering and as a portfolio of practical work in:
-
-**Generative AI • LLM Applications • Agentic AI • Tool Calling • RAG • MCP • Multi-Agent Systems • AI Evaluation**
-
-## Course
-
-**CS 301R — Agent Engineering**  
-Brigham Young University  
-Fall 2026
+This work focused on building agents that can retrieve evidence, call tools, manage context, and operate more reliably in realistic settings. The repository reflects both the implementation of those systems and the evaluation work needed to make them useful and trustworthy.
