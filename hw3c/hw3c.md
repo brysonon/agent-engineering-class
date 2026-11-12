@@ -8,7 +8,7 @@ I connected GitHub to the agent environment and used it as the third-party integ
 
 ### Project progress
 
-My final project now searches 41,995 scripture verses, 38 October 2026 general conference talks, and selected BYU speeches through one retrieval interface. I also built evaluation that compares vector, keyword, and hybrid retrieval on a labeled question set.
+My final project now searches 41,995 scripture verses, 4,305 general conference talks from 1971 through October 2026, and selected BYU speeches through one retrieval interface. I built a bulk importer for the conference archive and evaluation that compares vector, keyword, and hybrid retrieval on a labeled question set.
 
 ## Additional exploration
 

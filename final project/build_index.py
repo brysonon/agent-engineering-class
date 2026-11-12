@@ -1,6 +1,7 @@
 """Build local embedding indexes for conference talks and BYU Speeches."""
 
 import argparse
+import html
 import json
 import unicodedata
 from pathlib import Path
@@ -11,6 +12,7 @@ import requests
 from bs4 import BeautifulSoup
 from openai import OpenAI
 
+from conference_source import conference_date_label, conference_talk_items
 from settings import DATA_DIR, MODEL, PROJECT_DIR
 
 
@@ -23,7 +25,8 @@ BATCH_SIZE = 100
 
 
 def normalized_title(title: str) -> str:
-    folded = unicodedata.normalize("NFKD", title).casefold()
+    plain = BeautifulSoup(html.unescape(title), "html.parser").get_text(" ", strip=True)
+    folded = unicodedata.normalize("NFKD", plain).casefold()
     return "".join(character for character in folded if character.isalnum())
 
 
@@ -49,21 +52,11 @@ def fetch_page(url: str) -> BeautifulSoup:
     return BeautifulSoup(response.content, "html.parser")
 
 
-def conference_links(conference_url: str) -> list[tuple[str, str]]:
-    parsed = urlparse(conference_url)
-    if parsed.netloc != "www.churchofjesuschrist.org" or not parsed.path.startswith("/study/general-conference/"):
-        raise ValueError("Conference URL must be a Church general conference page")
-    prefix = parsed.path.rstrip("/") + "/"
-    links = []
-    for anchor in fetch_page(conference_url).select("li a[href]"):
-        title = anchor.select_one("p.title")
-        href = anchor.get("href", "")
-        path = urlparse(href).path
-        if title and path.startswith(prefix) and "session" not in path:
-            links.append((title.get_text(" ", strip=True), urljoin(conference_url, href)))
-    if not links:
-        raise ValueError("No talk links found on the conference page")
-    return links
+def conference_links(conference_url: str) -> list[tuple[str, str, str]]:
+    return [
+        (item["title"], item["url"], item.get("summary", ""))
+        for item in conference_talk_items(conference_url)
+    ]
 
 
 def conference_records(folder: Path, conference_url: str) -> tuple[list[dict], int]:
@@ -73,7 +66,8 @@ def conference_records(folder: Path, conference_url: str) -> tuple[list[dict], i
         raise ValueError(f"Found {len(files)} local talks but {len(links)} source links; check the conference folder and URL")
 
     records = []
-    for path, (source_title, url) in zip(files, links):
+    conference_date = conference_date_label(conference_url)
+    for path, (source_title, url, summary) in zip(files, links):
         lines = path.read_text(encoding="utf-8").splitlines()
         if len(lines) < 3:
             raise ValueError(f"Talk has no body: {path}")
@@ -86,7 +80,9 @@ def conference_records(folder: Path, conference_url: str) -> tuple[list[dict], i
                 "document_id": url,
                 "title": title,
                 "speaker": speaker,
+                "date": conference_date,
                 "url": url,
+                "summary": summary,
                 "chunk": index + 1,
                 "text": text,
             })
@@ -181,7 +177,18 @@ def embed_records(records: list[dict]) -> np.ndarray:
     vectors = []
     for start in range(0, len(records), BATCH_SIZE):
         batch = records[start : start + BATCH_SIZE]
-        inputs = [f"{record['title']}\n{record['speaker']}\n{record['text']}" for record in batch]
+        inputs = [
+            "\n".join(
+                part for part in [
+                    record["title"],
+                    record.get("speaker", ""),
+                    record.get("summary", ""),
+                    record["text"],
+                ]
+                if part
+            )
+            for record in batch
+        ]
         response = client.embeddings.create(model=MODEL, input=inputs)
         vectors.extend(item.embedding for item in sorted(response.data, key=lambda item: item.index))
         print(f"Embedded {len(vectors)}/{len(records)} chunks", flush=True)

@@ -49,343 +49,794 @@
     {
       "id": "conf-temple-culture",
       "question": "Which message says that doctrine about the Lord's house can strengthen personal temple culture?",
-      "gold": [{ "source": "conference", "reference": "Come to the Lord in His Holy House" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Come to the Lord in His Holy House",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "temple", "covenants"]
+      "tags": [
+        "conference",
+        "temple",
+        "covenants"
+      ]
     },
     {
       "id": "conf-testimony-gift",
       "question": "Which message teaches that a testimony of Jesus Christ is a gift of the Spirit and should be shared?",
-      "gold": [{ "source": "conference", "reference": "The Gift of Testimony" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "The Gift of Testimony",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "testimony", "spirit"]
+      "tags": [
+        "conference",
+        "testimony",
+        "spirit"
+      ]
     },
     {
       "id": "conf-follow-prophets",
       "question": "Which message emphasizes listening to and following living prophets and apostles?",
-      "gold": [{ "source": "conference", "reference": "Prophets, Seers, and Revelators" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Prophets, Seers, and Revelators",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "prophets"]
+      "tags": [
+        "conference",
+        "prophets"
+      ]
     },
     {
       "id": "conf-deliverer-afflictions",
       "question": "Which message teaches that Jesus Christ can deliver us from our afflictions when we turn to Him?",
-      "gold": [{ "source": "conference", "reference": "Jesus Christ Is the Great Deliverer!" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Jesus Christ Is the Great Deliverer!",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "jesus-christ", "trials"]
+      "tags": [
+        "conference",
+        "jesus-christ",
+        "trials"
+      ]
     },
     {
       "id": "conf-fast-worship",
       "question": "Which message describes fasting as worship that refines discipleship and draws us closer to the Lord?",
-      "gold": [{ "source": "conference", "reference": "A Higher and Holier Fast" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "A Higher and Holier Fast",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "fasting", "discipleship"]
+      "tags": [
+        "conference",
+        "fasting",
+        "discipleship"
+      ]
     },
     {
       "id": "conf-mission-rising-generation",
       "question": "Which message invites the rising generation to follow prophetic counsel and serve missions?",
-      "gold": [{ "source": "conference", "reference": "The Hour of Your Mission Is Come" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "The Hour of Your Mission Is Come",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "missionary-work", "youth"]
+      "tags": [
+        "conference",
+        "missionary-work",
+        "youth"
+      ]
     },
     {
       "id": "conf-gambling-warning",
       "question": "Which message warns about gambling and urges us to use our time to do good?",
-      "gold": [{ "source": "conference", "reference": "O Be Wise" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "O Be Wise",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "wisdom"]
+      "tags": [
+        "conference",
+        "wisdom"
+      ]
     },
     {
       "id": "conf-trust-promises",
       "question": "Which message says that remembering God's goodness and trusting His promises can bring joy and peace in hard times?",
-      "gold": [{ "source": "conference", "reference": "“How Long Will It Be Ere They Believe Me?”" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "“How Long Will It Be Ere They Believe Me?”",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "faith", "peace"]
+      "tags": [
+        "conference",
+        "faith",
+        "peace"
+      ]
     },
     {
       "id": "conf-compassion-then-act",
       "question": "Which message teaches covenant disciples to see the person in front of them with compassion and then act?",
-      "gold": [{ "source": "conference", "reference": "Divine Appointments" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Divine Appointments",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "compassion", "service"]
+      "tags": [
+        "conference",
+        "compassion",
+        "service"
+      ]
     },
     {
       "id": "conf-spiritual-immunity",
       "question": "Which message says that prayer, scripture study, the sacrament, and covenants build spiritual immunity in life's trials?",
-      "gold": [{ "source": "conference", "reference": "Spiritual Immunity" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Spiritual Immunity",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "prayer", "scripture", "sacrament", "covenants"]
+      "tags": [
+        "conference",
+        "prayer",
+        "scripture",
+        "sacrament",
+        "covenants"
+      ]
     },
     {
       "id": "conf-tithing-hard-times",
       "question": "Which message teaches about tithing blessings even when finances are difficult?",
-      "gold": [{ "source": "conference", "reference": "Trusting the Lord Through Tithes and Offerings" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Trusting the Lord Through Tithes and Offerings",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "tithing"]
+      "tags": [
+        "conference",
+        "tithing"
+      ]
     },
     {
       "id": "conf-covenants-generations",
       "question": "Which message says that covenants have power across generations and bless posterity?",
-      "gold": [{ "source": "conference", "reference": "The Infinite Power of God in Our Covenants" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "The Infinite Power of God in Our Covenants",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "covenants", "families"]
+      "tags": [
+        "conference",
+        "covenants",
+        "families"
+      ]
     },
     {
       "id": "conf-beloved-children-follow-plan",
       "question": "Which message teaches that we are beloved children of God and are blessed as we follow His plan?",
-      "gold": [{ "source": "conference", "reference": "I Am a Child of God" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "I Am a Child of God",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "identity", "plan-of-salvation"]
+      "tags": [
+        "conference",
+        "identity",
+        "plan-of-salvation"
+      ]
     },
     {
       "id": "conf-jesus-spiritual-lift",
       "question": "Which message teaches that Jesus Christ becomes our spiritual lift as we turn to Him?",
-      "gold": [{ "source": "conference", "reference": "Jesus Lives to Lift" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Jesus Lives to Lift",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "jesus-christ", "hope"]
+      "tags": [
+        "conference",
+        "jesus-christ",
+        "hope"
+      ]
     },
     {
       "id": "conf-comfort-holy-ghost",
       "question": "Which message teaches that turning to Christ brings peace, hope, and comfort through the Holy Ghost?",
-      "gold": [{ "source": "conference", "reference": "Comfort from the Holy Ghost" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Comfort from the Holy Ghost",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "holy-ghost", "peace"]
+      "tags": [
+        "conference",
+        "holy-ghost",
+        "peace"
+      ]
     },
     {
       "id": "conf-wayward-children",
       "question": "Which message teaches those with wayward children to turn their despair over to Jesus Christ?",
-      "gold": [{ "source": "conference", "reference": "Love Like Jesus" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Love Like Jesus",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "family", "charity"]
+      "tags": [
+        "conference",
+        "family",
+        "charity"
+      ]
     },
     {
       "id": "conf-fear-not",
       "question": "Which message teaches that our loving Heavenly Father will help us through our challenges?",
-      "gold": [{ "source": "conference", "reference": "“Fear Not, I Am with Thee”" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "“Fear Not, I Am with Thee”",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "heavenly-father", "comfort"]
+      "tags": [
+        "conference",
+        "heavenly-father",
+        "comfort"
+      ]
     },
     {
       "id": "conf-see-others-children-of-god",
       "question": "Which message invites us to see and treat other people as children of God?",
-      "gold": [{ "source": "conference", "reference": "A Child of God" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "A Child of God",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "charity", "identity"]
+      "tags": [
+        "conference",
+        "charity",
+        "identity"
+      ]
     },
     {
       "id": "conf-courage-faith",
       "question": "Which message shares examples of people showing courage because of faith in Jesus Christ?",
-      "gold": [{ "source": "conference", "reference": "Courage Born of Our Faith in Jesus Christ" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Courage Born of Our Faith in Jesus Christ",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "faith", "courage"]
+      "tags": [
+        "conference",
+        "faith",
+        "courage"
+      ]
     },
     {
       "id": "conf-take-upon-name",
       "question": "Which message explains that taking Christ's name upon us means covenanting to serve Him and other people?",
-      "gold": [{ "source": "conference", "reference": "Take Upon Us His Name" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Take Upon Us His Name",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "covenants", "service"]
+      "tags": [
+        "conference",
+        "covenants",
+        "service"
+      ]
     },
     {
       "id": "conf-grace-perfects",
       "question": "Which message teaches that we should invite people to come unto Christ and do their best so He can perfect them through grace?",
-      "gold": [{ "source": "conference", "reference": "Come unto Christ" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Come unto Christ",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "grace", "jesus-christ"]
+      "tags": [
+        "conference",
+        "grace",
+        "jesus-christ"
+      ]
     },
     {
       "id": "conf-integrity-virtue",
       "question": "Which message teaches that joyful disciples live lives of integrity and virtue?",
-      "gold": [{ "source": "conference", "reference": "Integrity and Virtue Lead to Happiness" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Integrity and Virtue Lead to Happiness",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "discipleship"]
+      "tags": [
+        "conference",
+        "discipleship"
+      ]
     },
     {
       "id": "conf-peacemakers-language",
       "question": "Which message teaches that peacemakers use language that is kind and respectful?",
-      "gold": [{ "source": "conference", "reference": "Using the Language of Peacemakers" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Using the Language of Peacemakers",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "peace", "charity"]
+      "tags": [
+        "conference",
+        "peace",
+        "charity"
+      ]
     },
     {
       "id": "conf-covenant-path-guidance",
       "question": "Which message says the Savior and our covenants guide us along the covenant path and help us face weakness and challenge?",
-      "gold": [{ "source": "conference", "reference": "Consider Your Ways, and from This Day Will the Lord Bless You" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Consider Your Ways, and from This Day Will the Lord Bless You",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "covenants", "discipleship"]
+      "tags": [
+        "conference",
+        "covenants",
+        "discipleship"
+      ]
     },
     {
       "id": "conf-gospel-for-all",
       "question": "Which message teaches that the gospel of Jesus Christ is meant for everyone?",
-      "gold": [{ "source": "conference", "reference": "The Gospel of Jesus Christ Is for All" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "The Gospel of Jesus Christ Is for All",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "missionary-work"]
+      "tags": [
+        "conference",
+        "missionary-work"
+      ]
     },
     {
       "id": "conf-unity-in-christ",
       "question": "Which message teaches how the Saints can become more united in Christ?",
-      "gold": [{ "source": "conference", "reference": "Christ-Centered Unity" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Christ-Centered Unity",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "unity", "jesus-christ"]
+      "tags": [
+        "conference",
+        "unity",
+        "jesus-christ"
+      ]
     },
     {
       "id": "conf-aspirations-lord-guides",
       "question": "Which message encourages young women to make a list of aspirations and trust that the Lord will guide and help them?",
-      "gold": [{ "source": "conference", "reference": "God Is at Your Side" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "God Is at Your Side",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "youth", "guidance"]
+      "tags": [
+        "conference",
+        "youth",
+        "guidance"
+      ]
     },
     {
       "id": "conf-tithing-subtle-blessings",
       "question": "Which message teaches that obedience in tithing brings blessings in subtle but significant ways?",
-      "gold": [{ "source": "conference", "reference": "“Prove Me Now Herewith”" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "“Prove Me Now Herewith”",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "tithing"]
+      "tags": [
+        "conference",
+        "tithing"
+      ]
     },
     {
       "id": "conf-ordinances-covenants-journey-home",
       "question": "Which message focuses on the importance of ordinances and covenants in our journey back to Heavenly Father?",
-      "gold": [{ "source": "conference", "reference": "Sealed by the Holy Spirit of Promise" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Sealed by the Holy Spirit of Promise",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "ordinances", "covenants"]
+      "tags": [
+        "conference",
+        "ordinances",
+        "covenants"
+      ]
     },
     {
       "id": "conf-savior-influence-more",
       "question": "Which message teaches three ways to feel the Savior's influence more fully in our lives?",
-      "gold": [{ "source": "conference", "reference": "Jesus Christ Is the Light and Life of the World" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Jesus Christ Is the Light and Life of the World",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "jesus-christ", "discipleship"]
+      "tags": [
+        "conference",
+        "jesus-christ",
+        "discipleship"
+      ]
     },
     {
       "id": "conf-help-not-judge",
       "question": "Which message uses Jesus and the woman at the well to teach us to help and bless others instead of judging them?",
-      "gold": [{ "source": "conference", "reference": "Quick to Help, Slow to Judge" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Quick to Help, Slow to Judge",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "charity", "judgment"]
+      "tags": [
+        "conference",
+        "charity",
+        "judgment"
+      ]
     },
     {
       "id": "conf-share-fruits-gospel",
       "question": "Which message encourages children to share three fruits of the gospel with others?",
-      "gold": [{ "source": "conference", "reference": "Fruit to Make One Happy" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Fruit to Make One Happy",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "children", "gospel"]
+      "tags": [
+        "conference",
+        "children",
+        "gospel"
+      ]
     },
     {
       "id": "conf-good-enough-to-teach",
       "question": "Which message says that loving the Lord and loving the people we teach is at the heart of gospel teaching?",
-      "gold": [{ "source": "conference", "reference": "You Are Good Enough to Teach" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "You Are Good Enough to Teach",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "teaching"]
+      "tags": [
+        "conference",
+        "teaching"
+      ]
     },
     {
       "id": "conf-truth-with-love",
       "question": "Which message teaches us to love our neighbors while standing firm in the truth?",
-      "gold": [{ "source": "conference", "reference": "Teach Truth with Love" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "Teach Truth with Love",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "charity", "truth"]
+      "tags": [
+        "conference",
+        "charity",
+        "truth"
+      ]
     },
     {
       "id": "conf-race-journey-life",
       "question": "Which message uses a story about finishing a race to testify that Jesus Christ ministers to us in life's journey?",
-      "gold": [{ "source": "conference", "reference": "The Ninety and Ten" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "The Ninety and Ten",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "jesus-christ", "ministering"]
+      "tags": [
+        "conference",
+        "jesus-christ",
+        "ministering"
+      ]
     },
     {
       "id": "conf-god-knows-your-experience",
       "question": "Which message teaches that God knows your experience personally and has a plan for you?",
-      "gold": [{ "source": "conference", "reference": "The Sculpting of Our Souls" }],
+      "gold": [
+        {
+          "source": "conference",
+          "reference": "The Sculpting of Our Souls",
+          "date": "October 2026"
+        }
+      ],
       "church_resource": "gc-oct-2026",
-      "tags": ["conference", "identity", "guidance"]
+      "tags": [
+        "conference",
+        "identity",
+        "guidance"
+      ]
     },
     {
       "id": "scripture-jeremiah-ordained-before-birth",
       "question": "Which verse teaches that the Lord knew and ordained Jeremiah before he was born?",
-      "gold": [{ "source": "scripture", "reference": "Jeremiah 1:5" }],
+      "gold": [
+        {
+          "source": "scripture",
+          "reference": "Jeremiah 1:5"
+        }
+      ],
       "church_resource": "jeremiah-seminary-2026",
-      "tags": ["scripture", "premortal-life", "prophets"]
+      "tags": [
+        "scripture",
+        "premortal-life",
+        "prophets"
+      ]
     },
     {
       "id": "scripture-grace-makes-weak-strong",
       "question": "Which verse says that Christ shows us our weakness and can make weak things become strong?",
-      "gold": [{ "source": "scripture", "reference": "Ether 12:27" }],
+      "gold": [
+        {
+          "source": "scripture",
+          "reference": "Ether 12:27"
+        }
+      ],
       "church_resource": "grace-study-guide",
-      "tags": ["scripture", "grace"]
+      "tags": [
+        "scripture",
+        "grace"
+      ]
     },
     {
       "id": "scripture-repented-sins-remembered-no-more",
       "question": "Which verse says the Lord remembers fully repented sins no more?",
-      "gold": [{ "source": "scripture", "reference": "D&C 58:42" }],
+      "gold": [
+        {
+          "source": "scripture",
+          "reference": "D&C 58:42"
+        }
+      ],
       "church_resource": "repentance-study-guide",
-      "tags": ["scripture", "repentance", "forgiveness"]
+      "tags": [
+        "scripture",
+        "repentance",
+        "forgiveness"
+      ]
     },
     {
       "id": "scripture-forgive-others",
       "question": "Which passage commands us to forgive one another and warns that refusing to forgive is the greater sin?",
       "gold": [
-        { "source": "scripture", "reference": "D&C 64:9" },
-        { "source": "scripture", "reference": "D&C 64:10" }
+        {
+          "source": "scripture",
+          "reference": "D&C 64:9"
+        },
+        {
+          "source": "scripture",
+          "reference": "D&C 64:10"
+        }
       ],
       "church_resource": "forgiveness-study-guide",
-      "tags": ["scripture", "forgiveness"]
+      "tags": [
+        "scripture",
+        "forgiveness"
+      ]
     },
     {
       "id": "scripture-clean-hands-pure-heart",
       "question": "Which passage answers that those with clean hands and a pure heart may ascend the hill of the Lord?",
       "gold": [
-        { "source": "scripture", "reference": "Psalms 24:3" },
-        { "source": "scripture", "reference": "Psalms 24:4" }
+        {
+          "source": "scripture",
+          "reference": "Psalms 24:3"
+        },
+        {
+          "source": "scripture",
+          "reference": "Psalms 24:4"
+        }
       ],
       "church_resource": "temples-study-guide",
-      "tags": ["scripture", "temple", "worthiness"]
+      "tags": [
+        "scripture",
+        "temple",
+        "worthiness"
+      ]
     },
     {
       "id": "scripture-charity-pure-love",
       "question": "Which verse teaches that charity is the pure love of Christ and endures forever?",
-      "gold": [{ "source": "scripture", "reference": "Moroni 7:47" }],
+      "gold": [
+        {
+          "source": "scripture",
+          "reference": "Moroni 7:47"
+        }
+      ],
       "church_resource": "charity-study-guide",
-      "tags": ["scripture", "charity"]
+      "tags": [
+        "scripture",
+        "charity"
+      ]
     },
     {
       "id": "scripture-heed-prophet-words",
       "question": "Which passage tells Saints to receive the prophet's words as if they came from the Lord's own mouth, in patience and faith?",
       "gold": [
-        { "source": "scripture", "reference": "D&C 21:4" },
-        { "source": "scripture", "reference": "D&C 21:5" }
+        {
+          "source": "scripture",
+          "reference": "D&C 21:4"
+        },
+        {
+          "source": "scripture",
+          "reference": "D&C 21:5"
+        }
       ],
       "church_resource": "prophets-study-guide",
-      "tags": ["scripture", "prophets"]
+      "tags": [
+        "scripture",
+        "prophets"
+      ]
     },
     {
       "id": "scripture-holy-ghost-remembrance",
       "question": "Which verse says the Holy Ghost will teach all things and bring things to remembrance?",
-      "gold": [{ "source": "scripture", "reference": "John 14:26" }],
+      "gold": [
+        {
+          "source": "scripture",
+          "reference": "John 14:26"
+        }
+      ],
       "church_resource": "holy-ghost-study-guide",
-      "tags": ["scripture", "holy-ghost"]
+      "tags": [
+        "scripture",
+        "holy-ghost"
+      ]
     },
     {
       "id": "scripture-fast-lord-has-chosen",
       "question": "Which passage describes the fast the Lord has chosen as loosing the bands of wickedness and helping the oppressed?",
       "gold": [
-        { "source": "scripture", "reference": "Isaiah 58:6" },
-        { "source": "scripture", "reference": "Isaiah 58:7" }
+        {
+          "source": "scripture",
+          "reference": "Isaiah 58:6"
+        },
+        {
+          "source": "scripture",
+          "reference": "Isaiah 58:7"
+        }
       ],
       "church_resource": "fasting-study-guide",
-      "tags": ["scripture", "fasting"]
+      "tags": [
+        "scripture",
+        "fasting"
+      ]
     },
     {
       "id": "scripture-lord-reveals-to-prophets",
       "question": "Which verse teaches that the Lord does nothing without revealing His secret to His servants the prophets?",
-      "gold": [{ "source": "scripture", "reference": "Amos 3:7" }],
+      "gold": [
+        {
+          "source": "scripture",
+          "reference": "Amos 3:7"
+        }
+      ],
       "church_resource": "prophets-study-guide",
-      "tags": ["scripture", "prophets", "revelation"]
+      "tags": [
+        "scripture",
+        "prophets",
+        "revelation"
+      ]
     },
     {
       "id": "scripture-faith-not-seen-but-true",
       "question": "Which verse defines faith as hope for things that are not seen but are true?",
-      "gold": [{ "source": "scripture", "reference": "Alma 32:21" }],
+      "gold": [
+        {
+          "source": "scripture",
+          "reference": "Alma 32:21"
+        }
+      ],
       "church_resource": "faith-study-guide",
-      "tags": ["scripture", "faith"]
+      "tags": [
+        "scripture",
+        "faith"
+      ]
     }
   ]
 }

@@ -19,3 +19,6 @@ hw2d/christ-sims.npy
 
 # Local ChromaDB, rebuildable with hw2e/ingest.py
 hw2e/chroma/
+# Generated final project corpora and indexes
+final project/conference_talks/
+final project/data/

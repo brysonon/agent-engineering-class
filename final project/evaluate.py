@@ -65,10 +65,14 @@ def record_url(source: str, record: dict) -> str:
     return "" if source == "scripture" else record["url"]
 
 
+def gold_lookup_key(source: str, reference: str, date: str = "") -> tuple[str, str, str]:
+    return source, reference, date or ""
+
+
 def lexical_text(source: str, record: dict) -> str:
     if source == "scripture":
         return f"{record['ref']}\n{record['text']}"
-    parts = [record["title"], record.get("speaker", ""), record["text"]]
+    parts = [record["title"], record.get("speaker", ""), record.get("summary", ""), record["text"]]
     return "\n".join(part for part in parts if part)
 
 
@@ -79,20 +83,23 @@ def load_question_set(path: Path) -> tuple[dict, list[dict]]:
     return payload["resources"], payload["questions"]
 
 
-def build_gold_lookup(indexes: dict[str, tuple[np.ndarray, list[dict]]]) -> dict[tuple[str, str], str]:
-    lookup = {}
+def build_gold_lookup(indexes: dict[str, tuple[np.ndarray, list[dict]]]) -> dict[tuple[str, str, str], set[str]]:
+    lookup = defaultdict(set)
+    by_reference = defaultdict(set)
     for source, (_, records) in indexes.items():
         for record in records:
             reference = record_reference(source, record)
             document_id = record_document_id(source, record)
-            key = (source, reference)
-            if key in lookup and lookup[key] != document_id:
-                raise ValueError(f"Duplicate reference for {source}: {reference}")
-            lookup[key] = document_id
-    return lookup
+            date = record.get("date", "")
+            lookup[gold_lookup_key(source, reference, date)].add(document_id)
+            by_reference[(source, reference)].add(document_id)
+    for (source, reference), document_ids in by_reference.items():
+        if len(document_ids) == 1:
+            lookup[gold_lookup_key(source, reference)].update(document_ids)
+    return dict(lookup)
 
 
-def validate_questions(resources: dict, questions: list[dict], gold_lookup: dict[tuple[str, str], str]) -> None:
+def validate_questions(resources: dict, questions: list[dict], gold_lookup: dict[tuple[str, str, str], set[str]]) -> None:
     seen_ids = set()
     for question in questions:
         question_id = question["id"]
@@ -104,7 +111,7 @@ def validate_questions(resources: dict, questions: list[dict], gold_lookup: dict
         if not question.get("gold"):
             raise ValueError(f"Question {question_id} has no gold answers")
         for gold in question["gold"]:
-            key = (gold["source"], gold["reference"])
+            key = gold_lookup_key(gold["source"], gold["reference"], gold.get("date", ""))
             if key not in gold_lookup:
                 raise ValueError(f"Gold answer not found in indexes for {question_id}: {key}")
 
@@ -262,13 +269,14 @@ def hybrid_hits(vector_ranked: list[dict], keyword_ranked: list[dict], limit: in
     return hits
 
 
-def resolve_gold_keys(question: dict, gold_lookup: dict[tuple[str, str], str]) -> tuple[set[tuple[str, str]], tuple[str, ...]]:
+def resolve_gold_keys(question: dict, gold_lookup: dict[tuple[str, str, str], set[str]]) -> tuple[set[tuple[str, str]], tuple[str, ...]]:
     keys = set()
     sources = []
     for gold in question["gold"]:
         source = gold["source"]
-        document_id = gold_lookup[(source, gold["reference"])]
-        keys.add((source, document_id))
+        document_ids = gold_lookup[gold_lookup_key(source, gold["reference"], gold.get("date", ""))]
+        for document_id in document_ids:
+            keys.add((source, document_id))
         if source not in sources:
             sources.append(source)
     return keys, tuple(sources)
